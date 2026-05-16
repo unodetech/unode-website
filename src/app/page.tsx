@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 /* ----------------------------------------------------------------------
- * Product data — single source of truth for the showcase grid.
+ * Product data — single source of truth for the Work section.
  * -------------------------------------------------------------------- */
 
 type Product = {
@@ -13,7 +13,6 @@ type Product = {
   surfaces: string[];
   primary: { label: string; href: string };
   secondary?: { label: string; href: string }[];
-  accentVar: string; // CSS var name from globals.css
 };
 
 const PRODUCTS: Product[] = [
@@ -30,7 +29,6 @@ const PRODUCTS: Product[] = [
       { label: "App Store", href: "https://apps.apple.com" },
       { label: "Google Play", href: "https://play.google.com" },
     ],
-    accentVar: "--color-amlakey",
   },
   {
     index: "02",
@@ -41,7 +39,68 @@ const PRODUCTS: Product[] = [
     status: "live",
     surfaces: ["Web"],
     primary: { label: "masarqiyas.com", href: "https://masarqiyas.com" },
-    accentVar: "--color-qiyas",
+  },
+];
+
+/* ----------------------------------------------------------------------
+ * Services data
+ * -------------------------------------------------------------------- */
+
+const SERVICES = [
+  {
+    index: "01",
+    title: "Product engineering",
+    body: "Web, mobile, AI features. From sketch to App Store.",
+  },
+  {
+    index: "02",
+    title: "Platform development",
+    body: "B2B SaaS, multi-tenant systems, durable architectures.",
+  },
+  {
+    index: "03",
+    title: "KSA market integrations",
+    body: "Ejar · Absher · STCPay · SEC · NWC. We’ve built these. We know the gotchas.",
+  },
+  {
+    index: "04",
+    title: "0→1 launches",
+    body: "Design, build, and launch a new product in 90 days.",
+  },
+];
+
+const STACK = [
+  "React",
+  "React Native",
+  "Next.js",
+  "Supabase",
+  "TypeScript",
+  "PostgreSQL",
+  "Swift",
+  "Kotlin",
+  "OpenAI",
+  "Anthropic",
+];
+
+/* ----------------------------------------------------------------------
+ * Studio principles
+ * -------------------------------------------------------------------- */
+
+const PRINCIPLES = [
+  {
+    tag: "01",
+    title: "Own the product",
+    body: "When we build something, we operate it. No agency hand-off, no walk-away.",
+  },
+  {
+    tag: "02",
+    title: "Small surface, deep craft",
+    body: "A few things, done with care, beat many things done quickly.",
+  },
+  {
+    tag: "03",
+    title: "Useful before clever",
+    body: "Software earns its place by being opened tomorrow. We optimize for that, not for novelty.",
   },
 ];
 
@@ -89,26 +148,68 @@ function StatusDot({ status }: { status: Product["status"] }) {
     return (
       <span className="inline-flex items-center gap-2">
         <span
-          className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400 live-dot"
+          className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500 live-dot"
           aria-hidden="true"
         />
-        <span className="font-mono-tag text-emerald-300/90">Live</span>
+        <span className="font-mono-tag text-emerald-700">Live</span>
       </span>
     );
   }
   if (status === "beta") {
     return (
       <span className="inline-flex items-center gap-2">
-        <span className="h-1.5 w-1.5 rounded-full bg-amber-300" aria-hidden="true" />
-        <span className="font-mono-tag text-amber-200/90">Beta</span>
+        <span className="h-1.5 w-1.5 rounded-full bg-amber-500" aria-hidden="true" />
+        <span className="font-mono-tag text-amber-700">Beta</span>
       </span>
     );
   }
   return (
     <span className="inline-flex items-center gap-2">
-      <span className="h-1.5 w-1.5 rounded-full bg-zinc-500" aria-hidden="true" />
-      <span className="font-mono-tag text-zinc-400">In&nbsp;development</span>
+      <span className="h-1.5 w-1.5 rounded-full bg-zinc-400" aria-hidden="true" />
+      <span className="font-mono-tag text-zinc-500">In&nbsp;development</span>
     </span>
+  );
+}
+
+/* ----------------------------------------------------------------------
+ * Reusable CTAs
+ * -------------------------------------------------------------------- */
+
+function PrimaryCTA({
+  href,
+  children,
+  className = "",
+}: {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <a
+      href={href}
+      className={`link-arrow inline-flex items-center rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-800 ${className}`}
+    >
+      {children}
+    </a>
+  );
+}
+
+function GhostCTA({
+  href,
+  children,
+  className = "",
+}: {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <a
+      href={href}
+      className={`inline-flex items-center gap-2 rounded-full border border-zinc-300 px-5 py-2.5 text-sm font-medium text-[var(--color-fg)] transition hover:border-zinc-400 hover:bg-white ${className}`}
+    >
+      {children}
+    </a>
   );
 }
 
@@ -119,17 +220,17 @@ function StatusDot({ status }: { status: Product["status"] }) {
 function Navbar() {
   return (
     <nav
-      className="fixed inset-x-0 top-0 z-50 border-b border-[var(--color-line)] bg-[var(--color-bg)]/70 backdrop-blur-xl"
+      className="fixed inset-x-0 top-0 z-50 border-b border-[var(--color-line)] bg-white/75 backdrop-blur-xl"
       aria-label="Primary"
     >
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
+      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6 md:px-12">
         <Link
           href="/"
           className="flex items-center gap-2.5 text-[var(--color-fg)]"
           aria-label="Unode home"
         >
           <span
-            className="grid h-6 w-6 place-items-center rounded-[7px] border border-[var(--color-line-strong)] bg-gradient-to-br from-white/10 to-transparent"
+            className="grid h-6 w-6 place-items-center rounded-[7px] border border-[var(--color-line-strong)] bg-white"
             aria-hidden="true"
           >
             <span className="text-[11px] font-semibold tracking-tight">u</span>
@@ -137,86 +238,74 @@ function Navbar() {
           <span className="text-[15px] font-medium tracking-tight">unode</span>
         </Link>
 
-        <div className="hidden items-center gap-8 text-sm text-[var(--color-fg-muted)] md:flex">
-          <a
-            href="#products"
-            className="transition hover:text-[var(--color-fg)]"
-          >
-            Products
+        <div className="hidden items-center gap-8 text-sm text-zinc-600 md:flex">
+          <a href="#work" className="transition hover:text-[var(--color-fg)]">
+            Work
+          </a>
+          <a href="#services" className="transition hover:text-[var(--color-fg)]">
+            Services
           </a>
           <a href="#studio" className="transition hover:text-[var(--color-fg)]">
             Studio
           </a>
-          <a href="#contact" className="transition hover:text-[var(--color-fg)]">
-            Contact
-          </a>
         </div>
 
-        <a
-          href="#contact"
-          className="hidden items-center gap-1.5 rounded-full border border-[var(--color-line-strong)] bg-white/[0.04] px-3.5 py-1.5 text-[13px] text-[var(--color-fg)] transition hover:bg-white/[0.08] md:inline-flex"
-        >
-          Get in touch
+        <PrimaryCTA href="#contact" className="hidden md:inline-flex">
+          Start a project
           <ArrowRight />
-        </a>
+        </PrimaryCTA>
       </div>
     </nav>
   );
 }
 
 /* ----------------------------------------------------------------------
- * Hero — display type-forward, gridline canvas, no badges
+ * Hero
  * -------------------------------------------------------------------- */
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden border-b border-[var(--color-line)] pb-24 pt-40 md:pb-32 md:pt-48">
+    <section className="relative overflow-hidden pb-24 pt-40 md:pb-32 md:pt-48">
       <div className="grid-canvas pointer-events-none absolute inset-0" aria-hidden="true" />
+      {/* Single subtle ambient gradient — upper-right corner only */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-[420px] opacity-[0.18]"
+        className="pointer-events-none absolute -right-32 -top-32 h-[520px] w-[520px] opacity-[0.55]"
         style={{
           background:
-            "radial-gradient(60% 80% at 50% 0%, var(--color-accent) 0%, transparent 70%)",
+            "radial-gradient(closest-side, rgba(255, 179, 0, 0.18) 0%, rgba(255, 179, 0, 0.06) 45%, transparent 75%)",
         }}
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto max-w-6xl px-6">
-        <div className="rise rise-delay-1 mb-8 flex items-center gap-3">
+      <div className="relative mx-auto max-w-7xl px-6 md:px-12">
+        <div className="rise rise-delay-1 mb-10 flex items-center gap-3">
           <MonoLabel>Unode Studio</MonoLabel>
           <span className="h-px w-12 bg-[var(--color-line-strong)]" aria-hidden="true" />
           <MonoLabel>Est. 2026</MonoLabel>
         </div>
 
-        <h1 className="hero-display rise rise-delay-2 max-w-5xl text-balance text-[3.25rem] font-medium text-[var(--color-fg)] sm:text-6xl md:text-7xl lg:text-[5.5rem]">
-          A technology studio
+        <h1 className="hero-display rise rise-delay-2 max-w-5xl text-balance text-5xl font-medium text-[var(--color-fg)] md:text-7xl lg:text-8xl">
+          Software that ships,
           <br />
-          building software
-          <br />
-          <span className="text-[var(--color-fg-subtle)]">
-            that people keep open.
+          scales, and{" "}
+          <span className="text-zinc-400">
+            outlives
+            <br />
+            the trend cycle.
           </span>
         </h1>
 
-        <p className="rise rise-delay-3 mt-10 max-w-xl text-pretty text-base leading-relaxed text-[var(--color-fg-muted)] md:text-lg">
-          We design, build, and operate consumer software end-to-end. Two
-          products live today — more in the workshop.
+        <p className="rise rise-delay-3 mt-10 max-w-2xl text-pretty text-lg leading-relaxed text-zinc-600 md:text-xl">
+          Unode is a development partner for ambitious teams. We design, ship,
+          and operate consumer and enterprise software end-to-end.
         </p>
 
         <div className="rise rise-delay-4 mt-12 flex flex-wrap items-center gap-3">
-          <a
-            href="#products"
-            className="link-arrow inline-flex items-center rounded-full bg-[var(--color-fg)] px-5 py-2.5 text-sm font-medium text-[var(--color-bg)] transition hover:bg-white"
-          >
-            See the products
+          <PrimaryCTA href="#contact">
+            Start a project
             <ArrowRight />
-          </a>
-          <a
-            href="#studio"
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--color-line-strong)] px-5 py-2.5 text-sm font-medium text-[var(--color-fg)] transition hover:bg-white/[0.04]"
-          >
-            About the studio
-          </a>
+          </PrimaryCTA>
+          <GhostCTA href="#work">See our work</GhostCTA>
         </div>
       </div>
     </section>
@@ -224,37 +313,25 @@ function Hero() {
 }
 
 /* ----------------------------------------------------------------------
- * Products — two large tiles, index numbers, live links foregrounded
+ * Work — product tiles, no metrics, no fake proof
  * -------------------------------------------------------------------- */
 
 function ProductTile({ product }: { product: Product }) {
   const host = product.primary.href.replace(/^https?:\/\//, "");
 
   return (
-    <article
-      className="tile-ring group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)] p-8 transition-colors hover:bg-[var(--color-surface-2)] md:p-10"
-    >
-      {/* Per-product accent glow, very subtle */}
-      <div
-        className="pointer-events-none absolute -right-32 -top-32 h-72 w-72 rounded-full opacity-[0.08] blur-3xl transition-opacity duration-700 group-hover:opacity-[0.16]"
-        style={{ background: `var(${product.accentVar})` }}
-        aria-hidden="true"
-      />
-
-      <header className="relative flex items-start justify-between gap-4">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)] p-8 transition-colors hover:border-[var(--color-line-strong)] md:p-10">
+      <header className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
           <MonoLabel>{product.index}</MonoLabel>
-          <span
-            className="h-px w-8 bg-[var(--color-line-strong)]"
-            aria-hidden="true"
-          />
+          <span className="h-px w-8 bg-[var(--color-line-strong)]" aria-hidden="true" />
           <StatusDot status={product.status} />
         </div>
         <div className="flex flex-wrap items-center justify-end gap-1.5">
           {product.surfaces.map((s) => (
             <span
               key={s}
-              className="font-mono-tag rounded-full border border-[var(--color-line)] px-2.5 py-1 text-[var(--color-fg-muted)]"
+              className="font-mono-tag rounded-full border border-[var(--color-line)] bg-white px-2.5 py-1 text-zinc-600"
             >
               {s}
             </span>
@@ -262,25 +339,22 @@ function ProductTile({ product }: { product: Product }) {
         </div>
       </header>
 
-      <div className="relative mt-10 flex-1">
-        <h3 className="text-3xl font-medium tracking-tight text-[var(--color-fg)] md:text-4xl">
+      <div className="mt-10 flex-1">
+        <h3 className="text-2xl font-medium tracking-tight text-[var(--color-fg)] md:text-3xl">
           {product.name}
         </h3>
-        <p className="mt-2 text-sm text-[var(--color-fg-subtle)]">
-          {product.tagline}
-        </p>
-        <p className="mt-6 max-w-md text-[15px] leading-relaxed text-[var(--color-fg-muted)]">
+        <p className="mt-2 text-sm text-zinc-500">{product.tagline}</p>
+        <p className="mt-6 max-w-md text-[15px] leading-relaxed text-zinc-600">
           {product.description}
         </p>
       </div>
 
-      <footer className="relative mt-10 border-t border-[var(--color-line)] pt-6">
+      <footer className="mt-10 border-t border-[var(--color-line)] pt-6">
         <a
           href={product.primary.href}
           target="_blank"
           rel="noopener noreferrer"
           className="link-arrow inline-flex items-center text-[15px] font-medium text-[var(--color-fg)] transition"
-          style={{ color: `var(${product.accentVar})` }}
         >
           {host}
           <ArrowRight />
@@ -293,7 +367,7 @@ function ProductTile({ product }: { product: Product }) {
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[13px] text-[var(--color-fg-subtle)] transition hover:text-[var(--color-fg)]"
+                className="text-[13px] text-zinc-500 transition hover:text-[var(--color-fg)]"
               >
                 {s.label} →
               </a>
@@ -305,27 +379,25 @@ function ProductTile({ product }: { product: Product }) {
   );
 }
 
-function Products() {
+function Work() {
   return (
     <section
-      id="products"
-      className="relative border-b border-[var(--color-line)] py-28 md:py-36"
+      id="work"
+      className="relative border-t border-[var(--color-line)] py-24 md:py-32 lg:py-40"
     >
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-7xl px-6 md:px-12">
         <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
-            <MonoLabel className="mb-5 block">— Products</MonoLabel>
-            <h2 className="text-balance text-4xl font-medium tracking-tight text-[var(--color-fg)] md:text-5xl">
+            <MonoLabel className="mb-5 block">— Work</MonoLabel>
+            <h2 className="text-balance text-3xl font-medium tracking-tight text-[var(--color-fg)] md:text-5xl">
               Built, shipped, and run
               <br />
-              <span className="text-[var(--color-fg-subtle)]">
-                by the same small team.
-              </span>
+              <span className="text-zinc-400">by the same small team.</span>
             </h2>
           </div>
-          <p className="max-w-sm text-[15px] leading-relaxed text-[var(--color-fg-muted)]">
-            We don&apos;t freelance and we don&apos;t consult. Every product
-            below is owned, operated, and improved week after week.
+          <p className="max-w-sm text-[15px] leading-relaxed text-zinc-600">
+            Every product below is owned, operated, and improved week after
+            week.
           </p>
         </div>
 
@@ -340,74 +412,122 @@ function Products() {
 }
 
 /* ----------------------------------------------------------------------
- * Studio — what we make + how we make it
+ * Services — the new pivot
+ * -------------------------------------------------------------------- */
+
+function Services() {
+  return (
+    <section
+      id="services"
+      className="relative border-t border-[var(--color-line)] py-24 md:py-32 lg:py-40"
+    >
+      <div className="mx-auto max-w-7xl px-6 md:px-12">
+        <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
+            <MonoLabel className="mb-5 block">— Services</MonoLabel>
+            <h2 className="text-balance text-3xl font-medium tracking-tight text-[var(--color-fg)] md:text-5xl">
+              How we work
+              <br />
+              <span className="text-zinc-400">with teams.</span>
+            </h2>
+          </div>
+          <p className="max-w-sm text-[15px] leading-relaxed text-zinc-600">
+            A small number of engagements per year. We pick problems we want to
+            live with for years, not months.
+          </p>
+        </div>
+
+        <ul className="grid gap-px overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-line)] md:grid-cols-2">
+          {SERVICES.map((s) => (
+            <li
+              key={s.index}
+              className="bg-[var(--color-surface)] p-8 md:p-10"
+            >
+              <div className="flex items-center gap-3">
+                <MonoLabel>{s.index}</MonoLabel>
+                <span
+                  className="h-px w-8 bg-[var(--color-line-strong)]"
+                  aria-hidden="true"
+                />
+              </div>
+              <h3 className="mt-6 text-xl font-medium tracking-tight text-[var(--color-fg)] md:text-2xl">
+                {s.title}
+              </h3>
+              <p className="mt-3 max-w-md text-[15px] leading-relaxed text-zinc-600">
+                {s.body}
+              </p>
+            </li>
+          ))}
+        </ul>
+
+        {/* Stack strip — full-width horizontal mono row */}
+        <div className="mt-10 overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)] px-6 py-5 md:px-10">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <MonoLabel className="text-zinc-500">Stack</MonoLabel>
+            <span
+              className="hidden h-px w-8 bg-[var(--color-line-strong)] md:inline-block"
+              aria-hidden="true"
+            />
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[12px] text-zinc-600">
+              {STACK.map((s, i) => (
+                <span key={s} className="inline-flex items-center gap-4">
+                  <span>{s}</span>
+                  {i < STACK.length - 1 && (
+                    <span className="text-zinc-300" aria-hidden="true">
+                      ·
+                    </span>
+                  )}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12">
+          <PrimaryCTA href="#contact">
+            Discuss your project
+            <ArrowRight />
+          </PrimaryCTA>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ----------------------------------------------------------------------
+ * Studio — rewritten, no "no freelance" line, no stats grid
  * -------------------------------------------------------------------- */
 
 function Studio() {
-  const principles = [
-    {
-      tag: "01",
-      title: "Own the product",
-      body: "We build, ship, and operate. No agency work, no white-label, no advisory hours.",
-    },
-    {
-      tag: "02",
-      title: "Small surface, deep craft",
-      body: "Two products in market, not twenty in a deck. Every screen is the work of someone who cares.",
-    },
-    {
-      tag: "03",
-      title: "Useful before clever",
-      body: "Software earns its place by being opened tomorrow. We optimize for that, not for novelty.",
-    },
-  ];
-
   return (
     <section
       id="studio"
-      className="relative border-b border-[var(--color-line)] py-28 md:py-36"
+      className="relative border-t border-[var(--color-line)] py-24 md:py-32 lg:py-40"
     >
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-7xl px-6 md:px-12">
         <div className="grid gap-16 md:grid-cols-12 md:gap-12">
           <div className="md:col-span-5">
             <MonoLabel className="mb-5 block">— Studio</MonoLabel>
-            <h2 className="text-balance text-4xl font-medium tracking-tight text-[var(--color-fg)] md:text-5xl">
-              A studio, not
+            <h2 className="text-balance text-3xl font-medium tracking-tight text-[var(--color-fg)] md:text-5xl">
+              A studio built
               <br />
-              a software shop.
+              <span className="text-zinc-400">for the long game.</span>
             </h2>
-            <p className="mt-8 max-w-md text-[15px] leading-relaxed text-[var(--color-fg-muted)]">
+            <p className="mt-8 max-w-md text-[15px] leading-relaxed text-zinc-600">
               Unode is a privately held technology studio. We pick narrow
-              problems, build the product we wish existed, and stay with it for
-              years. The shape of the team stays small so the standard stays
-              high.
+              problems and stay with them for years. We build our own products,
+              and we partner with teams who want that same standard applied to
+              theirs.
             </p>
 
-            <dl className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-[var(--color-line)] bg-[var(--color-line)]">
-              {[
-                { k: "Products live", v: "2" },
-                { k: "Founded", v: "2026" },
-                { k: "Platforms", v: "iOS · Android · Web" },
-                { k: "Team", v: "Small, on purpose" },
-              ].map((s) => (
-                <div
-                  key={s.k}
-                  className="bg-[var(--color-surface)] p-5"
-                >
-                  <dt className="font-mono-tag text-[var(--color-fg-subtle)]">
-                    {s.k}
-                  </dt>
-                  <dd className="mt-2 text-lg font-medium tracking-tight text-[var(--color-fg)]">
-                    {s.v}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+            <p className="mt-10 font-mono text-[12px] text-zinc-400">
+              Unode Company LLC · CR 7053929092
+            </p>
           </div>
 
           <div className="md:col-span-7 md:pl-8">
             <ul className="divide-y divide-[var(--color-line)] border-y border-[var(--color-line)]">
-              {principles.map((p) => (
+              {PRINCIPLES.map((p) => (
                 <li
                   key={p.tag}
                   className="grid grid-cols-[auto_1fr] gap-x-8 py-7 md:grid-cols-[64px_1fr] md:py-9"
@@ -417,7 +537,7 @@ function Studio() {
                     <h3 className="text-xl font-medium tracking-tight text-[var(--color-fg)] md:text-2xl">
                       {p.title}
                     </h3>
-                    <p className="mt-3 max-w-md text-[15px] leading-relaxed text-[var(--color-fg-muted)]">
+                    <p className="mt-3 max-w-md text-[15px] leading-relaxed text-zinc-600">
                       {p.body}
                     </p>
                   </div>
@@ -437,46 +557,46 @@ function Studio() {
 
 function Contact() {
   return (
-    <section id="contact" className="relative py-28 md:py-36">
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[420px] opacity-[0.14]"
-        style={{
-          background:
-            "radial-gradient(60% 80% at 50% 100%, var(--color-accent) 0%, transparent 70%)",
-        }}
-        aria-hidden="true"
-      />
-
-      <div className="relative mx-auto max-w-6xl px-6">
+    <section
+      id="contact"
+      className="relative border-t border-[var(--color-line)] py-24 md:py-32 lg:py-40"
+    >
+      <div className="relative mx-auto max-w-7xl px-6 md:px-12">
         <MonoLabel className="mb-5 block">— Contact</MonoLabel>
-        <h2 className="max-w-3xl text-balance text-4xl font-medium tracking-tight text-[var(--color-fg)] md:text-6xl">
+        <h2 className="max-w-3xl text-balance text-3xl font-medium tracking-tight text-[var(--color-fg)] md:text-5xl">
           Working on something
           <br />
-          <span className="text-[var(--color-fg-subtle)]">
-            we should know about?
-          </span>
+          <span className="text-zinc-400">we should know about?</span>
         </h2>
-        <p className="mt-8 max-w-md text-[15px] leading-relaxed text-[var(--color-fg-muted)]">
-          We&apos;re not taking client work. But we read every note —
-          collaborations, distribution, hiring conversations included.
+        <p className="mt-8 max-w-xl text-[15px] leading-relaxed text-zinc-600 md:text-base">
+          Tell us about it. We read every note — partnerships, custom builds,
+          hiring conversations, all of it.
         </p>
+
+        <div className="mt-10 flex flex-wrap items-center gap-3">
+          <PrimaryCTA href="mailto:info@unode.tech">
+            Start a project
+            <ArrowRight />
+          </PrimaryCTA>
+          <GhostCTA href="https://cal.com/unode">Book a 30-min call</GhostCTA>
+        </div>
 
         <div className="mt-12 grid gap-3 sm:grid-cols-2 sm:gap-4 md:max-w-2xl">
           <a
             href="mailto:info@unode.tech"
-            className="tile-ring group flex flex-col rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-5 transition hover:bg-[var(--color-surface-2)]"
+            className="group flex flex-col rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-5 transition hover:border-[var(--color-line-strong)]"
           >
             <MonoLabel>General</MonoLabel>
-            <span className="mt-3 text-[15px] font-medium text-[var(--color-fg)] transition group-hover:text-[var(--color-accent)]">
+            <span className="mt-3 text-[15px] font-medium text-[var(--color-fg)]">
               info@unode.tech
             </span>
           </a>
           <a
             href="mailto:support@unode.tech"
-            className="tile-ring group flex flex-col rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-5 transition hover:bg-[var(--color-surface-2)]"
+            className="group flex flex-col rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-5 transition hover:border-[var(--color-line-strong)]"
           >
             <MonoLabel>Product support</MonoLabel>
-            <span className="mt-3 text-[15px] font-medium text-[var(--color-fg)] transition group-hover:text-[var(--color-accent)]">
+            <span className="mt-3 text-[15px] font-medium text-[var(--color-fg)]">
               support@unode.tech
             </span>
           </a>
@@ -487,18 +607,18 @@ function Contact() {
 }
 
 /* ----------------------------------------------------------------------
- * Footer — CR retained in legal row, products + studio linkage
+ * Footer
  * -------------------------------------------------------------------- */
 
 function Footer() {
   return (
     <footer className="border-t border-[var(--color-line)] bg-[var(--color-bg)]">
-      <div className="mx-auto max-w-6xl px-6 py-16">
+      <div className="mx-auto max-w-7xl px-6 py-16 md:px-12">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
             <Link href="/" className="flex items-center gap-2.5">
               <span
-                className="grid h-6 w-6 place-items-center rounded-[7px] border border-[var(--color-line-strong)] bg-gradient-to-br from-white/10 to-transparent"
+                className="grid h-6 w-6 place-items-center rounded-[7px] border border-[var(--color-line-strong)] bg-white"
                 aria-hidden="true"
               >
                 <span className="text-[11px] font-semibold tracking-tight text-[var(--color-fg)]">
@@ -509,21 +629,21 @@ function Footer() {
                 unode
               </span>
             </Link>
-            <p className="mt-5 max-w-sm text-[14px] leading-relaxed text-[var(--color-fg-muted)]">
-              A technology studio building consumer software. Privately held.
+            <p className="mt-5 max-w-sm text-[14px] leading-relaxed text-zinc-600">
+              A technology studio. Privately held.
             </p>
           </div>
 
           <div className="md:col-span-7 md:grid md:grid-cols-3 md:gap-8">
             <div>
-              <MonoLabel>Products</MonoLabel>
+              <MonoLabel>Work</MonoLabel>
               <ul className="mt-4 space-y-2.5 text-[14px]">
                 <li>
                   <a
                     href="https://amlakeyapp.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[var(--color-fg-muted)] transition hover:text-[var(--color-fg)]"
+                    className="text-zinc-600 transition hover:text-[var(--color-fg)]"
                   >
                     Amlakey
                   </a>
@@ -533,7 +653,7 @@ function Footer() {
                     href="https://masarqiyas.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[var(--color-fg-muted)] transition hover:text-[var(--color-fg)]"
+                    className="text-zinc-600 transition hover:text-[var(--color-fg)]"
                   >
                     Masar Qiyas
                   </a>
@@ -546,7 +666,7 @@ function Footer() {
                 <li>
                   <a
                     href="#studio"
-                    className="text-[var(--color-fg-muted)] transition hover:text-[var(--color-fg)]"
+                    className="text-zinc-600 transition hover:text-[var(--color-fg)]"
                   >
                     About
                   </a>
@@ -554,7 +674,7 @@ function Footer() {
                 <li>
                   <a
                     href="#contact"
-                    className="text-[var(--color-fg-muted)] transition hover:text-[var(--color-fg)]"
+                    className="text-zinc-600 transition hover:text-[var(--color-fg)]"
                   >
                     Contact
                   </a>
@@ -567,7 +687,7 @@ function Footer() {
                 <li>
                   <a
                     href="mailto:info@unode.tech"
-                    className="text-[var(--color-fg-muted)] transition hover:text-[var(--color-fg)]"
+                    className="text-zinc-600 transition hover:text-[var(--color-fg)]"
                   >
                     info@unode.tech
                   </a>
@@ -575,7 +695,7 @@ function Footer() {
                 <li>
                   <a
                     href="mailto:support@unode.tech"
-                    className="text-[var(--color-fg-muted)] transition hover:text-[var(--color-fg)]"
+                    className="text-zinc-600 transition hover:text-[var(--color-fg)]"
                   >
                     support@unode.tech
                   </a>
@@ -585,13 +705,9 @@ function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-3 border-t border-[var(--color-line)] pt-6 text-[12px] text-[var(--color-fg-subtle)] md:flex-row md:items-center md:justify-between">
-          <p>
-            © {new Date().getFullYear()} Unode Company. All rights reserved.
-          </p>
-          <p className="font-mono-tag">
-            Unode Company LLC · CR 7053929092
-          </p>
+        <div className="mt-16 flex flex-col gap-3 border-t border-[var(--color-line)] pt-6 text-[12px] text-zinc-500 md:flex-row md:items-center md:justify-between">
+          <p>© 2026 Unode Company</p>
+          <p className="font-mono-tag">Unode Company LLC · CR 7053929092</p>
         </div>
       </div>
     </footer>
@@ -608,7 +724,8 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
-        <Products />
+        <Work />
+        <Services />
         <Studio />
         <Contact />
       </main>

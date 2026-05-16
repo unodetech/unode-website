@@ -19,20 +19,23 @@ export const metadata: Metadata = {
     template: "%s · Unode",
   },
   description:
-    "Unode is a technology studio building consumer software. Makers of Amlakey and Masar Qiyas.",
+    "Unode is a development partner for ambitious teams. We design, ship, and operate consumer and enterprise software end-to-end.",
   keywords: [
     "Unode",
     "technology studio",
+    "software development",
+    "product engineering",
+    "Saudi Arabia",
+    "KSA",
+    "Ejar",
     "Amlakey",
     "Masar Qiyas",
-    "property management",
-    "exam prep",
   ],
   authors: [{ name: "Unode Company" }],
   openGraph: {
     title: "Unode — A technology studio",
     description:
-      "A technology studio building consumer software. Makers of Amlakey and Masar Qiyas.",
+      "A development partner for ambitious teams. We design, ship, and operate consumer and enterprise software end-to-end.",
     url: "https://unode.tech",
     siteName: "Unode",
     type: "website",
@@ -42,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Unode — A technology studio",
     description:
-      "A technology studio building consumer software. Makers of Amlakey and Masar Qiyas.",
+      "A development partner for ambitious teams. We design, ship, and operate consumer and enterprise software end-to-end.",
   },
   robots: {
     index: true,
@@ -60,7 +63,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-[var(--color-bg)] text-[var(--color-fg)]">
+        {children}
+      </body>
     </html>
   );
 }
