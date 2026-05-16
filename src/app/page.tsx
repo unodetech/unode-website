@@ -1,294 +1,484 @@
 import Link from "next/link";
 
+/* ----------------------------------------------------------------------
+ * Product data — single source of truth for the showcase grid.
+ * -------------------------------------------------------------------- */
+
+type Product = {
+  index: string;
+  name: string;
+  tagline: string;
+  description: string;
+  status: "live" | "beta" | "soon";
+  surfaces: string[];
+  primary: { label: string; href: string };
+  secondary?: { label: string; href: string }[];
+  accentVar: string; // CSS var name from globals.css
+};
+
+const PRODUCTS: Product[] = [
+  {
+    index: "01",
+    name: "Amlakey",
+    tagline: "Property management for landlords",
+    description:
+      "An iOS, Android, and web app that turns rent collection, utility tracking, and reporting into a single calm workflow. Built for the Saudi market with Hijri calendar and Ejar integration.",
+    status: "live",
+    surfaces: ["iOS", "Android", "Web"],
+    primary: { label: "amlakeyapp.com", href: "https://amlakeyapp.com" },
+    secondary: [
+      { label: "App Store", href: "https://apps.apple.com" },
+      { label: "Google Play", href: "https://play.google.com" },
+    ],
+    accentVar: "--color-amlakey",
+  },
+  {
+    index: "02",
+    name: "Masar Qiyas",
+    tagline: "Exam prep for Saudi standardized tests",
+    description:
+      "A focused practice platform for GAT (Qudurat) and SAAT (Tahsili). Real questions, progress tracking, and adaptive study plans that meet students where they are.",
+    status: "live",
+    surfaces: ["Web"],
+    primary: { label: "masarqiyas.com", href: "https://masarqiyas.com" },
+    accentVar: "--color-qiyas",
+  },
+];
+
+/* ----------------------------------------------------------------------
+ * Small primitives
+ * -------------------------------------------------------------------- */
+
+function MonoLabel({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <span className={`font-mono-tag text-[var(--color-fg-subtle)] ${className}`}>
+      {children}
+    </span>
+  );
+}
+
+function ArrowRight({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M2.5 7h9m0 0L7.5 3M11.5 7l-4 4"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function StatusDot({ status }: { status: Product["status"] }) {
+  if (status === "live") {
+    return (
+      <span className="inline-flex items-center gap-2">
+        <span
+          className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400 live-dot"
+          aria-hidden="true"
+        />
+        <span className="font-mono-tag text-emerald-300/90">Live</span>
+      </span>
+    );
+  }
+  if (status === "beta") {
+    return (
+      <span className="inline-flex items-center gap-2">
+        <span className="h-1.5 w-1.5 rounded-full bg-amber-300" aria-hidden="true" />
+        <span className="font-mono-tag text-amber-200/90">Beta</span>
+      </span>
+    );
+  }
+  return (
+    <span className="inline-flex items-center gap-2">
+      <span className="h-1.5 w-1.5 rounded-full bg-zinc-500" aria-hidden="true" />
+      <span className="font-mono-tag text-zinc-400">In&nbsp;development</span>
+    </span>
+  );
+}
+
+/* ----------------------------------------------------------------------
+ * Navigation
+ * -------------------------------------------------------------------- */
+
 function Navbar() {
   return (
-    <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 z-50">
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">U</span>
-          </div>
-          <span className="font-semibold text-lg tracking-tight">unode</span>
+    <nav
+      className="fixed inset-x-0 top-0 z-50 border-b border-[var(--color-line)] bg-[var(--color-bg)]/70 backdrop-blur-xl"
+      aria-label="Primary"
+    >
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 text-[var(--color-fg)]"
+          aria-label="Unode home"
+        >
+          <span
+            className="grid h-6 w-6 place-items-center rounded-[7px] border border-[var(--color-line-strong)] bg-gradient-to-br from-white/10 to-transparent"
+            aria-hidden="true"
+          >
+            <span className="text-[11px] font-semibold tracking-tight">u</span>
+          </span>
+          <span className="text-[15px] font-medium tracking-tight">unode</span>
         </Link>
-        <div className="hidden md:flex items-center gap-8 text-sm text-gray-600">
-          <a href="#products" className="hover:text-gray-900 transition">
+
+        <div className="hidden items-center gap-8 text-sm text-[var(--color-fg-muted)] md:flex">
+          <a
+            href="#products"
+            className="transition hover:text-[var(--color-fg)]"
+          >
             Products
           </a>
-          <a href="#about" className="hover:text-gray-900 transition">
-            About
+          <a href="#studio" className="transition hover:text-[var(--color-fg)]">
+            Studio
           </a>
-          <a href="#contact" className="hover:text-gray-900 transition">
+          <a href="#contact" className="transition hover:text-[var(--color-fg)]">
             Contact
           </a>
         </div>
+
+        <a
+          href="#contact"
+          className="hidden items-center gap-1.5 rounded-full border border-[var(--color-line-strong)] bg-white/[0.04] px-3.5 py-1.5 text-[13px] text-[var(--color-fg)] transition hover:bg-white/[0.08] md:inline-flex"
+        >
+          Get in touch
+          <ArrowRight />
+        </a>
       </div>
     </nav>
   );
 }
 
+/* ----------------------------------------------------------------------
+ * Hero — display type-forward, gridline canvas, no badges
+ * -------------------------------------------------------------------- */
+
 function Hero() {
   return (
-    <section className="pt-32 pb-20 px-6">
-      <div className="max-w-4xl mx-auto text-center">
-        <div className="inline-flex items-center gap-2 bg-gray-100 rounded-full px-4 py-1.5 text-sm text-gray-600 mb-8">
-          <span className="w-2 h-2 bg-green-500 rounded-full" />
-          Based in Saudi Arabia
+    <section className="relative overflow-hidden border-b border-[var(--color-line)] pb-24 pt-40 md:pb-32 md:pt-48">
+      <div className="grid-canvas pointer-events-none absolute inset-0" aria-hidden="true" />
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[420px] opacity-[0.18]"
+        style={{
+          background:
+            "radial-gradient(60% 80% at 50% 0%, var(--color-accent) 0%, transparent 70%)",
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="relative mx-auto max-w-6xl px-6">
+        <div className="rise rise-delay-1 mb-8 flex items-center gap-3">
+          <MonoLabel>Unode Studio</MonoLabel>
+          <span className="h-px w-12 bg-[var(--color-line-strong)]" aria-hidden="true" />
+          <MonoLabel>Est. 2026</MonoLabel>
         </div>
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-gray-900 mb-6">
-          Building the future,
+
+        <h1 className="hero-display rise rise-delay-2 max-w-5xl text-balance text-[3.25rem] font-medium text-[var(--color-fg)] sm:text-6xl md:text-7xl lg:text-[5.5rem]">
+          A technology studio
           <br />
-          <span className="text-blue-600">one product at a time.</span>
+          building software
+          <br />
+          <span className="text-[var(--color-fg-subtle)]">
+            that people keep open.
+          </span>
         </h1>
-        <p className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto mb-10">
-          Unode is a Saudi technology company creating innovative digital
-          products that simplify everyday life. From property management to
-          education — we build tools that matter.
+
+        <p className="rise rise-delay-3 mt-10 max-w-xl text-pretty text-base leading-relaxed text-[var(--color-fg-muted)] md:text-lg">
+          We design, build, and operate consumer software end-to-end. Two
+          products live today — more in the workshop.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
+        <div className="rise rise-delay-4 mt-12 flex flex-wrap items-center gap-3">
           <a
             href="#products"
-            className="bg-gray-900 text-white px-8 py-3 rounded-full font-medium hover:bg-gray-800 transition"
+            className="link-arrow inline-flex items-center rounded-full bg-[var(--color-fg)] px-5 py-2.5 text-sm font-medium text-[var(--color-bg)] transition hover:bg-white"
           >
-            Explore Products
+            See the products
+            <ArrowRight />
           </a>
           <a
-            href="#contact"
-            className="border border-gray-300 text-gray-700 px-8 py-3 rounded-full font-medium hover:bg-gray-50 transition"
+            href="#studio"
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--color-line-strong)] px-5 py-2.5 text-sm font-medium text-[var(--color-fg)] transition hover:bg-white/[0.04]"
           >
-            Get in Touch
+            About the studio
           </a>
         </div>
       </div>
     </section>
+  );
+}
+
+/* ----------------------------------------------------------------------
+ * Products — two large tiles, index numbers, live links foregrounded
+ * -------------------------------------------------------------------- */
+
+function ProductTile({ product }: { product: Product }) {
+  const host = product.primary.href.replace(/^https?:\/\//, "");
+
+  return (
+    <article
+      className="tile-ring group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)] p-8 transition-colors hover:bg-[var(--color-surface-2)] md:p-10"
+    >
+      {/* Per-product accent glow, very subtle */}
+      <div
+        className="pointer-events-none absolute -right-32 -top-32 h-72 w-72 rounded-full opacity-[0.08] blur-3xl transition-opacity duration-700 group-hover:opacity-[0.16]"
+        style={{ background: `var(${product.accentVar})` }}
+        aria-hidden="true"
+      />
+
+      <header className="relative flex items-start justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <MonoLabel>{product.index}</MonoLabel>
+          <span
+            className="h-px w-8 bg-[var(--color-line-strong)]"
+            aria-hidden="true"
+          />
+          <StatusDot status={product.status} />
+        </div>
+        <div className="flex flex-wrap items-center justify-end gap-1.5">
+          {product.surfaces.map((s) => (
+            <span
+              key={s}
+              className="font-mono-tag rounded-full border border-[var(--color-line)] px-2.5 py-1 text-[var(--color-fg-muted)]"
+            >
+              {s}
+            </span>
+          ))}
+        </div>
+      </header>
+
+      <div className="relative mt-10 flex-1">
+        <h3 className="text-3xl font-medium tracking-tight text-[var(--color-fg)] md:text-4xl">
+          {product.name}
+        </h3>
+        <p className="mt-2 text-sm text-[var(--color-fg-subtle)]">
+          {product.tagline}
+        </p>
+        <p className="mt-6 max-w-md text-[15px] leading-relaxed text-[var(--color-fg-muted)]">
+          {product.description}
+        </p>
+      </div>
+
+      <footer className="relative mt-10 border-t border-[var(--color-line)] pt-6">
+        <a
+          href={product.primary.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link-arrow inline-flex items-center text-[15px] font-medium text-[var(--color-fg)] transition"
+          style={{ color: `var(${product.accentVar})` }}
+        >
+          {host}
+          <ArrowRight />
+        </a>
+        {product.secondary && product.secondary.length > 0 && (
+          <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
+            {product.secondary.map((s) => (
+              <a
+                key={s.href}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[13px] text-[var(--color-fg-subtle)] transition hover:text-[var(--color-fg)]"
+              >
+                {s.label} →
+              </a>
+            ))}
+          </div>
+        )}
+      </footer>
+    </article>
   );
 }
 
 function Products() {
   return (
-    <section id="products" className="py-20 px-6 bg-gray-50">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            Our Products
-          </h2>
-          <p className="text-gray-500 text-lg max-w-xl mx-auto">
-            Digital solutions designed for the Saudi market, built with care and
-            precision.
+    <section
+      id="products"
+      className="relative border-b border-[var(--color-line)] py-28 md:py-36"
+    >
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
+            <MonoLabel className="mb-5 block">— Products</MonoLabel>
+            <h2 className="text-balance text-4xl font-medium tracking-tight text-[var(--color-fg)] md:text-5xl">
+              Built, shipped, and run
+              <br />
+              <span className="text-[var(--color-fg-subtle)]">
+                by the same small team.
+              </span>
+            </h2>
+          </div>
+          <p className="max-w-sm text-[15px] leading-relaxed text-[var(--color-fg-muted)]">
+            We don&apos;t freelance and we don&apos;t consult. Every product
+            below is owned, operated, and improved week after week.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-white rounded-2xl p-8 border border-gray-200 hover:border-blue-200 hover:shadow-lg transition-all group">
-            <div className="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-200 transition">
-              <svg
-                className="w-7 h-7 text-blue-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-                />
-              </svg>
-            </div>
-            <div className="flex items-center gap-3 mb-3">
-              <h3 className="text-2xl font-bold">Amlakey</h3>
-              <span className="text-sm text-gray-400 font-medium">
-                Property Management
-              </span>
-            </div>
-            <p className="text-gray-500 mb-6 leading-relaxed">
-              The all-in-one property management app for Saudi landlords.
-              Manage properties, track rent payments, monitor utility bills,
-              and generate reports — with full Hijri calendar and Ejar
-              integration.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-6">
-              {[
-                "iOS & Android",
-                "Hijri/Gregorian",
-                "Ejar Sync",
-                "Utility Tracking",
-                "Reports",
-              ].map((tag) => (
-                <span
-                  key={tag}
-                  className="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <div className="flex gap-3">
-              <a
-                href="https://apps.apple.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-blue-600 font-medium hover:text-blue-700 transition"
-              >
-                App Store &rarr;
-              </a>
-              <a
-                href="https://play.google.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-blue-600 font-medium hover:text-blue-700 transition"
-              >
-                Google Play &rarr;
-              </a>
-            </div>
-          </div>
 
-          <div className="bg-white rounded-2xl p-8 border border-gray-200 hover:border-emerald-200 hover:shadow-lg transition-all group">
-            <div className="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-200 transition">
-              <svg
-                className="w-7 h-7 text-emerald-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"
-                />
-              </svg>
-            </div>
-            <div className="flex items-center gap-3 mb-3">
-              <h3 className="text-2xl font-bold">Masar Qiyas</h3>
-              <span className="text-sm text-gray-400 font-medium">
-                Exam Preparation
-              </span>
-            </div>
-            <p className="text-gray-500 mb-6 leading-relaxed">
-              Smart exam preparation platform for Saudi standardized tests.
-              Practice with real questions, track your progress, and get
-              personalized study plans to achieve your target score.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-6">
-              {[
-                "GAT / Qudurat",
-                "SAAT / Tahsili",
-                "Real Questions",
-                "Progress Tracking",
-                "Study Plans",
-              ].map((tag) => (
-                <span
-                  key={tag}
-                  className="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <span className="text-sm text-emerald-600 font-medium">
-              Coming Soon
-            </span>
-          </div>
+        <div className="grid gap-6 md:grid-cols-2 md:gap-7">
+          {PRODUCTS.map((p) => (
+            <ProductTile key={p.name} product={p} />
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function About() {
+/* ----------------------------------------------------------------------
+ * Studio — what we make + how we make it
+ * -------------------------------------------------------------------- */
+
+function Studio() {
+  const principles = [
+    {
+      tag: "01",
+      title: "Own the product",
+      body: "We build, ship, and operate. No agency work, no white-label, no advisory hours.",
+    },
+    {
+      tag: "02",
+      title: "Small surface, deep craft",
+      body: "Two products in market, not twenty in a deck. Every screen is the work of someone who cares.",
+    },
+    {
+      tag: "03",
+      title: "Useful before clever",
+      body: "Software earns its place by being opened tomorrow. We optimize for that, not for novelty.",
+    },
+  ];
+
   return (
-    <section id="about" className="py-20 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
-              Technology rooted
+    <section
+      id="studio"
+      className="relative border-b border-[var(--color-line)] py-28 md:py-36"
+    >
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="grid gap-16 md:grid-cols-12 md:gap-12">
+          <div className="md:col-span-5">
+            <MonoLabel className="mb-5 block">— Studio</MonoLabel>
+            <h2 className="text-balance text-4xl font-medium tracking-tight text-[var(--color-fg)] md:text-5xl">
+              A studio, not
               <br />
-              in Saudi Arabia
+              a software shop.
             </h2>
-            <p className="text-gray-500 text-lg leading-relaxed mb-6">
-              Unode was founded with a simple mission: build world-class digital
-              products tailored for the Saudi market. We understand the local
-              needs — from Hijri calendars to Arabic-first experiences.
+            <p className="mt-8 max-w-md text-[15px] leading-relaxed text-[var(--color-fg-muted)]">
+              Unode is a privately held technology studio. We pick narrow
+              problems, build the product we wish existed, and stay with it for
+              years. The shape of the team stays small so the standard stays
+              high.
             </p>
-            <p className="text-gray-500 text-lg leading-relaxed">
-              As a registered Saudi company (CR: 7053929092), we are committed
-              to contributing to the Kingdom&apos;s digital transformation under
-              Vision 2030.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-6">
-            {[
-              { number: "2", label: "Products" },
-              { number: "2026", label: "Founded" },
-              { number: "KSA", label: "Headquarters" },
-              { number: "3+", label: "Platforms" },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="bg-gray-50 rounded-2xl p-6 text-center"
-              >
-                <div className="text-3xl font-bold text-gray-900 mb-1">
-                  {stat.number}
+
+            <dl className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-[var(--color-line)] bg-[var(--color-line)]">
+              {[
+                { k: "Products live", v: "2" },
+                { k: "Founded", v: "2026" },
+                { k: "Platforms", v: "iOS · Android · Web" },
+                { k: "Team", v: "Small, on purpose" },
+              ].map((s) => (
+                <div
+                  key={s.k}
+                  className="bg-[var(--color-surface)] p-5"
+                >
+                  <dt className="font-mono-tag text-[var(--color-fg-subtle)]">
+                    {s.k}
+                  </dt>
+                  <dd className="mt-2 text-lg font-medium tracking-tight text-[var(--color-fg)]">
+                    {s.v}
+                  </dd>
                 </div>
-                <div className="text-sm text-gray-500">{stat.label}</div>
-              </div>
-            ))}
+              ))}
+            </dl>
+          </div>
+
+          <div className="md:col-span-7 md:pl-8">
+            <ul className="divide-y divide-[var(--color-line)] border-y border-[var(--color-line)]">
+              {principles.map((p) => (
+                <li
+                  key={p.tag}
+                  className="grid grid-cols-[auto_1fr] gap-x-8 py-7 md:grid-cols-[64px_1fr] md:py-9"
+                >
+                  <MonoLabel className="pt-1">{p.tag}</MonoLabel>
+                  <div>
+                    <h3 className="text-xl font-medium tracking-tight text-[var(--color-fg)] md:text-2xl">
+                      {p.title}
+                    </h3>
+                    <p className="mt-3 max-w-md text-[15px] leading-relaxed text-[var(--color-fg-muted)]">
+                      {p.body}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
     </section>
   );
 }
+
+/* ----------------------------------------------------------------------
+ * Contact
+ * -------------------------------------------------------------------- */
 
 function Contact() {
   return (
-    <section id="contact" className="py-20 px-6 bg-gray-900 text-white">
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-          Let&apos;s build something together
+    <section id="contact" className="relative py-28 md:py-36">
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[420px] opacity-[0.14]"
+        style={{
+          background:
+            "radial-gradient(60% 80% at 50% 100%, var(--color-accent) 0%, transparent 70%)",
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="relative mx-auto max-w-6xl px-6">
+        <MonoLabel className="mb-5 block">— Contact</MonoLabel>
+        <h2 className="max-w-3xl text-balance text-4xl font-medium tracking-tight text-[var(--color-fg)] md:text-6xl">
+          Working on something
+          <br />
+          <span className="text-[var(--color-fg-subtle)]">
+            we should know about?
+          </span>
         </h2>
-        <p className="text-gray-400 text-lg mb-10 max-w-xl mx-auto">
-          Have a question, partnership idea, or just want to say hello?
-          We&apos;d love to hear from you.
+        <p className="mt-8 max-w-md text-[15px] leading-relaxed text-[var(--color-fg-muted)]">
+          We&apos;re not taking client work. But we read every note —
+          collaborations, distribution, hiring conversations included.
         </p>
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+
+        <div className="mt-12 grid gap-3 sm:grid-cols-2 sm:gap-4 md:max-w-2xl">
           <a
             href="mailto:info@unode.tech"
-            className="flex items-center gap-3 bg-white/10 hover:bg-white/20 px-6 py-3 rounded-full transition"
+            className="tile-ring group flex flex-col rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-5 transition hover:bg-[var(--color-surface-2)]"
           >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={1.5}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
-              />
-            </svg>
-            info@unode.tech
+            <MonoLabel>General</MonoLabel>
+            <span className="mt-3 text-[15px] font-medium text-[var(--color-fg)] transition group-hover:text-[var(--color-accent)]">
+              info@unode.tech
+            </span>
           </a>
           <a
             href="mailto:support@unode.tech"
-            className="flex items-center gap-3 bg-white/10 hover:bg-white/20 px-6 py-3 rounded-full transition"
+            className="tile-ring group flex flex-col rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-5 transition hover:bg-[var(--color-surface-2)]"
           >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={1.5}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
-              />
-            </svg>
-            support@unode.tech
+            <MonoLabel>Product support</MonoLabel>
+            <span className="mt-3 text-[15px] font-medium text-[var(--color-fg)] transition group-hover:text-[var(--color-accent)]">
+              support@unode.tech
+            </span>
           </a>
         </div>
       </div>
@@ -296,23 +486,121 @@ function Contact() {
   );
 }
 
+/* ----------------------------------------------------------------------
+ * Footer — CR retained in legal row, products + studio linkage
+ * -------------------------------------------------------------------- */
+
 function Footer() {
   return (
-    <footer className="bg-gray-950 text-gray-500 py-8 px-6">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 bg-gray-800 rounded-md flex items-center justify-center">
-            <span className="text-white font-bold text-xs">U</span>
+    <footer className="border-t border-[var(--color-line)] bg-[var(--color-bg)]">
+      <div className="mx-auto max-w-6xl px-6 py-16">
+        <div className="grid gap-12 md:grid-cols-12">
+          <div className="md:col-span-5">
+            <Link href="/" className="flex items-center gap-2.5">
+              <span
+                className="grid h-6 w-6 place-items-center rounded-[7px] border border-[var(--color-line-strong)] bg-gradient-to-br from-white/10 to-transparent"
+                aria-hidden="true"
+              >
+                <span className="text-[11px] font-semibold tracking-tight text-[var(--color-fg)]">
+                  u
+                </span>
+              </span>
+              <span className="text-[15px] font-medium tracking-tight text-[var(--color-fg)]">
+                unode
+              </span>
+            </Link>
+            <p className="mt-5 max-w-sm text-[14px] leading-relaxed text-[var(--color-fg-muted)]">
+              A technology studio building consumer software. Privately held.
+            </p>
           </div>
-          <span className="text-sm">
-            Unode Company LLC &middot; CR 7053929092
-          </span>
+
+          <div className="md:col-span-7 md:grid md:grid-cols-3 md:gap-8">
+            <div>
+              <MonoLabel>Products</MonoLabel>
+              <ul className="mt-4 space-y-2.5 text-[14px]">
+                <li>
+                  <a
+                    href="https://amlakeyapp.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--color-fg-muted)] transition hover:text-[var(--color-fg)]"
+                  >
+                    Amlakey
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://masarqiyas.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--color-fg-muted)] transition hover:text-[var(--color-fg)]"
+                  >
+                    Masar Qiyas
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="mt-8 md:mt-0">
+              <MonoLabel>Studio</MonoLabel>
+              <ul className="mt-4 space-y-2.5 text-[14px]">
+                <li>
+                  <a
+                    href="#studio"
+                    className="text-[var(--color-fg-muted)] transition hover:text-[var(--color-fg)]"
+                  >
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#contact"
+                    className="text-[var(--color-fg-muted)] transition hover:text-[var(--color-fg)]"
+                  >
+                    Contact
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="mt-8 md:mt-0">
+              <MonoLabel>Direct</MonoLabel>
+              <ul className="mt-4 space-y-2.5 text-[14px]">
+                <li>
+                  <a
+                    href="mailto:info@unode.tech"
+                    className="text-[var(--color-fg-muted)] transition hover:text-[var(--color-fg)]"
+                  >
+                    info@unode.tech
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="mailto:support@unode.tech"
+                    className="text-[var(--color-fg-muted)] transition hover:text-[var(--color-fg)]"
+                  >
+                    support@unode.tech
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <p className="text-sm">&copy; 2026 Unode. All rights reserved.</p>
+
+        <div className="mt-16 flex flex-col gap-3 border-t border-[var(--color-line)] pt-6 text-[12px] text-[var(--color-fg-subtle)] md:flex-row md:items-center md:justify-between">
+          <p>
+            © {new Date().getFullYear()} Unode Company. All rights reserved.
+          </p>
+          <p className="font-mono-tag">
+            Unode Company LLC · CR 7053929092
+          </p>
+        </div>
       </div>
     </footer>
   );
 }
+
+/* ----------------------------------------------------------------------
+ * Page
+ * -------------------------------------------------------------------- */
 
 export default function Home() {
   return (
@@ -321,7 +609,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Products />
-        <About />
+        <Studio />
         <Contact />
       </main>
       <Footer />

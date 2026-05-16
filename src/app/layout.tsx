@@ -13,24 +13,40 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Unode | Saudi Technology Company",
+  metadataBase: new URL("https://unode.tech"),
+  title: {
+    default: "Unode — A technology studio",
+    template: "%s · Unode",
+  },
   description:
-    "Unode builds innovative digital products for Saudi Arabia. Home of Amlakey property management and Masar Qiyas exam preparation.",
+    "Unode is a technology studio building consumer software. Makers of Amlakey and Masar Qiyas.",
   keywords: [
     "Unode",
-    "Saudi tech",
+    "technology studio",
     "Amlakey",
     "Masar Qiyas",
     "property management",
     "exam prep",
   ],
+  authors: [{ name: "Unode Company" }],
   openGraph: {
-    title: "Unode | Saudi Technology Company",
+    title: "Unode — A technology studio",
     description:
-      "Building innovative digital products for Saudi Arabia.",
+      "A technology studio building consumer software. Makers of Amlakey and Masar Qiyas.",
     url: "https://unode.tech",
     siteName: "Unode",
     type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Unode — A technology studio",
+    description:
+      "A technology studio building consumer software. Makers of Amlakey and Masar Qiyas.",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -44,9 +60,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-white text-gray-900">
-        {children}
-      </body>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }
