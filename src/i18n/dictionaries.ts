@@ -70,7 +70,7 @@ const en = {
     label: "— Work",
     titleA: "Built, shipped, and run",
     titleB: "by the same small team.",
-    note: "Every product below is owned, operated, and improved week after week.",
+    note: "Every product below is one we built and run ourselves — improved week after week.",
     statusLive: "Live",
     statusBeta: "Beta",
     statusSoon: "In development",
@@ -134,8 +134,8 @@ const en = {
     principles: [
       {
         tag: "01",
-        title: "Own the product",
-        body: "When we build something, we operate it. No agency hand-off, no walk-away.",
+        title: "Built to last",
+        body: "We don't hand off and walk away. The standard is to design and build something that's still useful five years from now.",
       },
       {
         tag: "02",
@@ -267,8 +267,8 @@ const en = {
     principles: [
       {
         index: "01",
-        title: "Own the product",
-        body: "When we build something, we operate it. No agency hand-off, no walk-away. Whether it’s our product or yours, we treat it like it has to be alive in five years.",
+        title: "Built to last",
+        body: "We don’t hand off and walk away. We design and build with the standard required to keep something useful five years from now — whether it’s our product or yours.",
       },
       {
         index: "02",
@@ -349,7 +349,7 @@ const ar = {
     label: "— أعمالنا",
     titleA: "نبنيها، ونُطلقها،",
     titleB: "ونتولّى تشغيلها — بفريقنا الواحد.",
-    note: "كل منتج هنا، نمتلكه، ونُديره، ونُطوّره أسبوعًا بعد أسبوع.",
+    note: "كل منتج هنا، بنيناه ونُديره بأنفسنا — ونُطوّره أسبوعًا بعد أسبوع.",
     statusLive: "نشط",
     statusBeta: "نسخة تجريبية",
     statusSoon: "قيد التطوير",
@@ -413,8 +413,8 @@ const ar = {
     principles: [
       {
         tag: "01",
-        title: "نمتلك المنتج",
-        body: "حين نبني منتجًا، نُديره. لا تسليم وانصراف.",
+        title: "نبني ليبقى",
+        body: "لا نُسلّم وننصرف. المعيار أن نُصمّم ونبني شيئًا يبقى مفيدًا بعد خمس سنوات.",
       },
       {
         tag: "02",
@@ -546,8 +546,8 @@ const ar = {
     principles: [
       {
         index: "01",
-        title: "نمتلك المنتج",
-        body: "حين نبني منتجًا، نُديره. لا تسليم وانصراف. سواء كان منتجنا أو منتجك، نتعامل معه كأنّه يجب أن يبقى نشطًا لخمس سنوات قادمة.",
+        title: "نبني ليبقى",
+        body: "لا نُسلّم وننصرف. نُصمّم ونبني بالمعيار المطلوب ليبقى المنتج مفيدًا بعد خمس سنوات قادمة — سواء كان منتجنا أو منتجك.",
       },
       {
         index: "02",
