@@ -57,6 +57,25 @@
   [id="contact"] {
     scroll-margin-top: 96px;
   }
+
+  /* Arabic display typography needs more leading than Latin — Arabic letters
+   * carry dots and tashkeel both above and below the baseline, so a tight
+   * `leading-tight` (~1.25) causes the descenders of one line to collide
+   * with the ascenders of the next at large sizes. Override every heading
+   * inside the RTL subtree. Use `!important` because Tailwind's text-* size
+   * utilities bake in line-height: 1 at the same specificity level. */
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3 {
+    line-height: 1.4 !important;
+  }
+  /* Hero h1 is larger and benefits from slightly tighter ratio — set at 1.35
+   * via inline classes; this base of 1.4 is the safe fallback for h2/h3. */
+
+  /* Long Arabic prose benefits from a touch more leading too. */
+  [dir="rtl"] p {
+    line-height: 1.85;
+  }
 }
 
 /* --- Reusable display utilities ------------------------------------- */

@@ -118,7 +118,7 @@ export function HomeContent({ locale }: { locale: Locale }) {
               <MonoLabel>{t.hero.labelDate}</MonoLabel>
             </div>
 
-            <h1 className={`hero-display rise rise-delay-2 max-w-5xl text-balance text-start font-medium text-[var(--color-fg)] ${isRtl ? "text-4xl leading-[1.15] md:text-6xl lg:text-7xl" : "text-5xl md:text-7xl lg:text-8xl"}`}>
+            <h1 className={`hero-display rise rise-delay-2 max-w-5xl text-balance text-start font-medium text-[var(--color-fg)] ${isRtl ? "text-4xl leading-[1.45] md:text-6xl md:leading-[1.4] lg:text-7xl lg:leading-[1.35]" : "text-5xl md:text-7xl lg:text-8xl"}`}>
               {t.hero.headlineA}
               <br />
               {t.hero.headlineB}
