@@ -68,7 +68,7 @@ export function PrimaryCTA({
   return (
     <a
       href={href}
-      className={`link-arrow inline-flex items-center rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-800 ${className}`}
+      className={`cta-arrow inline-flex items-center gap-2 rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-800 ${className}`}
     >
       {children}
     </a>
@@ -87,7 +87,7 @@ export function GhostCTA({
   return (
     <a
       href={href}
-      className={`inline-flex items-center gap-2 rounded-full border border-zinc-300 px-5 py-2.5 text-sm font-medium text-[var(--color-fg)] transition hover:border-zinc-400 hover:bg-white ${className}`}
+      className={`cta-arrow inline-flex items-center gap-2 rounded-full border border-zinc-300 px-5 py-2.5 text-sm font-medium text-[var(--color-fg)] transition hover:border-zinc-400 hover:bg-white ${className}`}
     >
       {children}
     </a>

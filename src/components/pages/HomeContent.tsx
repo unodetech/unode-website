@@ -11,6 +11,8 @@ import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { HtmlLangSync } from "@/components/HtmlLangSync";
+import { CursorGlow } from "@/components/CursorGlow";
+import { Reveal } from "@/components/Reveal";
 import {
   ArrowRight,
   GhostCTA,
@@ -73,11 +75,20 @@ export function HomeContent({ locale }: { locale: Locale }) {
   const servicesHref = localizedHref(locale, "/services");
   const studioHref = localizedHref(locale, "/studio");
 
-  /* The ambient hero glow lives at the headline-start corner — top-right
-   * in LTR, top-left in RTL. */
-  const glowPositionClass = isRtl
-    ? "-left-32 -top-32"
-    : "-right-32 -top-32";
+  /* The static fallback glow position — matches the headline-start
+   * corner: top-right in LTR, top-left in RTL. The CursorGlow client
+   * component overrides --glow-x / --glow-y on pointermove (when
+   * supported); these defaults stay in place on touch / SSR / reduced
+   * motion.
+   *
+   * We center the 520x520 glow on (glow-x, glow-y) in CSS, so the
+   * fallback x is `100%` (right edge) in LTR or `0%` (left edge) in RTL.
+   * CursorGlow needs concrete pixel fallbacks on pointerleave — it
+   * reads `data-glow-fallback-side` and translates that against the
+   * current bounding rect width. */
+  const glowFallbackX = isRtl ? "0%" : "100%";
+  const glowFallbackY = "0%";
+  const glowFallbackSide: "start" | "end" = isRtl ? "start" : "end";
 
   return (
     <>
@@ -85,22 +96,23 @@ export function HomeContent({ locale }: { locale: Locale }) {
       <Navbar locale={locale} />
       <main className="flex-1">
         {/* -------- Hero -------- */}
-        <section className="relative overflow-hidden pb-24 pt-40 md:pb-32 md:pt-48">
+        <section
+          id="hero"
+          data-glow-fallback-side={glowFallbackSide}
+          className="relative overflow-hidden pb-24 pt-40 md:pb-32 md:pt-48"
+          style={{
+            ["--glow-x" as string]: glowFallbackX,
+            ["--glow-y" as string]: glowFallbackY,
+          }}
+        >
           <div className="grid-canvas pointer-events-none absolute inset-0" aria-hidden="true" />
-          <div
-            className={`pointer-events-none absolute h-[520px] w-[520px] opacity-[0.55] ${glowPositionClass}`}
-            style={{
-              background:
-                "radial-gradient(closest-side, rgba(255, 179, 0, 0.18) 0%, rgba(255, 179, 0, 0.06) 45%, transparent 75%)",
-            }}
-            aria-hidden="true"
-          />
+          <div className="hero-glow" aria-hidden="true" />
 
           <div className="relative mx-auto max-w-7xl px-6 md:px-12">
             <div className="rise rise-delay-1 mb-10 flex items-center gap-3">
               <MonoLabel>{t.hero.label}</MonoLabel>
               <span
-                className="h-px w-12 bg-[var(--color-line-strong)]"
+                className="connector-pulse h-px w-12 bg-[var(--color-line-strong)]"
                 aria-hidden="true"
               />
               <MonoLabel>{t.hero.labelDate}</MonoLabel>
@@ -129,6 +141,8 @@ export function HomeContent({ locale }: { locale: Locale }) {
               <GhostCTA href={workHref}>{t.hero.ctaSecondary}</GhostCTA>
             </div>
           </div>
+
+          <CursorGlow targetSelector="#hero" />
         </section>
 
         {/* -------- Work -------- */}
@@ -138,143 +152,149 @@ export function HomeContent({ locale }: { locale: Locale }) {
         >
           <div className="mx-auto max-w-7xl px-6 md:px-12">
             <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <div className="max-w-2xl">
+              <Reveal className="max-w-2xl" delay={0}>
                 <MonoLabel className="mb-5 block">{t.work.label}</MonoLabel>
                 <h2 className="text-balance text-start text-3xl font-medium tracking-tight text-[var(--color-fg)] md:text-5xl">
                   {t.work.titleA}
                   <br />
                   <span className="text-zinc-400">{t.work.titleB}</span>
                 </h2>
-              </div>
-              <p className="max-w-sm text-start text-[15px] leading-relaxed text-zinc-600">
-                {t.work.note}
-              </p>
+              </Reveal>
+              <Reveal delay={80}>
+                <p className="max-w-sm text-start text-[15px] leading-relaxed text-zinc-600">
+                  {t.work.note}
+                </p>
+              </Reveal>
             </div>
 
             <div className="grid gap-6 md:grid-cols-2 md:gap-7">
               {/* Amlakey */}
-              <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)] p-8 transition-colors hover:border-[var(--color-line-strong)] md:p-10">
-                <header className="flex items-start justify-between gap-4">
-                  <div className="flex items-center gap-3">
-                    <MonoLabel>01</MonoLabel>
-                    <span
-                      className="h-px w-8 bg-[var(--color-line-strong)]"
-                      aria-hidden="true"
-                    />
-                    <StatusDot
-                      status="live"
-                      liveLabel={t.work.statusLive}
-                      betaLabel={t.work.statusBeta}
-                      soonLabel={t.work.statusSoon}
-                    />
-                  </div>
-                  <div className="flex flex-wrap items-center justify-end gap-1.5">
-                    {["iOS", "Android", "Web"].map((s) => (
+              <Reveal delay={160}>
+                <article className="product-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)] p-8 hover:border-[var(--color-line-strong)] md:p-10">
+                  <header className="flex items-start justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <MonoLabel>01</MonoLabel>
                       <span
-                        key={s}
-                        className="font-mono-tag rounded-full border border-[var(--color-line)] bg-white px-2.5 py-1 text-zinc-600"
+                        className="h-px w-8 bg-[var(--color-line-strong)]"
+                        aria-hidden="true"
+                      />
+                      <StatusDot
+                        status="live"
+                        liveLabel={t.work.statusLive}
+                        betaLabel={t.work.statusBeta}
+                        soonLabel={t.work.statusSoon}
+                      />
+                    </div>
+                    <div className="flex flex-wrap items-center justify-end gap-1.5">
+                      {["iOS", "Android", "Web"].map((s) => (
+                        <span
+                          key={s}
+                          className="font-mono-tag rounded-full border border-[var(--color-line)] bg-white px-2.5 py-1 text-zinc-600"
+                        >
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  </header>
+
+                  <div className="mt-10 flex-1">
+                    <h3 className="text-start text-2xl font-medium tracking-tight text-[var(--color-fg)] md:text-3xl">
+                      {t.work.amlakey.name}
+                    </h3>
+                    <p className="mt-2 text-start text-sm text-zinc-500">
+                      {t.work.amlakey.tagline}
+                    </p>
+                    <p className="mt-6 max-w-md text-start text-[15px] leading-relaxed text-zinc-600">
+                      {t.work.amlakey.description}
+                    </p>
+                  </div>
+
+                  <footer className="mt-10 border-t border-[var(--color-line)] pt-6">
+                    <a
+                      href="https://amlakeyapp.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="link-arrow inline-flex items-center text-[15px] font-medium text-[var(--color-fg)] transition"
+                    >
+                      {t.work.amlakey.primaryLabel}
+                      <ArrowRight locale={locale} />
+                    </a>
+                    <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
+                      <a
+                        href="https://apps.apple.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[13px] text-zinc-500 transition hover:text-[var(--color-fg)]"
                       >
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                </header>
-
-                <div className="mt-10 flex-1">
-                  <h3 className="text-start text-2xl font-medium tracking-tight text-[var(--color-fg)] md:text-3xl">
-                    {t.work.amlakey.name}
-                  </h3>
-                  <p className="mt-2 text-start text-sm text-zinc-500">
-                    {t.work.amlakey.tagline}
-                  </p>
-                  <p className="mt-6 max-w-md text-start text-[15px] leading-relaxed text-zinc-600">
-                    {t.work.amlakey.description}
-                  </p>
-                </div>
-
-                <footer className="mt-10 border-t border-[var(--color-line)] pt-6">
-                  <a
-                    href="https://amlakeyapp.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-arrow inline-flex items-center text-[15px] font-medium text-[var(--color-fg)] transition"
-                  >
-                    {t.work.amlakey.primaryLabel}
-                    <ArrowRight locale={locale} />
-                  </a>
-                  <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
-                    <a
-                      href="https://apps.apple.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[13px] text-zinc-500 transition hover:text-[var(--color-fg)]"
-                    >
-                      {t.work.amlakey.appStore} {isRtl ? "←" : "→"}
-                    </a>
-                    <a
-                      href="https://play.google.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[13px] text-zinc-500 transition hover:text-[var(--color-fg)]"
-                    >
-                      {t.work.amlakey.googlePlay} {isRtl ? "←" : "→"}
-                    </a>
-                  </div>
-                </footer>
-              </article>
+                        {t.work.amlakey.appStore} {isRtl ? "←" : "→"}
+                      </a>
+                      <a
+                        href="https://play.google.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[13px] text-zinc-500 transition hover:text-[var(--color-fg)]"
+                      >
+                        {t.work.amlakey.googlePlay} {isRtl ? "←" : "→"}
+                      </a>
+                    </div>
+                  </footer>
+                </article>
+              </Reveal>
 
               {/* Masar Qiyas */}
-              <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)] p-8 transition-colors hover:border-[var(--color-line-strong)] md:p-10">
-                <header className="flex items-start justify-between gap-4">
-                  <div className="flex items-center gap-3">
-                    <MonoLabel>02</MonoLabel>
-                    <span
-                      className="h-px w-8 bg-[var(--color-line-strong)]"
-                      aria-hidden="true"
-                    />
-                    <StatusDot
-                      status="live"
-                      liveLabel={t.work.statusLive}
-                      betaLabel={t.work.statusBeta}
-                      soonLabel={t.work.statusSoon}
-                    />
-                  </div>
-                  <div className="flex flex-wrap items-center justify-end gap-1.5">
-                    {["Web"].map((s) => (
+              <Reveal delay={240}>
+                <article className="product-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)] p-8 hover:border-[var(--color-line-strong)] md:p-10">
+                  <header className="flex items-start justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <MonoLabel>02</MonoLabel>
                       <span
-                        key={s}
-                        className="font-mono-tag rounded-full border border-[var(--color-line)] bg-white px-2.5 py-1 text-zinc-600"
-                      >
-                        {s}
-                      </span>
-                    ))}
+                        className="h-px w-8 bg-[var(--color-line-strong)]"
+                        aria-hidden="true"
+                      />
+                      <StatusDot
+                        status="live"
+                        liveLabel={t.work.statusLive}
+                        betaLabel={t.work.statusBeta}
+                        soonLabel={t.work.statusSoon}
+                      />
+                    </div>
+                    <div className="flex flex-wrap items-center justify-end gap-1.5">
+                      {["Web"].map((s) => (
+                        <span
+                          key={s}
+                          className="font-mono-tag rounded-full border border-[var(--color-line)] bg-white px-2.5 py-1 text-zinc-600"
+                        >
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  </header>
+
+                  <div className="mt-10 flex-1">
+                    <h3 className="text-start text-2xl font-medium tracking-tight text-[var(--color-fg)] md:text-3xl">
+                      {t.work.masarQiyas.name}
+                    </h3>
+                    <p className="mt-2 text-start text-sm text-zinc-500">
+                      {t.work.masarQiyas.tagline}
+                    </p>
+                    <p className="mt-6 max-w-md text-start text-[15px] leading-relaxed text-zinc-600">
+                      {t.work.masarQiyas.description}
+                    </p>
                   </div>
-                </header>
 
-                <div className="mt-10 flex-1">
-                  <h3 className="text-start text-2xl font-medium tracking-tight text-[var(--color-fg)] md:text-3xl">
-                    {t.work.masarQiyas.name}
-                  </h3>
-                  <p className="mt-2 text-start text-sm text-zinc-500">
-                    {t.work.masarQiyas.tagline}
-                  </p>
-                  <p className="mt-6 max-w-md text-start text-[15px] leading-relaxed text-zinc-600">
-                    {t.work.masarQiyas.description}
-                  </p>
-                </div>
-
-                <footer className="mt-10 border-t border-[var(--color-line)] pt-6">
-                  <a
-                    href="https://masarqiyas.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-arrow inline-flex items-center text-[15px] font-medium text-[var(--color-fg)] transition"
-                  >
-                    {t.work.masarQiyas.primaryLabel}
-                    <ArrowRight locale={locale} />
-                  </a>
-                </footer>
-              </article>
+                  <footer className="mt-10 border-t border-[var(--color-line)] pt-6">
+                    <a
+                      href="https://masarqiyas.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="link-arrow inline-flex items-center text-[15px] font-medium text-[var(--color-fg)] transition"
+                    >
+                      {t.work.masarQiyas.primaryLabel}
+                      <ArrowRight locale={locale} />
+                    </a>
+                  </footer>
+                </article>
+              </Reveal>
             </div>
           </div>
         </section>
@@ -286,7 +306,7 @@ export function HomeContent({ locale }: { locale: Locale }) {
         >
           <div className="mx-auto max-w-7xl px-6 md:px-12">
             <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <div className="max-w-2xl">
+              <Reveal className="max-w-2xl" delay={0}>
                 <MonoLabel className="mb-5 block">
                   {t.servicesHome.label}
                 </MonoLabel>
@@ -297,71 +317,90 @@ export function HomeContent({ locale }: { locale: Locale }) {
                     {t.servicesHome.titleB}
                   </span>
                 </h2>
-              </div>
-              <p className="max-w-sm text-start text-[15px] leading-relaxed text-zinc-600">
-                {t.servicesHome.note}
-              </p>
+              </Reveal>
+              <Reveal delay={80}>
+                <p className="max-w-sm text-start text-[15px] leading-relaxed text-zinc-600">
+                  {t.servicesHome.note}
+                </p>
+              </Reveal>
             </div>
 
             <ul className="grid gap-px overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-line)] md:grid-cols-2">
-              {t.servicesHome.items.map((s) => (
-                <li key={s.index} className="bg-[var(--color-surface)] p-8 md:p-10">
-                  <div className="flex items-center gap-3">
-                    <MonoLabel>{s.index}</MonoLabel>
-                    <span
-                      className="h-px w-8 bg-[var(--color-line-strong)]"
-                      aria-hidden="true"
-                    />
-                  </div>
-                  <h3 className="mt-6 text-start text-xl font-medium tracking-tight text-[var(--color-fg)] md:text-2xl">
-                    {s.title}
-                  </h3>
-                  <p className="mt-3 max-w-md text-start text-[15px] leading-relaxed text-zinc-600">
-                    {s.body}
-                  </p>
-                </li>
+              {t.servicesHome.items.map((s, i) => (
+                <Reveal key={s.index} delay={160 + i * 80}>
+                  <li className="h-full bg-[var(--color-surface)] p-8 md:p-10">
+                    <div className="flex items-center gap-3">
+                      <MonoLabel>{s.index}</MonoLabel>
+                      <span
+                        className="h-px w-8 bg-[var(--color-line-strong)]"
+                        aria-hidden="true"
+                      />
+                    </div>
+                    <h3 className="mt-6 text-start text-xl font-medium tracking-tight text-[var(--color-fg)] md:text-2xl">
+                      {s.title}
+                    </h3>
+                    <p className="mt-3 max-w-md text-start text-[15px] leading-relaxed text-zinc-600">
+                      {s.body}
+                    </p>
+                  </li>
+                </Reveal>
               ))}
             </ul>
 
-            <div className="mt-10 overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)] px-6 py-5 md:px-10">
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-                <MonoLabel className="text-zinc-500">
-                  {t.servicesHome.stackLabel}
-                </MonoLabel>
-                <span
-                  className="hidden h-px w-8 bg-[var(--color-line-strong)] md:inline-block"
-                  aria-hidden="true"
-                />
-                <div
-                  className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[12px] text-zinc-600"
-                  dir="ltr"
-                >
-                  {STACK.map((s, i) => (
-                    <span key={s} className="inline-flex items-center gap-4">
-                      <span>{s}</span>
-                      {i < STACK.length - 1 && (
-                        <span className="text-zinc-300" aria-hidden="true">
-                          ·
-                        </span>
-                      )}
-                    </span>
-                  ))}
+            <Reveal delay={160}>
+              <div className="mt-10 overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)] px-6 py-5 md:px-10">
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                  <MonoLabel className="text-zinc-500">
+                    {t.servicesHome.stackLabel}
+                  </MonoLabel>
+                  <span
+                    className="hidden h-px w-8 bg-[var(--color-line-strong)] md:inline-block"
+                    aria-hidden="true"
+                  />
+                  <div className="marquee flex-1 min-w-0" dir="ltr">
+                    <div className="marquee-track font-mono text-[12px] text-zinc-600">
+                      {/* Two identical copies of the stack so translate -50%
+                       * lands the second copy where the first started.
+                       * `aria-hidden` on the duplicate keeps SR output clean.
+                       * The trailing separator after every item makes the
+                       * boundary between the two copies seamless — there's
+                       * always a `·` after the last item before the wrap. */}
+                      {[0, 1].map((copy) => (
+                        <div
+                          key={copy}
+                          aria-hidden={copy === 1 ? "true" : undefined}
+                          className="flex shrink-0 items-center gap-x-4"
+                        >
+                          {STACK.map((s) => (
+                            <span key={`${copy}-${s}`} className="inline-flex items-center gap-4">
+                              <span>{s}</span>
+                              <span className="text-zinc-300" aria-hidden="true">
+                                ·
+                              </span>
+                            </span>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Reveal>
 
-            <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <PrimaryCTA href={contactHref}>
-                {t.servicesHome.ctaPrimary}
-                <ArrowRight locale={locale} />
-              </PrimaryCTA>
-              <Link
-                href={servicesHref}
-                className="link-arrow text-[14px] text-zinc-600 transition hover:text-[var(--color-fg)]"
-              >
-                {t.servicesHome.seeAll} {isRtl ? "←" : "→"}
-              </Link>
-            </div>
+            <Reveal delay={240}>
+              <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3">
+                <PrimaryCTA href={contactHref}>
+                  {t.servicesHome.ctaPrimary}
+                  <ArrowRight locale={locale} />
+                </PrimaryCTA>
+                <Link
+                  href={servicesHref}
+                  className="link-arrow text-[14px] text-zinc-600 transition hover:text-[var(--color-fg)]"
+                >
+                  {t.servicesHome.seeAll} {isRtl ? "←" : "→"}
+                </Link>
+              </div>
+            </Reveal>
           </div>
         </section>
 
@@ -372,7 +411,7 @@ export function HomeContent({ locale }: { locale: Locale }) {
         >
           <div className="mx-auto max-w-7xl px-6 md:px-12">
             <div className="grid gap-16 md:grid-cols-12 md:gap-12">
-              <div className="md:col-span-5">
+              <Reveal className="md:col-span-5" delay={0}>
                 <MonoLabel className="mb-5 block">
                   {t.studioHome.label}
                 </MonoLabel>
@@ -395,25 +434,24 @@ export function HomeContent({ locale }: { locale: Locale }) {
                 <p className="mt-10 font-mono text-[12px] text-zinc-400">
                   {t.studioHome.legalLine}
                 </p>
-              </div>
+              </Reveal>
 
               <div className="md:col-span-7 md:ps-8">
                 <ul className="divide-y divide-[var(--color-line)] border-y border-[var(--color-line)]">
-                  {t.studioHome.principles.map((p) => (
-                    <li
-                      key={p.tag}
-                      className="grid grid-cols-[auto_1fr] gap-x-8 py-7 md:grid-cols-[64px_1fr] md:py-9"
-                    >
-                      <MonoLabel className="pt-1">{p.tag}</MonoLabel>
-                      <div>
-                        <h3 className="text-start text-xl font-medium tracking-tight text-[var(--color-fg)] md:text-2xl">
-                          {p.title}
-                        </h3>
-                        <p className="mt-3 max-w-md text-start text-[15px] leading-relaxed text-zinc-600">
-                          {p.body}
-                        </p>
-                      </div>
-                    </li>
+                  {t.studioHome.principles.map((p, i) => (
+                    <Reveal key={p.tag} delay={80 + i * 80}>
+                      <li className="grid grid-cols-[auto_1fr] gap-x-8 py-7 md:grid-cols-[64px_1fr] md:py-9">
+                        <MonoLabel className="pt-1">{p.tag}</MonoLabel>
+                        <div>
+                          <h3 className="text-start text-xl font-medium tracking-tight text-[var(--color-fg)] md:text-2xl">
+                            {p.title}
+                          </h3>
+                          <p className="mt-3 max-w-md text-start text-[15px] leading-relaxed text-zinc-600">
+                            {p.body}
+                          </p>
+                        </div>
+                      </li>
+                    </Reveal>
                   ))}
                 </ul>
               </div>
@@ -427,45 +465,53 @@ export function HomeContent({ locale }: { locale: Locale }) {
           className="relative border-t border-[var(--color-line)] py-24 md:py-32 lg:py-40"
         >
           <div className="relative mx-auto max-w-7xl px-6 md:px-12">
-            <MonoLabel className="mb-5 block">{t.contact.label}</MonoLabel>
-            <h2 className="max-w-3xl text-balance text-start text-3xl font-medium tracking-tight text-[var(--color-fg)] md:text-5xl">
-              {t.contact.titleA}
-              <br />
-              <span className="text-zinc-400">{t.contact.titleB}</span>
-            </h2>
-            <p className="mt-8 max-w-xl text-start text-[15px] leading-relaxed text-zinc-600 md:text-base">
-              {t.contact.note}
-            </p>
+            <Reveal delay={0}>
+              <MonoLabel className="mb-5 block">{t.contact.label}</MonoLabel>
+              <h2 className="max-w-3xl text-balance text-start text-3xl font-medium tracking-tight text-[var(--color-fg)] md:text-5xl">
+                {t.contact.titleA}
+                <br />
+                <span className="text-zinc-400">{t.contact.titleB}</span>
+              </h2>
+              <p className="mt-8 max-w-xl text-start text-[15px] leading-relaxed text-zinc-600 md:text-base">
+                {t.contact.note}
+              </p>
+            </Reveal>
 
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <PrimaryCTA href="mailto:info@unode.tech">
-                {t.contact.ctaPrimary}
-                <ArrowRight locale={locale} />
-              </PrimaryCTA>
-              <GhostCTA href="https://cal.com/unode">
-                {t.contact.ctaSecondary}
-              </GhostCTA>
-            </div>
+            <Reveal delay={120}>
+              <div className="mt-10 flex flex-wrap items-center gap-3">
+                <PrimaryCTA href="mailto:info@unode.tech">
+                  {t.contact.ctaPrimary}
+                  <ArrowRight locale={locale} />
+                </PrimaryCTA>
+                <GhostCTA href="https://cal.com/unode">
+                  {t.contact.ctaSecondary}
+                </GhostCTA>
+              </div>
+            </Reveal>
 
             <div className="mt-12 grid gap-3 sm:grid-cols-2 sm:gap-4 md:max-w-2xl">
-              <a
-                href="mailto:info@unode.tech"
-                className="group flex flex-col rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-5 transition hover:border-[var(--color-line-strong)]"
-              >
-                <MonoLabel>{t.contact.generalLabel}</MonoLabel>
-                <span className="mt-3 text-start text-[15px] font-medium text-[var(--color-fg)]">
-                  {t.contact.generalEmail}
-                </span>
-              </a>
-              <a
-                href="mailto:support@unode.tech"
-                className="group flex flex-col rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-5 transition hover:border-[var(--color-line-strong)]"
-              >
-                <MonoLabel>{t.contact.supportLabel}</MonoLabel>
-                <span className="mt-3 text-start text-[15px] font-medium text-[var(--color-fg)]">
-                  {t.contact.supportEmail}
-                </span>
-              </a>
+              <Reveal delay={200}>
+                <a
+                  href="mailto:info@unode.tech"
+                  className="group flex h-full flex-col rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-5 transition hover:border-[var(--color-line-strong)]"
+                >
+                  <MonoLabel>{t.contact.generalLabel}</MonoLabel>
+                  <span className="mt-3 text-start text-[15px] font-medium text-[var(--color-fg)]">
+                    {t.contact.generalEmail}
+                  </span>
+                </a>
+              </Reveal>
+              <Reveal delay={280}>
+                <a
+                  href="mailto:support@unode.tech"
+                  className="group flex h-full flex-col rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-5 transition hover:border-[var(--color-line-strong)]"
+                >
+                  <MonoLabel>{t.contact.supportLabel}</MonoLabel>
+                  <span className="mt-3 text-start text-[15px] font-medium text-[var(--color-fg)]">
+                    {t.contact.supportEmail}
+                  </span>
+                </a>
+              </Reveal>
             </div>
           </div>
         </section>
