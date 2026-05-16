@@ -1,4 +1,12 @@
 import Link from "next/link";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+import {
+  ArrowRight,
+  GhostCTA,
+  MonoLabel,
+  PrimaryCTA,
+} from "@/components/ui";
 
 /* ----------------------------------------------------------------------
  * Product data — single source of truth for the Work section.
@@ -105,43 +113,8 @@ const PRINCIPLES = [
 ];
 
 /* ----------------------------------------------------------------------
- * Small primitives
+ * Status dot
  * -------------------------------------------------------------------- */
-
-function MonoLabel({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <span className={`font-mono-tag text-[var(--color-fg-subtle)] ${className}`}>
-      {children}
-    </span>
-  );
-}
-
-function ArrowRight({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      width="14"
-      height="14"
-      viewBox="0 0 14 14"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M2.5 7h9m0 0L7.5 3M11.5 7l-4 4"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 function StatusDot({ status }: { status: Product["status"] }) {
   if (status === "live") {
@@ -168,94 +141,6 @@ function StatusDot({ status }: { status: Product["status"] }) {
       <span className="h-1.5 w-1.5 rounded-full bg-zinc-400" aria-hidden="true" />
       <span className="font-mono-tag text-zinc-500">In&nbsp;development</span>
     </span>
-  );
-}
-
-/* ----------------------------------------------------------------------
- * Reusable CTAs
- * -------------------------------------------------------------------- */
-
-function PrimaryCTA({
-  href,
-  children,
-  className = "",
-}: {
-  href: string;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <a
-      href={href}
-      className={`link-arrow inline-flex items-center rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-800 ${className}`}
-    >
-      {children}
-    </a>
-  );
-}
-
-function GhostCTA({
-  href,
-  children,
-  className = "",
-}: {
-  href: string;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <a
-      href={href}
-      className={`inline-flex items-center gap-2 rounded-full border border-zinc-300 px-5 py-2.5 text-sm font-medium text-[var(--color-fg)] transition hover:border-zinc-400 hover:bg-white ${className}`}
-    >
-      {children}
-    </a>
-  );
-}
-
-/* ----------------------------------------------------------------------
- * Navigation
- * -------------------------------------------------------------------- */
-
-function Navbar() {
-  return (
-    <nav
-      className="fixed inset-x-0 top-0 z-50 border-b border-[var(--color-line)] bg-white/75 backdrop-blur-xl"
-      aria-label="Primary"
-    >
-      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6 md:px-12">
-        <Link
-          href="/"
-          className="flex items-center gap-2.5 text-[var(--color-fg)]"
-          aria-label="Unode home"
-        >
-          <span
-            className="grid h-6 w-6 place-items-center rounded-[7px] border border-[var(--color-line-strong)] bg-white"
-            aria-hidden="true"
-          >
-            <span className="text-[11px] font-semibold tracking-tight">u</span>
-          </span>
-          <span className="text-[15px] font-medium tracking-tight">unode</span>
-        </Link>
-
-        <div className="hidden items-center gap-8 text-sm text-zinc-600 md:flex">
-          <a href="#work" className="transition hover:text-[var(--color-fg)]">
-            Work
-          </a>
-          <a href="#services" className="transition hover:text-[var(--color-fg)]">
-            Services
-          </a>
-          <a href="#studio" className="transition hover:text-[var(--color-fg)]">
-            Studio
-          </a>
-        </div>
-
-        <PrimaryCTA href="#contact" className="hidden md:inline-flex">
-          Start a project
-          <ArrowRight />
-        </PrimaryCTA>
-      </div>
-    </nav>
   );
 }
 
@@ -412,7 +297,7 @@ function Work() {
 }
 
 /* ----------------------------------------------------------------------
- * Services — the new pivot
+ * Services — condensed home section
  * -------------------------------------------------------------------- */
 
 function Services() {
@@ -483,11 +368,17 @@ function Services() {
           </div>
         </div>
 
-        <div className="mt-12">
+        <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3">
           <PrimaryCTA href="#contact">
             Discuss your project
             <ArrowRight />
           </PrimaryCTA>
+          <Link
+            href="/services"
+            className="link-arrow text-[14px] text-zinc-600 transition hover:text-[var(--color-fg)]"
+          >
+            See all services →
+          </Link>
         </div>
       </div>
     </section>
@@ -495,7 +386,7 @@ function Services() {
 }
 
 /* ----------------------------------------------------------------------
- * Studio — rewritten, no "no freelance" line, no stats grid
+ * Studio — condensed home section
  * -------------------------------------------------------------------- */
 
 function Studio() {
@@ -519,6 +410,13 @@ function Studio() {
               and we partner with teams who want that same standard applied to
               theirs.
             </p>
+
+            <Link
+              href="/studio"
+              className="link-arrow mt-8 inline-flex text-[14px] text-zinc-600 transition hover:text-[var(--color-fg)]"
+            >
+              Read more about the studio →
+            </Link>
 
             <p className="mt-10 font-mono text-[12px] text-zinc-400">
               Unode Company LLC · CR 7053929092
@@ -603,114 +501,6 @@ function Contact() {
         </div>
       </div>
     </section>
-  );
-}
-
-/* ----------------------------------------------------------------------
- * Footer
- * -------------------------------------------------------------------- */
-
-function Footer() {
-  return (
-    <footer className="border-t border-[var(--color-line)] bg-[var(--color-bg)]">
-      <div className="mx-auto max-w-7xl px-6 py-16 md:px-12">
-        <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-5">
-            <Link href="/" className="flex items-center gap-2.5">
-              <span
-                className="grid h-6 w-6 place-items-center rounded-[7px] border border-[var(--color-line-strong)] bg-white"
-                aria-hidden="true"
-              >
-                <span className="text-[11px] font-semibold tracking-tight text-[var(--color-fg)]">
-                  u
-                </span>
-              </span>
-              <span className="text-[15px] font-medium tracking-tight text-[var(--color-fg)]">
-                unode
-              </span>
-            </Link>
-            <p className="mt-5 max-w-sm text-[14px] leading-relaxed text-zinc-600">
-              A technology studio. Privately held.
-            </p>
-          </div>
-
-          <div className="md:col-span-7 md:grid md:grid-cols-3 md:gap-8">
-            <div>
-              <MonoLabel>Work</MonoLabel>
-              <ul className="mt-4 space-y-2.5 text-[14px]">
-                <li>
-                  <a
-                    href="https://amlakeyapp.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-zinc-600 transition hover:text-[var(--color-fg)]"
-                  >
-                    Amlakey
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://masarqiyas.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-zinc-600 transition hover:text-[var(--color-fg)]"
-                  >
-                    Masar Qiyas
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="mt-8 md:mt-0">
-              <MonoLabel>Studio</MonoLabel>
-              <ul className="mt-4 space-y-2.5 text-[14px]">
-                <li>
-                  <a
-                    href="#studio"
-                    className="text-zinc-600 transition hover:text-[var(--color-fg)]"
-                  >
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#contact"
-                    className="text-zinc-600 transition hover:text-[var(--color-fg)]"
-                  >
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="mt-8 md:mt-0">
-              <MonoLabel>Direct</MonoLabel>
-              <ul className="mt-4 space-y-2.5 text-[14px]">
-                <li>
-                  <a
-                    href="mailto:info@unode.tech"
-                    className="text-zinc-600 transition hover:text-[var(--color-fg)]"
-                  >
-                    info@unode.tech
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="mailto:support@unode.tech"
-                    className="text-zinc-600 transition hover:text-[var(--color-fg)]"
-                  >
-                    support@unode.tech
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-16 flex flex-col gap-3 border-t border-[var(--color-line)] pt-6 text-[12px] text-zinc-500 md:flex-row md:items-center md:justify-between">
-          <p>© 2026 Unode Company</p>
-          <p className="font-mono-tag">Unode Company LLC · CR 7053929092</p>
-        </div>
-      </div>
-    </footer>
   );
 }
 
