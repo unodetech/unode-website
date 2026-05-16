@@ -1,6 +1,11 @@
 /* ----------------------------------------------------------------------
- * Shared UI primitives — used by both the home page and standalone pages.
+ * Shared UI primitives — used by both English and Arabic pages.
+ *
+ * Components accept an optional `locale` to flip directional details
+ * (arrow glyph). Default is "en" so existing call sites stay valid.
  * -------------------------------------------------------------------- */
+
+import type { Locale } from "@/i18n/dictionaries";
 
 export function MonoLabel({
   children,
@@ -16,7 +21,20 @@ export function MonoLabel({
   );
 }
 
-export function ArrowRight({ className = "" }: { className?: string }) {
+/**
+ * Directional arrow. In RTL it visually points left (←) because the
+ * "forward" direction is right-to-left. The arrow always means "next /
+ * proceed", so consumers don't need to pass a different glyph.
+ */
+export function ArrowRight({
+  className = "",
+  locale = "en",
+}: {
+  className?: string;
+  locale?: Locale;
+}) {
+  const isRtl = locale === "ar";
+  // Mirror the SVG path horizontally for RTL by flipping the viewBox.
   return (
     <svg
       className={className}
@@ -25,6 +43,7 @@ export function ArrowRight({ className = "" }: { className?: string }) {
       viewBox="0 0 14 14"
       fill="none"
       aria-hidden="true"
+      style={isRtl ? { transform: "scaleX(-1)" } : undefined}
     >
       <path
         d="M2.5 7h9m0 0L7.5 3M11.5 7l-4 4"
