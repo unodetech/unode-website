@@ -57,7 +57,7 @@ const en = {
   },
   hero: {
     label: "Unode Studio",
-    labelDate: "Est. 2026",
+    labelDate: "",
     headlineA: "Software that ships,",
     headlineB: "scales, and ",
     headlineC: "outlives",
@@ -69,7 +69,7 @@ const en = {
   work: {
     label: "— Work",
     titleA: "Built, shipped, and run",
-    titleB: "by the same small team.",
+    titleB: "by the same team, end to end.",
     note: "Every product below is one we built and run ourselves — improved week after week.",
     statusLive: "Live",
     statusBeta: "Beta",
@@ -96,7 +96,7 @@ const en = {
     titleA: "How we work",
     titleB: "with teams.",
     note:
-      "A small number of engagements per year. We pick problems we want to live with for years, not months.",
+      "We partner with teams that need engineering done right the first time — and built to keep working long after launch.",
     items: [
       {
         index: "01",
@@ -128,7 +128,7 @@ const en = {
     titleA: "A studio built",
     titleB: "for the long game.",
     intro:
-      "Unode is a privately held technology studio. We pick narrow problems and stay with them for years. We build our own products, and we partner with teams who want that same standard applied to theirs.",
+      "Unode is a privately held technology studio. We solve real problems and build software that lasts. We build our own products, and we partner with teams who want that same standard applied to theirs.",
     readMore: "Read more about the studio",
     legalLine: "Unode Company LLC · CR 7053929092",
     principles: [
@@ -139,8 +139,8 @@ const en = {
       },
       {
         tag: "02",
-        title: "Small surface, deep craft",
-        body: "A few things, done with care, beat many things done quickly.",
+        title: "Focused, never scattered",
+        body: "Every project gets full attention. Done with care, end to end.",
       },
       {
         tag: "03",
@@ -179,11 +179,11 @@ const en = {
   servicesPage: {
     metaTitle: "Services",
     metaDescription:
-      "Product engineering, platform development, KSA market integrations, and 0→1 launches. A small number of engagements per year.",
+      "Product engineering, platform development, KSA market integrations, and 0→1 launches. Built for teams that need it done right.",
     heroLabel: "— Services",
     heroTitle: "How we work with teams.",
     heroBody1:
-      "Unode partners with a small number of teams each year — founders, growth-stage product teams, and corporate innovation groups — on projects we want to live with for years, not months.",
+      "Unode partners with founders, growth-stage product teams, and corporate innovation groups — building software designed to solve real problems and last.",
     heroBody2: "We don’t sell hours. We sell shipped software.",
     ctaStartProject: "Start a project",
     ctaBookCall: "Book a 30-min call",
@@ -272,8 +272,8 @@ const en = {
       },
       {
         index: "02",
-        title: "Small surface, deep craft",
-        body: "A few things, done with care, beat many things done quickly. We turn down work that would force us to spread thin. The size of the team is a feature, not a constraint.",
+        title: "Focused, never scattered",
+        body: "Every project gets full attention from people who care about it. Done with the same care, end to end — design through ship.",
       },
       {
         index: "03",
@@ -301,7 +301,7 @@ const en = {
     },
     workingLabel: "— Working with us",
     workingBodyBefore:
-      "We take a small number of external engagements each year. Our preference is for founders and teams who have a clear point of view about what they’re building and want a partner who can execute at the level of the best in-house team. If that sounds like you, ",
+      "We work with founders and teams who have a clear point of view about what they’re building and want a partner who can execute at the level of the best in-house team. If that sounds like you, ",
     workingLink: "start a project",
     workingBodyAfter: "",
     companyLabel: "— Company",
@@ -309,7 +309,7 @@ const en = {
     companyCity: "Riyadh, Saudi Arabia",
     companyCR: "CR 7053929092",
     companyPrivate: "Privately held",
-    companyEst: "Est. 2026",
+    companyEst: "",
     companyDuns: "D-U-N-S 986467763",
     finalCtaTitle: "Have a project in mind?",
     finalCtaBody: "Tell us about it. The first call is always free.",
@@ -336,7 +336,7 @@ const ar = {
   },
   hero: {
     label: "ستوديو يونود",
-    labelDate: "تأسّس 2026",
+    labelDate: "",
     headlineA: "نبني برمجيات",
     headlineB: "تنطلق، وتنمو،",
     headlineC: "وتدوم",
@@ -348,7 +348,7 @@ const ar = {
   work: {
     label: "— أعمالنا",
     titleA: "نبنيها، ونُطلقها،",
-    titleB: "ونُشغّلها — بفريقٍ واحد صغير.",
+    titleB: "ونُشغّلها — بنفس الفريق، من البداية إلى النهاية.",
     note: "كل منتج هنا، بنيناه ونُديره بأنفسنا — ونُطوّره أسبوعًا بعد أسبوع.",
     statusLive: "نشط",
     statusBeta: "نسخة تجريبية",
@@ -375,7 +375,7 @@ const ar = {
     titleA: "كيف نعمل",
     titleB: "مع الفِرَق الطموحة.",
     note:
-      "عدد محدود من المشاريع في السنة. نختار مشكلات نلتزم بها لسنوات، لا لأشهر.",
+      "نعمل مع الفِرَق التي تحتاج إلى تنفيذ هندسي متقن من المرة الأولى — وإلى منتجات تستمر في العمل بعد الإطلاق طويلاً.",
     items: [
       {
         index: "01",
@@ -407,7 +407,7 @@ const ar = {
     titleA: "نبني",
     titleB: "للمدى البعيد.",
     intro:
-      "يونود استوديو تقني خاص. نختار مشكلات محدّدة ونلتزم بها لسنوات. نبني منتجاتنا الخاصة، ونعمل مع فِرَق تطمح إلى المعيار ذاته في منتجاتها.",
+      "يونود استوديو تقني خاص. نحلّ مشكلات حقيقية ونبني برمجيات تدوم. نبني منتجاتنا الخاصة، ونعمل مع فِرَق تطمح إلى المعيار ذاته في منتجاتها.",
     readMore: "اقرأ المزيد عن الاستوديو",
     legalLine: "شركة يونود · سجل تجاري 7053929092",
     principles: [
@@ -418,8 +418,8 @@ const ar = {
       },
       {
         tag: "02",
-        title: "نطاق صغير، إتقان عميق",
-        body: "أعمال قليلة بإتقان، أفضل من أعمال كثيرة بسرعة.",
+        title: "تركيزٌ تام، لا تشتّت",
+        body: "كل مشروع يحظى بكامل الاهتمام. صنعة عميقة، من البداية إلى النهاية.",
       },
       {
         tag: "03",
@@ -458,11 +458,11 @@ const ar = {
   servicesPage: {
     metaTitle: "الخدمات",
     metaDescription:
-      "هندسة المنتجات، وتطوير المنصّات، وتكاملات السوق السعودي، وإطلاق المنتجات الجديدة. عدد محدود من المشاريع في السنة.",
+      "هندسة المنتجات، وتطوير المنصّات، وتكاملات السوق السعودي، وإطلاق المنتجات الجديدة. للفِرَق التي تحتاج إلى تنفيذ متقن.",
     heroLabel: "— الخدمات",
     heroTitle: "كيف نعمل مع الفِرَق الطموحة.",
     heroBody1:
-      "نعمل مع عدد محدود من الفِرَق كل عام — مؤسّسو شركات ناشئة، وفِرَق منتجات في مرحلة النمو، وأقسام ابتكار في الشركات الكبرى — على مشاريع نلتزم بها لسنوات، لا لأشهر.",
+      "يونود يعمل مع مؤسّسي الشركات الناشئة، وفِرَق المنتجات في مرحلة النمو، وأقسام الابتكار في الشركات الكبرى — لبناء برمجيات تحلّ مشكلات حقيقية، وتُصمَّم لتدوم.",
     heroBody2: "لا نبيع ساعات. نبيع منتجات تعمل.",
     ctaStartProject: "ابدأ مشروعك",
     ctaBookCall: "احجز مكالمة 30 دقيقة",
@@ -551,8 +551,8 @@ const ar = {
       },
       {
         index: "02",
-        title: "نطاق صغير، إتقان عميق",
-        body: "أعمال قليلة بإتقان، أفضل من أعمال كثيرة بسرعة. نرفض المشاريع التي تجبرنا على التشتّت. حجم الفريق الصغير ميزة، وليس قيدًا.",
+        title: "تركيزٌ تام، لا تشتّت",
+        body: "كل مشروع يحظى بكامل الاهتمام من فريقٍ يهتمّ به فعلًا. الصنعة العميقة من البداية إلى النهاية — من التصميم حتى الإطلاق.",
       },
       {
         index: "03",
@@ -580,7 +580,7 @@ const ar = {
     },
     workingLabel: "— العمل معنا",
     workingBodyBefore:
-      "نقبل عددًا محدودًا من المشاريع الخارجية كل عام. نُفضّل العمل مع مؤسّسي الشركات والفِرَق الذين يملكون رؤية واضحة لما يبنونه، ويبحثون عن شريك يُنفّذ بمستوى أفضل فريق داخلي. إن وجدت نفسك في هذا الوصف، ",
+      "نعمل مع مؤسّسي الشركات والفِرَق الذين يملكون رؤية واضحة لما يبنونه، ويبحثون عن شريك يُنفّذ بمستوى أفضل فريق داخلي. إن وجدت نفسك في هذا الوصف، ",
     workingLink: "ابدأ مشروعك",
     workingBodyAfter: "",
     companyLabel: "— الشركة",
@@ -588,7 +588,7 @@ const ar = {
     companyCity: "الرياض، المملكة العربية السعودية",
     companyCR: "سجل تجاري 7053929092",
     companyPrivate: "شركة خاصة",
-    companyEst: "تأسّس 2026",
+    companyEst: "",
     companyDuns: "D-U-N-S 986467763",
     finalCtaTitle: "لديك مشروع في بالك؟",
     finalCtaBody: "حدّثنا عنه. المكالمة الأولى دائمًا مجانية.",

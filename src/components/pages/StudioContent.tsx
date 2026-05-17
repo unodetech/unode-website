@@ -156,7 +156,7 @@ export function StudioContent({ locale }: { locale: Locale }) {
                 <p className="text-[16px] font-medium text-[var(--color-fg)]">
                   {t.companyPrivate}
                 </p>
-                <p>{t.companyEst}</p>
+                {t.companyEst ? <p>{t.companyEst}</p> : null}
                 <p className="font-mono text-[13px] text-zinc-500">
                   {t.companyDuns}
                 </p>

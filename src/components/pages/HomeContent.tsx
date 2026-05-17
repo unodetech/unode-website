@@ -111,11 +111,15 @@ export function HomeContent({ locale }: { locale: Locale }) {
           <div className="relative mx-auto max-w-7xl px-6 md:px-12">
             <div className="rise rise-delay-1 mb-10 flex items-center gap-3">
               <MonoLabel>{t.hero.label}</MonoLabel>
-              <span
-                className="connector-pulse h-px w-12 bg-[var(--color-line-strong)]"
-                aria-hidden="true"
-              />
-              <MonoLabel>{t.hero.labelDate}</MonoLabel>
+              {t.hero.labelDate ? (
+                <>
+                  <span
+                    className="connector-pulse h-px w-12 bg-[var(--color-line-strong)]"
+                    aria-hidden="true"
+                  />
+                  <MonoLabel>{t.hero.labelDate}</MonoLabel>
+                </>
+              ) : null}
             </div>
 
             <h1 className={`hero-display rise rise-delay-2 max-w-5xl text-balance text-start font-medium text-[var(--color-fg)] ${isRtl ? "text-4xl leading-[1.45] md:text-6xl md:leading-[1.4] lg:text-7xl lg:leading-[1.35]" : "text-5xl md:text-7xl lg:text-8xl"}`}>
