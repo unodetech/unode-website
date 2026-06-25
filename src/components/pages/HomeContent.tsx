@@ -202,6 +202,14 @@ export function HomeContent({ locale }: { locale: Locale }) {
                   </header>
 
                   <div className="mt-10 flex-1">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/amlakey-logo.png"
+                      alt="Amlakey app logo"
+                      width={56}
+                      height={56}
+                      className="mb-5 h-14 w-14 rounded-xl border border-[var(--color-line)] shadow-sm"
+                    />
                     <h3 className="text-start text-2xl font-medium tracking-tight text-[var(--color-fg)] md:text-3xl">
                       {t.work.amlakey.name}
                     </h3>
@@ -225,7 +233,7 @@ export function HomeContent({ locale }: { locale: Locale }) {
                     </a>
                     <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
                       <a
-                        href="https://apps.apple.com"
+                        href="https://apps.apple.com/app/id6771771954"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[13px] text-zinc-500 transition hover:text-[var(--color-fg)]"
