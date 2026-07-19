@@ -8,7 +8,6 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { HtmlLangSync } from "@/components/HtmlLangSync";
 import { ContactForm } from "@/components/ContactForm";
-import { Reveal } from "@/components/Reveal";
 import { GhostCTA, MonoLabel } from "@/components/ui";
 import { getDictionary, type Locale } from "@/i18n/dictionaries";
 

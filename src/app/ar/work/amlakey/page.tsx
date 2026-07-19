@@ -15,10 +15,8 @@ export const metadata: Metadata = {
       "x-default": "/work/amlakey",
     },
   },
-  openGraph: {
-    locale: "ar_SA",
-    alternateLocale: ["en_US"],
-  },
+  // openGraph (incl. og:image, locale ar_SA, alternateLocale) is inherited
+  // from src/app/ar/layout.tsx — no per-page override needed.
 };
 
 export default function ArabicAmlakeyCaseStudyPage() {
