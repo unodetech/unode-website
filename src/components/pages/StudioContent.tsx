@@ -11,11 +11,15 @@ import {
   MonoLabel,
   PrimaryCTA,
 } from "@/components/ui";
-import { getDictionary, type Locale } from "@/i18n/dictionaries";
+import { getDictionary, localizedHref, type Locale } from "@/i18n/dictionaries";
+
+const BOOK_CALL_HREF =
+  "mailto:info@unode.tech?subject=Booking%20a%20call%20with%20Unode";
 
 export function StudioContent({ locale }: { locale: Locale }) {
   const t = getDictionary(locale).studioPage;
   const isRtl = locale === "ar";
+  const contactHref = localizedHref(locale, "/contact");
   const glowPositionClass = isRtl
     ? "-left-32 -top-32"
     : "-right-32 -top-32";
@@ -128,7 +132,7 @@ export function StudioContent({ locale }: { locale: Locale }) {
             <p className="max-w-2xl text-start text-[16px] leading-relaxed text-zinc-600 md:text-[17px]">
               {t.workingBodyBefore}
               <a
-                href="mailto:info@unode.tech"
+                href={contactHref}
                 className="link-arrow text-[var(--color-fg)] underline decoration-zinc-300 underline-offset-4 transition hover:decoration-[var(--color-fg)]"
               >
                 {t.workingLink} {isRtl ? "←" : "→"}
@@ -175,11 +179,11 @@ export function StudioContent({ locale }: { locale: Locale }) {
               {t.finalCtaBody}
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-              <PrimaryCTA href="mailto:info@unode.tech">
+              <PrimaryCTA href={contactHref}>
                 {getDictionary(locale).servicesPage.ctaStartProject}
                 <ArrowRight locale={locale} />
               </PrimaryCTA>
-              <GhostCTA href="https://cal.com/unode">
+              <GhostCTA href={BOOK_CALL_HREF}>
                 {getDictionary(locale).servicesPage.ctaBookCall}
               </GhostCTA>
             </div>

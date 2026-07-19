@@ -56,12 +56,21 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ar_SA",
     alternateLocale: ["en_US"],
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "يونود — استوديو تقني يبني برمجيات تنطلق وتنمو وتدوم.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "يونود — استوديو تقني",
     description:
       "شريك تطوير للفِرَق الطموحة. نصمّم البرمجيات ونُطلقها ونُشغّلها من الفكرة الأولى إلى الإنتاج.",
+    images: ["/og.png"],
   },
   robots: {
     index: true,

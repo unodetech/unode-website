@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Netlify form detection</title>
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <!--
+      This file exists ONLY so Netlify's build bot detects the "contact"
+      form and its fields for a statically-exported (client-rendered) site.
+      The real, user-facing form lives in src/components/ContactForm.tsx and
+      posts to "/" with `form-name=contact`. Keep the field names below in
+      sync with that component.
+    -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input name="bot-field" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="company" />
+      <select name="projectType">
+        <option value="Product engineering">Product engineering</option>
+        <option value="Platform">Platform</option>
+        <option value="0→1 launch">0→1 launch</option>
+        <option value="Other">Other</option>
+      </select>
+      <textarea name="message"></textarea>
+    </form>
+  </body>
+</html>

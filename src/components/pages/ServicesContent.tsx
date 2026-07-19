@@ -13,13 +13,18 @@ import {
 } from "@/components/ui";
 import {
   getDictionary,
+  localizedHref,
   STACK_FULL,
   type Locale,
 } from "@/i18n/dictionaries";
 
+const BOOK_CALL_HREF =
+  "mailto:info@unode.tech?subject=Booking%20a%20call%20with%20Unode";
+
 export function ServicesContent({ locale }: { locale: Locale }) {
   const t = getDictionary(locale).servicesPage;
   const isRtl = locale === "ar";
+  const contactHref = localizedHref(locale, "/contact");
   const glowPositionClass = isRtl
     ? "-left-32 -top-32"
     : "-right-32 -top-32";
@@ -55,11 +60,11 @@ export function ServicesContent({ locale }: { locale: Locale }) {
             </div>
 
             <div className="mt-12 flex flex-wrap items-center gap-3">
-              <PrimaryCTA href="mailto:info@unode.tech">
+              <PrimaryCTA href={contactHref}>
                 {t.ctaStartProject}
                 <ArrowRight locale={locale} />
               </PrimaryCTA>
-              <GhostCTA href="https://cal.com/unode">{t.ctaBookCall}</GhostCTA>
+              <GhostCTA href={BOOK_CALL_HREF}>{t.ctaBookCall}</GhostCTA>
             </div>
           </div>
         </section>
@@ -173,11 +178,11 @@ export function ServicesContent({ locale }: { locale: Locale }) {
               {t.finalCtaBody}
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-              <PrimaryCTA href="mailto:info@unode.tech">
+              <PrimaryCTA href={contactHref}>
                 {t.ctaStartProject}
                 <ArrowRight locale={locale} />
               </PrimaryCTA>
-              <GhostCTA href="https://cal.com/unode">{t.ctaBookCall}</GhostCTA>
+              <GhostCTA href={BOOK_CALL_HREF}>{t.ctaBookCall}</GhostCTA>
             </div>
           </div>
         </section>

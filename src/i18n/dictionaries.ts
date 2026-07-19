@@ -74,14 +74,16 @@ const en = {
     statusLive: "Live",
     statusBeta: "Beta",
     statusSoon: "In development",
+    readCaseStudy: "Read case study",
     amlakey: {
       name: "Amlakey",
       tagline: "Property management for landlords",
       description:
-        "An iOS, Android, and web app that turns rent collection, utility tracking, and reporting into a single calm workflow. Built for the Saudi market with Hijri calendar and Ejar integration.",
+        "An iOS and web app that turns rent collection, utility tracking, and reporting into a single calm workflow. Built for the Saudi market with Hijri calendar and Ejar integration.",
       primaryLabel: "amlakeyapp.com",
       appStore: "App Store",
-      googlePlay: "Google Play",
+      previewAlt:
+        "Amlakey dashboard on iPhone showing monthly rent collection and occupancy at a glance",
     },
     masarQiyas: {
       name: "Masar Qiyas",
@@ -314,6 +316,144 @@ const en = {
     finalCtaTitle: "Have a project in mind?",
     finalCtaBody: "Tell us about it. The first call is always free.",
   },
+  /* Contact form — used in the home Contact section and /contact ------ */
+  contactForm: {
+    nameLabel: "Name",
+    namePlaceholder: "Your name",
+    emailLabel: "Work email",
+    emailPlaceholder: "you@company.com",
+    companyLabel: "Company",
+    companyPlaceholder: "Company or team",
+    projectTypeLabel: "Project type",
+    projectTypes: [
+      { value: "Product engineering", label: "Product engineering" },
+      { value: "Platform", label: "Platform" },
+      { value: "0→1 launch", label: "0→1 launch" },
+      { value: "Other", label: "Other" },
+    ],
+    messageLabel: "Message",
+    messagePlaceholder: "What are you building? What's the goal and timeline?",
+    submit: "Send message",
+    submitting: "Sending…",
+    successTitle: "Thanks — your message is in.",
+    successBody:
+      "We read every note and usually reply within a day or two. Talk soon.",
+    errorTitle: "That didn't send.",
+    errorBody: "Please try again, or email us directly at info@unode.tech.",
+    optional: "optional",
+  },
+  /* /contact page ----------------------------------------------------- */
+  contactPage: {
+    metaTitle: "Contact",
+    metaDescription:
+      "Tell us about your project. Partnerships, custom builds, and hiring conversations — we read every note.",
+    heroLabel: "— Contact",
+    heroTitle: "Let's talk about what you're building.",
+    heroBody:
+      "Send a note with the shape of the project and we'll come back with honest thoughts on how we'd approach it. The first call is always free.",
+    altLabel: "— Prefer to reach out directly",
+  },
+  /* Case studies — /work/[slug] --------------------------------------- */
+  caseStudy: {
+    common: {
+      backLabel: "All work",
+      liveLabel: "Live",
+      problemLabel: "— The problem",
+      buildLabel: "— What we built",
+      stackLabel: "— Stack",
+      visitLabel: "Visit site",
+      finalCtaTitle: "Have a project in mind?",
+      finalCtaBody: "Tell us about it. The first call is always free.",
+      ctaPrimary: "Start a project",
+      ctaSecondary: "Book a 30-min call",
+    },
+    amlakey: {
+      metaTitle: "Amlakey — Case study",
+      metaDescription:
+        "How we built Amlakey: an iOS and web property-management app for Saudi landlords, with Hijri calendar, Ejar, SEC, and NWC integrations.",
+      name: "Amlakey",
+      positioning:
+        "The calm way for Saudi landlords to run rent, utilities, and reporting — in one place.",
+      platforms: ["iOS", "Web"],
+      website: { label: "amlakeyapp.com", url: "https://amlakeyapp.com" },
+      appStore: {
+        label: "App Store",
+        url: "https://apps.apple.com/app/id6771771954",
+      },
+      problem:
+        "Independent landlords in Saudi Arabia run their properties out of notebooks, chat threads, and a dozen browser tabs — one for the rent ledger, one for each utility portal, another for the lease paperwork. Nothing talks to anything else, so slipped rent, unpaid bills, and expiring contracts are easy to miss. Amlakey replaces that scramble with a single place that quietly keeps track.",
+      features: [
+        {
+          title: "Rent that tracks itself",
+          body: "Every unit, lease, and payment in one ledger — on the Hijri calendar landlords actually use — with clear views of who has paid and who is overdue.",
+        },
+        {
+          title: "Utilities without the portals",
+          body: "Electricity (SEC) and water (NWC) bills pulled in automatically, so readings and dues sit next to the property instead of behind separate logins.",
+        },
+        {
+          title: "Ejar, lined up",
+          body: "Lease data stays consistent with the national Ejar registry, so contracts and tenant records match the official system.",
+        },
+        {
+          title: "Reports in a tap",
+          body: "Owner statements and income reports generate on demand — the paperwork that used to mean an evening in a spreadsheet.",
+        },
+        {
+          title: "Quiet by design",
+          body: "Timely reminders for due rent and expiring leases, in a calm interface that works the same in Arabic and English, right-to-left included.",
+        },
+      ],
+      screenshotAlts: [
+        "Amlakey dashboard showing the month's rent collection, occupancy, and upcoming dues",
+        "The properties list — each building with its units and occupancy status",
+        "A tenant record with lease dates, contact details, and payment history",
+        "Amlakey running in Arabic with a full right-to-left layout",
+      ],
+      stack: [
+        "React Native",
+        "Expo",
+        "Supabase",
+        "Ejar API",
+        "SEC",
+        "NWC",
+        "Apple IAP",
+      ],
+    },
+    masarQiyas: {
+      metaTitle: "Masar Qiyas — Case study",
+      metaDescription:
+        "How we built Masar Qiyas: a web practice platform for Saudi standardized exams (GAT / Qudurat and SAAT / Tahsili) built on real, verified questions.",
+      name: "Masar Qiyas",
+      positioning:
+        "Exam prep for Saudi standardized tests — real questions, honest progress.",
+      platforms: ["Web"],
+      website: { label: "masarqiyas.com", url: "https://masarqiyas.com" },
+      appStore: null,
+      problem:
+        "Students preparing for the GAT (Qudurat) and SAAT (Tahsili) drill on scattered PDFs and question dumps of unknown provenance, with no reliable way to know how ready they actually are. Quality is inconsistent and progress is invisible. Masar Qiyas is built around real, verified questions and a study loop that shows students exactly where they stand.",
+      features: [
+        {
+          title: "Real questions, verified",
+          body: "A practice bank drawn from genuine exam material and checked for accuracy — not machine-generated filler.",
+        },
+        {
+          title: "Progress you can trust",
+          body: "Section-level tracking that reflects real readiness across Quantitative and Verbal, so study time goes where it counts.",
+        },
+        {
+          title: "Study plans that adapt",
+          body: "Plans that meet each student at their current level and adjust as they improve.",
+        },
+        {
+          title: "Arabic-first, exam-accurate",
+          body: "Built right-to-left, with the mathematical notation and conventions the Saudi exams actually use.",
+        },
+      ],
+      screenshotAlts: [],
+      stack: ["Next.js", "Cloudflare Workers", "Supabase", "OpenNext"],
+    },
+  },
 } as const;
 
 /* ----------------------------------------------------------------------
@@ -353,14 +493,16 @@ const ar = {
     statusLive: "نشط",
     statusBeta: "نسخة تجريبية",
     statusSoon: "قيد التطوير",
+    readCaseStudy: "اقرأ دراسة الحالة",
     amlakey: {
       name: "أملاكي",
       tagline: "تطبيق إدارة العقارات للمُلّاك",
       description:
-        "تطبيق متوفّر على iOS وAndroid والويب. يجمع تحصيل الإيجار، ومتابعة الفواتير، والتقارير في تجربة واحدة منظّمة. مُصمَّم للسوق السعودي بتقويم هجري وتكامل مع منصة إيجار.",
+        "تطبيق متوفّر على iOS والويب. يجمع تحصيل الإيجار، ومتابعة الفواتير، والتقارير في تجربة واحدة منظّمة. مُصمَّم للسوق السعودي بتقويم هجري وتكامل مع منصة إيجار.",
       primaryLabel: "amlakeyapp.com",
       appStore: "App Store",
-      googlePlay: "Google Play",
+      previewAlt:
+        "لوحة تحكم أملاكي على iPhone تعرض تحصيل الإيجار الشهري ونسبة الإشغال في لمحة",
     },
     masarQiyas: {
       name: "مسار قياس",
@@ -592,6 +734,143 @@ const ar = {
     companyDuns: "D-U-N-S 986467763",
     finalCtaTitle: "لديك مشروع في بالك؟",
     finalCtaBody: "حدّثنا عنه. المكالمة الأولى دائمًا مجانية.",
+  },
+  /* Contact form ------------------------------------------------------ */
+  contactForm: {
+    nameLabel: "الاسم",
+    namePlaceholder: "اسمك",
+    emailLabel: "البريد الإلكتروني للعمل",
+    emailPlaceholder: "you@company.com",
+    companyLabel: "الشركة",
+    companyPlaceholder: "الشركة أو الفريق",
+    projectTypeLabel: "نوع المشروع",
+    projectTypes: [
+      { value: "Product engineering", label: "هندسة منتجات" },
+      { value: "Platform", label: "تطوير منصّة" },
+      { value: "0→1 launch", label: "إطلاق منتج جديد" },
+      { value: "Other", label: "أخرى" },
+    ],
+    messageLabel: "الرسالة",
+    messagePlaceholder: "ما الذي تبنيه؟ وما الهدف والإطار الزمني؟",
+    submit: "أرسل الرسالة",
+    submitting: "جارٍ الإرسال…",
+    successTitle: "شكرًا — وصلتنا رسالتك.",
+    successBody: "نقرأ كل رسالة، ونردّ عادةً خلال يوم أو يومين. نراك قريبًا.",
+    errorTitle: "تعذّر الإرسال.",
+    errorBody: "حاول مرة أخرى، أو راسلنا مباشرة على info@unode.tech.",
+    optional: "اختياري",
+  },
+  /* /contact page ----------------------------------------------------- */
+  contactPage: {
+    metaTitle: "تواصل",
+    metaDescription:
+      "حدّثنا عن مشروعك. شراكات، وتطوير مخصّص، ومحادثات التوظيف — نقرأ كل رسالة.",
+    heroLabel: "— تواصل",
+    heroTitle: "لنتحدّث عمّا تبنيه.",
+    heroBody:
+      "أرسل لنا نبذة عن المشروع، ونعود إليك برأي صريح حول طريقة تنفيذه. المكالمة الأولى دائمًا مجانية.",
+    altLabel: "— تفضّل التواصل المباشر",
+  },
+  /* Case studies — /work/[slug] --------------------------------------- */
+  caseStudy: {
+    common: {
+      backLabel: "كل الأعمال",
+      liveLabel: "نشط",
+      problemLabel: "— المشكلة",
+      buildLabel: "— ما بنيناه",
+      stackLabel: "— البنية التقنية",
+      visitLabel: "زيارة الموقع",
+      finalCtaTitle: "لديك مشروع في بالك؟",
+      finalCtaBody: "حدّثنا عنه. المكالمة الأولى دائمًا مجانية.",
+      ctaPrimary: "ابدأ مشروعك",
+      ctaSecondary: "احجز مكالمة 30 دقيقة",
+    },
+    amlakey: {
+      metaTitle: "أملاكي — دراسة حالة",
+      metaDescription:
+        "كيف بنينا أملاكي: تطبيق لإدارة العقارات على iOS والويب للمُلّاك في السعودية، بتقويم هجري وتكامل مع إيجار وSEC وNWC.",
+      name: "أملاكي",
+      positioning:
+        "الطريقة الهادئة لإدارة الإيجار والفواتير والتقارير — في مكان واحد، للمُلّاك في السعودية.",
+      platforms: ["iOS", "Web"],
+      website: { label: "amlakeyapp.com", url: "https://amlakeyapp.com" },
+      appStore: {
+        label: "App Store",
+        url: "https://apps.apple.com/app/id6771771954",
+      },
+      problem:
+        "يُدير كثير من المُلّاك في السعودية عقاراتهم عبر الدفاتر، ومحادثات الرسائل، وعشرات النوافذ في المتصفّح — واحدة لسجلّ الإيجار، وأخرى لكل بوّابة خدمات، وثالثة لعقود الإيجار. لا شيء منها متّصل بالآخر، فيسهل أن تفوت دفعة إيجار، أو فاتورة غير مسدّدة، أو عقد على وشك الانتهاء. جاء أملاكي ليستبدل هذه الفوضى بمكان واحد يتابع كل ذلك بهدوء.",
+      features: [
+        {
+          title: "إيجار يتابع نفسه",
+          body: "كل وحدة وعقد ودفعة في سجلّ واحد — بالتقويم الهجري الذي يستخدمه المُلّاك فعلًا — مع عرض واضح لمن سدّد ومن تأخّر.",
+        },
+        {
+          title: "فواتير دون بوّابات",
+          body: "فواتير الكهرباء (SEC) والماء (NWC) تُجلب تلقائيًا، فتظهر القراءات والمستحقات بجانب العقار بدل أن تكون خلف حسابات منفصلة.",
+        },
+        {
+          title: "تكامل مع إيجار",
+          body: "تبقى بيانات العقود متوافقة مع منصة إيجار الوطنية، لتطابق العقودُ وسجلّاتُ المستأجرين النظامَ الرسمي.",
+        },
+        {
+          title: "تقارير بلمسة",
+          body: "كشوف المُلّاك وتقارير الدخل تُنشأ عند الطلب — تلك الأوراق التي كانت تعني أمسيةً كاملة مع جدول بيانات.",
+        },
+        {
+          title: "هدوءٌ بالتصميم",
+          body: "تنبيهات في وقتها للإيجار المستحق والعقود المنتهية، في واجهة هادئة تعمل بالعربية والإنجليزية بالكفاءة نفسها، ومن اليمين إلى اليسار.",
+        },
+      ],
+      screenshotAlts: [
+        "لوحة تحكم أملاكي تعرض تحصيل الإيجار الشهري ونسبة الإشغال والمستحقات القادمة",
+        "قائمة العقارات — كل مبنى مع وحداته وحالة إشغالها",
+        "بطاقة مستأجر تعرض مدد العقد وبيانات التواصل وسجلّ الدفعات",
+        "أملاكي بواجهة عربية كاملة من اليمين إلى اليسار",
+      ],
+      stack: [
+        "React Native",
+        "Expo",
+        "Supabase",
+        "Ejar API",
+        "SEC",
+        "NWC",
+        "Apple IAP",
+      ],
+    },
+    masarQiyas: {
+      metaTitle: "مسار قياس — دراسة حالة",
+      metaDescription:
+        "كيف بنينا مسار قياس: منصة تدريب على الويب لاختبارات القدرات والتحصيلي، مبنية على أسئلة حقيقية موثّقة.",
+      name: "مسار قياس",
+      positioning:
+        "تدريب لاختبارات القدرات والتحصيلي — أسئلة حقيقية، وتقدّم صادق.",
+      platforms: ["Web"],
+      website: { label: "masarqiyas.com", url: "https://masarqiyas.com" },
+      appStore: null,
+      problem:
+        "يتدرّب الطلاب استعدادًا لاختباري القدرات والتحصيلي على ملفات PDF متفرّقة ومجموعات أسئلة مجهولة المصدر، دون طريقة موثوقة لمعرفة مدى جاهزيتهم فعلًا. الجودة متفاوتة، والتقدّم غير مرئي. بُني مسار قياس حول أسئلة حقيقية موثّقة، وحلقة دراسية تُظهر للطالب أين يقف بالضبط.",
+      features: [
+        {
+          title: "أسئلة حقيقية وموثّقة",
+          body: "بنك تدريب مبني على مادة اختبار فعلية ومُراجَع للدقّة — لا أسئلة مولّدة آليًا لملء الفراغ.",
+        },
+        {
+          title: "تقدّم تثق به",
+          body: "متابعة على مستوى الأقسام تعكس الجاهزية الحقيقية في الكمّي واللفظي، ليذهب وقت المذاكرة إلى حيث يهمّ.",
+        },
+        {
+          title: "خطط دراسية تتكيّف",
+          body: "خطط تلتقي بكل طالب عند مستواه الحالي وتتعدّل مع تحسّنه.",
+        },
+        {
+          title: "عربية أولًا، وبدقّة الاختبار",
+          body: "مبنية من اليمين إلى اليسار، بالرموز والاصطلاحات الرياضية التي تستخدمها الاختبارات السعودية فعلًا.",
+        },
+      ],
+      screenshotAlts: [],
+      stack: ["Next.js", "Cloudflare Workers", "Supabase", "OpenNext"],
+    },
   },
 } as const;
 

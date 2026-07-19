@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Tajawal } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 /* Geist for the Latin/English text; Geist Mono for tag labels. */
@@ -62,12 +63,21 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     alternateLocale: ["ar_SA"],
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Unode — a technology studio building software that ships, scales, and lasts.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Unode — A technology studio",
     description:
       "A development partner for ambitious teams. We design, ship, and operate consumer and enterprise software end-to-end.",
+    images: ["/og.png"],
   },
   robots: {
     index: true,
@@ -88,6 +98,16 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[var(--color-bg)] text-[var(--color-fg)]">
         {children}
+        {/* Plausible — privacy-friendly analytics, no cookies / no banner.
+         * Records data once a Plausible site for `unode.tech` exists; the
+         * script is inert until then. `plausible.io` is allowlisted in the
+         * site CSP (public/_headers + next.config.ts). */}
+        <Script
+          defer
+          data-domain="unode.tech"
+          src="https://plausible.io/js/script.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

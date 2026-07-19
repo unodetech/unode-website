@@ -12,6 +12,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { HtmlLangSync } from "@/components/HtmlLangSync";
 import { CursorGlow } from "@/components/CursorGlow";
+import { ContactForm } from "@/components/ContactForm";
 import { Reveal } from "@/components/Reveal";
 import {
   ArrowRight,
@@ -74,6 +75,8 @@ export function HomeContent({ locale }: { locale: Locale }) {
   const workHref = `${homeBase === "/" ? "" : homeBase}/#work`;
   const servicesHref = localizedHref(locale, "/services");
   const studioHref = localizedHref(locale, "/studio");
+  const amlakeyCaseHref = localizedHref(locale, "/work/amlakey");
+  const masarCaseHref = localizedHref(locale, "/work/masar-qiyas");
 
   /* The static fallback glow position — matches the headline-start
    * corner: top-right in LTR, top-left in RTL. The CursorGlow client
@@ -190,7 +193,7 @@ export function HomeContent({ locale }: { locale: Locale }) {
                       />
                     </div>
                     <div className="flex flex-wrap items-center justify-end gap-1.5">
-                      {["iOS", "Android", "Web"].map((s) => (
+                      {["iOS", "Web"].map((s) => (
                         <span
                           key={s}
                           className="font-mono-tag rounded-full border border-[var(--color-line)] bg-white px-2.5 py-1 text-zinc-600"
@@ -219,19 +222,40 @@ export function HomeContent({ locale }: { locale: Locale }) {
                     <p className="mt-6 max-w-md text-start text-[15px] leading-relaxed text-zinc-600">
                       {t.work.amlakey.description}
                     </p>
+
+                    {/* App preview — a restrained "device peek" rising from a
+                     * soft panel. Fixed box dims + object-cover reserve space
+                     * so there is no layout shift while the image loads. */}
+                    <div className="mt-8 overflow-hidden rounded-xl border border-[var(--color-line)] bg-[var(--color-surface-2)] px-8 pt-8">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src="/work/amlakey-dashboard.png"
+                        alt={t.work.amlakey.previewAlt}
+                        width={277}
+                        height={600}
+                        loading="lazy"
+                        className="mx-auto block h-44 w-40 max-w-full rounded-t-xl object-cover object-top shadow-md ring-1 ring-black/5"
+                      />
+                    </div>
                   </div>
 
                   <footer className="mt-10 border-t border-[var(--color-line)] pt-6">
-                    <a
-                      href="https://amlakeyapp.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      href={amlakeyCaseHref}
                       className="link-arrow inline-flex items-center text-[15px] font-medium text-[var(--color-fg)] transition"
                     >
-                      {t.work.amlakey.primaryLabel}
+                      {t.work.readCaseStudy}
                       <ArrowRight locale={locale} />
-                    </a>
+                    </Link>
                     <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
+                      <a
+                        href="https://amlakeyapp.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[13px] text-zinc-500 transition hover:text-[var(--color-fg)]"
+                      >
+                        {t.work.amlakey.primaryLabel} {isRtl ? "←" : "→"}
+                      </a>
                       <a
                         href="https://apps.apple.com/app/id6771771954"
                         target="_blank"
@@ -239,14 +263,6 @@ export function HomeContent({ locale }: { locale: Locale }) {
                         className="text-[13px] text-zinc-500 transition hover:text-[var(--color-fg)]"
                       >
                         {t.work.amlakey.appStore} {isRtl ? "←" : "→"}
-                      </a>
-                      <a
-                        href="https://play.google.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[13px] text-zinc-500 transition hover:text-[var(--color-fg)]"
-                      >
-                        {t.work.amlakey.googlePlay} {isRtl ? "←" : "→"}
                       </a>
                     </div>
                   </footer>
@@ -295,15 +311,23 @@ export function HomeContent({ locale }: { locale: Locale }) {
                   </div>
 
                   <footer className="mt-10 border-t border-[var(--color-line)] pt-6">
-                    <a
-                      href="https://masarqiyas.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      href={masarCaseHref}
                       className="link-arrow inline-flex items-center text-[15px] font-medium text-[var(--color-fg)] transition"
                     >
-                      {t.work.masarQiyas.primaryLabel}
+                      {t.work.readCaseStudy}
                       <ArrowRight locale={locale} />
-                    </a>
+                    </Link>
+                    <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
+                      <a
+                        href="https://masarqiyas.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[13px] text-zinc-500 transition hover:text-[var(--color-fg)]"
+                      >
+                        {t.work.masarQiyas.primaryLabel} {isRtl ? "←" : "→"}
+                      </a>
+                    </div>
                   </footer>
                 </article>
               </Reveal>
@@ -489,41 +513,45 @@ export function HomeContent({ locale }: { locale: Locale }) {
               </p>
             </Reveal>
 
-            <Reveal delay={120}>
-              <div className="mt-10 flex flex-wrap items-center gap-3">
-                <PrimaryCTA href="mailto:info@unode.tech">
-                  {t.contact.ctaPrimary}
-                  <ArrowRight locale={locale} />
-                </PrimaryCTA>
-                <GhostCTA href="https://cal.com/unode">
-                  {t.contact.ctaSecondary}
-                </GhostCTA>
-              </div>
-            </Reveal>
+            <div className="mt-12 grid gap-10 md:grid-cols-12 md:gap-12">
+              {/* Form — the primary path */}
+              <Reveal className="md:col-span-7" delay={120}>
+                <ContactForm locale={locale} />
+              </Reveal>
 
-            <div className="mt-12 grid gap-3 sm:grid-cols-2 sm:gap-4 md:max-w-2xl">
-              <Reveal delay={200}>
-                <a
-                  href="mailto:info@unode.tech"
-                  className="group flex h-full flex-col rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-5 transition hover:border-[var(--color-line-strong)]"
-                >
-                  <MonoLabel>{t.contact.generalLabel}</MonoLabel>
-                  <span className="mt-3 text-start text-[15px] font-medium text-[var(--color-fg)]">
-                    {t.contact.generalEmail}
-                  </span>
-                </a>
-              </Reveal>
-              <Reveal delay={280}>
-                <a
-                  href="mailto:support@unode.tech"
-                  className="group flex h-full flex-col rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-5 transition hover:border-[var(--color-line-strong)]"
-                >
-                  <MonoLabel>{t.contact.supportLabel}</MonoLabel>
-                  <span className="mt-3 text-start text-[15px] font-medium text-[var(--color-fg)]">
-                    {t.contact.supportEmail}
-                  </span>
-                </a>
-              </Reveal>
+              {/* Secondary — book a call + direct email tiles */}
+              <div className="md:col-span-5">
+                <Reveal delay={200}>
+                  <MonoLabel className="block">
+                    {t.contactPage.altLabel}
+                  </MonoLabel>
+                  <div className="mt-5">
+                    <GhostCTA href="mailto:info@unode.tech?subject=Booking%20a%20call%20with%20Unode">
+                      {t.contact.ctaSecondary}
+                    </GhostCTA>
+                  </div>
+                  <div className="mt-5 grid gap-3">
+                    <a
+                      href="mailto:info@unode.tech"
+                      className="group flex flex-col rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-5 transition hover:border-[var(--color-line-strong)]"
+                    >
+                      <MonoLabel>{t.contact.generalLabel}</MonoLabel>
+                      <span className="mt-3 text-start text-[15px] font-medium text-[var(--color-fg)]">
+                        {t.contact.generalEmail}
+                      </span>
+                    </a>
+                    <a
+                      href="mailto:support@unode.tech"
+                      className="group flex flex-col rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-5 transition hover:border-[var(--color-line-strong)]"
+                    >
+                      <MonoLabel>{t.contact.supportLabel}</MonoLabel>
+                      <span className="mt-3 text-start text-[15px] font-medium text-[var(--color-fg)]">
+                        {t.contact.supportEmail}
+                      </span>
+                    </a>
+                  </div>
+                </Reveal>
+              </div>
             </div>
           </div>
         </section>
