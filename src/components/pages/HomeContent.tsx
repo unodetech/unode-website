@@ -264,6 +264,22 @@ export function HomeContent({ locale }: { locale: Locale }) {
                       >
                         {t.work.amlakey.appStore} {isRtl ? "←" : "→"}
                       </a>
+                      <a
+                        href="https://x.com/amlakeyapp"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[13px] text-zinc-500 transition hover:text-[var(--color-fg)]"
+                      >
+                        {t.work.amlakey.x} {isRtl ? "←" : "→"}
+                      </a>
+                      <a
+                        href="https://www.instagram.com/amlakeyapp/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[13px] text-zinc-500 transition hover:text-[var(--color-fg)]"
+                      >
+                        {t.work.amlakey.instagram} {isRtl ? "←" : "→"}
+                      </a>
                     </div>
                   </footer>
                 </article>
@@ -287,7 +303,7 @@ export function HomeContent({ locale }: { locale: Locale }) {
                       />
                     </div>
                     <div className="flex flex-wrap items-center justify-end gap-1.5">
-                      {["Web"].map((s) => (
+                      {["iOS", "Web"].map((s) => (
                         <span
                           key={s}
                           className="font-mono-tag rounded-full border border-[var(--color-line)] bg-white px-2.5 py-1 text-zinc-600"
@@ -326,6 +342,14 @@ export function HomeContent({ locale }: { locale: Locale }) {
                         className="text-[13px] text-zinc-500 transition hover:text-[var(--color-fg)]"
                       >
                         {t.work.masarQiyas.primaryLabel} {isRtl ? "←" : "→"}
+                      </a>
+                      <a
+                        href="https://apps.apple.com/app/id6772091902"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[13px] text-zinc-500 transition hover:text-[var(--color-fg)]"
+                      >
+                        {t.work.masarQiyas.appStore} {isRtl ? "←" : "→"}
                       </a>
                     </div>
                   </footer>

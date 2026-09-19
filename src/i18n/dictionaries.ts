@@ -82,6 +82,8 @@ const en = {
         "An iOS and web app that turns rent collection, utility tracking, and reporting into a single calm workflow. Built for the Saudi market with Hijri calendar and Ejar integration.",
       primaryLabel: "amlakeyapp.com",
       appStore: "App Store",
+      x: "X",
+      instagram: "Instagram",
       previewAlt:
         "Amlakey dashboard on iPhone showing monthly rent collection and occupancy at a glance",
     },
@@ -89,8 +91,9 @@ const en = {
       name: "Masar Qiyas",
       tagline: "Exam prep for Saudi standardized tests",
       description:
-        "A focused practice platform for GAT (Qudurat) and SAAT (Tahsili). Real questions, progress tracking, and adaptive study plans that meet students where they are.",
+        "A focused practice platform for GAT (Qudurat) and SAAT (Tahsili), on iOS and the web. Real questions, progress tracking, and adaptive study plans that meet students where they are.",
       primaryLabel: "masarqiyas.com",
+      appStore: "App Store",
     },
   },
   servicesHome: {
@@ -380,6 +383,11 @@ const en = {
         label: "App Store",
         url: "https://apps.apple.com/app/id6771771954",
       },
+      x: { label: "X", url: "https://x.com/amlakeyapp" },
+      instagram: {
+        label: "Instagram",
+        url: "https://www.instagram.com/amlakeyapp/",
+      },
       problem:
         "Independent landlords in Saudi Arabia run their properties out of notebooks, chat threads, and a dozen browser tabs — one for the rent ledger, one for each utility portal, another for the lease paperwork. Nothing talks to anything else, so slipped rent, unpaid bills, and expiring contracts are easy to miss. Amlakey replaces that scramble with a single place that quietly keeps track.",
       features: [
@@ -423,13 +431,18 @@ const en = {
     masarQiyas: {
       metaTitle: "Masar Qiyas — Case study",
       metaDescription:
-        "How we built Masar Qiyas: a web practice platform for Saudi standardized exams (GAT / Qudurat and SAAT / Tahsili) built on real, verified questions.",
+        "How we built Masar Qiyas: an iOS and web practice platform for Saudi standardized exams (GAT / Qudurat and SAAT / Tahsili) built on real, verified questions.",
       name: "Masar Qiyas",
       positioning:
         "Exam prep for Saudi standardized tests — real questions, honest progress.",
-      platforms: ["Web"],
+      platforms: ["iOS", "Web"],
       website: { label: "masarqiyas.com", url: "https://masarqiyas.com" },
-      appStore: null,
+      appStore: {
+        label: "App Store",
+        url: "https://apps.apple.com/app/id6772091902",
+      },
+      x: null,
+      instagram: null,
       problem:
         "Students preparing for the GAT (Qudurat) and SAAT (Tahsili) drill on scattered PDFs and question dumps of unknown provenance, with no reliable way to know how ready they actually are. Quality is inconsistent and progress is invisible. Masar Qiyas is built around real, verified questions and a study loop that shows students exactly where they stand.",
       features: [
@@ -501,6 +514,8 @@ const ar = {
         "تطبيق متوفّر على iOS والويب. يجمع تحصيل الإيجار، ومتابعة الفواتير، والتقارير في تجربة واحدة منظّمة. مُصمَّم للسوق السعودي بتقويم هجري وتكامل مع منصة إيجار.",
       primaryLabel: "amlakeyapp.com",
       appStore: "App Store",
+      x: "X",
+      instagram: "Instagram",
       previewAlt:
         "لوحة تحكم أملاكي على iPhone تعرض تحصيل الإيجار الشهري ونسبة الإشغال في لمحة",
     },
@@ -508,8 +523,9 @@ const ar = {
       name: "مسار قياس",
       tagline: "تدريب لاختبارات القدرات والتحصيلي",
       description:
-        "منصة تدريب مُركّزة على اختباري القدرات والتحصيلي. أسئلة فعلية، ومتابعة لمستوى التقدّم، وخطط دراسية تتكيّف مع كل طالب.",
+        "منصة تدريب مُركّزة على اختباري القدرات والتحصيلي، متوفّرة على iOS والويب. أسئلة فعلية، ومتابعة لمستوى التقدّم، وخطط دراسية تتكيّف مع كل طالب.",
       primaryLabel: "masarqiyas.com",
+      appStore: "App Store",
     },
   },
   servicesHome: {
@@ -798,6 +814,11 @@ const ar = {
         label: "App Store",
         url: "https://apps.apple.com/app/id6771771954",
       },
+      x: { label: "X", url: "https://x.com/amlakeyapp" },
+      instagram: {
+        label: "Instagram",
+        url: "https://www.instagram.com/amlakeyapp/",
+      },
       problem:
         "يُدير كثير من المُلّاك في السعودية عقاراتهم عبر الدفاتر، ومحادثات الرسائل، وعشرات النوافذ في المتصفّح — واحدة لسجلّ الإيجار، وأخرى لكل بوّابة خدمات، وثالثة لعقود الإيجار. لا شيء منها متّصل بالآخر، فيسهل أن تفوت دفعة إيجار، أو فاتورة غير مسدّدة، أو عقد على وشك الانتهاء. جاء أملاكي ليستبدل هذه الفوضى بمكان واحد يتابع كل ذلك بهدوء.",
       features: [
@@ -841,13 +862,18 @@ const ar = {
     masarQiyas: {
       metaTitle: "مسار قياس — دراسة حالة",
       metaDescription:
-        "كيف بنينا مسار قياس: منصة تدريب على الويب لاختبارات القدرات والتحصيلي، مبنية على أسئلة حقيقية موثّقة.",
+        "كيف بنينا مسار قياس: منصة تدريب على iOS والويب لاختبارات القدرات والتحصيلي، مبنية على أسئلة حقيقية موثّقة.",
       name: "مسار قياس",
       positioning:
         "تدريب لاختبارات القدرات والتحصيلي — أسئلة حقيقية، وتقدّم صادق.",
-      platforms: ["Web"],
+      platforms: ["iOS", "Web"],
       website: { label: "masarqiyas.com", url: "https://masarqiyas.com" },
-      appStore: null,
+      appStore: {
+        label: "App Store",
+        url: "https://apps.apple.com/app/id6772091902",
+      },
+      x: null,
+      instagram: null,
       problem:
         "يتدرّب الطلاب استعدادًا لاختباري القدرات والتحصيلي على ملفات PDF متفرّقة ومجموعات أسئلة مجهولة المصدر، دون طريقة موثوقة لمعرفة مدى جاهزيتهم فعلًا. الجودة متفاوتة، والتقدّم غير مرئي. بُني مسار قياس حول أسئلة حقيقية موثّقة، وحلقة دراسية تُظهر للطالب أين يقف بالضبط.",
       features: [

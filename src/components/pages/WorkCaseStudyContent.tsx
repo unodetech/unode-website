@@ -52,6 +52,11 @@ export function WorkCaseStudyContent({
   const stack = cs.stack as readonly string[];
   const alts = cs.screenshotAlts as readonly string[];
   const appStore = cs.appStore as { label: string; url: string } | null;
+  /* Product social profiles — present for Amlakey, null for products without them. */
+  const socials = [cs.x, cs.instagram].filter(Boolean) as Array<{
+    label: string;
+    url: string;
+  }>;
 
   const shots = SCREENSHOTS[slug];
   const heroShot = shots[0];
@@ -147,6 +152,17 @@ export function WorkCaseStudyContent({
                       {appStore.label} {isRtl ? "←" : "→"}
                     </a>
                   ) : null}
+                  {socials.map((s) => (
+                    <a
+                      key={s.url}
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[14px] text-zinc-500 transition hover:text-[var(--color-fg)]"
+                    >
+                      {s.label} {isRtl ? "←" : "→"}
+                    </a>
+                  ))}
                 </div>
               </div>
 
