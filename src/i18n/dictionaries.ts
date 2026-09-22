@@ -439,7 +439,7 @@ const en = {
       website: { label: "masarqiyas.com", url: "https://masarqiyas.com" },
       appStore: {
         label: "App Store",
-        url: "https://apps.apple.com/app/id6772091902",
+        url: "https://apps.apple.com/sa/app/id6772091902",
       },
       x: null,
       instagram: null,
@@ -870,7 +870,7 @@ const ar = {
       website: { label: "masarqiyas.com", url: "https://masarqiyas.com" },
       appStore: {
         label: "App Store",
-        url: "https://apps.apple.com/app/id6772091902",
+        url: "https://apps.apple.com/sa/app/id6772091902",
       },
       x: null,
       instagram: null,

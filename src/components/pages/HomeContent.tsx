@@ -344,7 +344,7 @@ export function HomeContent({ locale }: { locale: Locale }) {
                         {t.work.masarQiyas.primaryLabel} {isRtl ? "←" : "→"}
                       </a>
                       <a
-                        href="https://apps.apple.com/app/id6772091902"
+                        href="https://apps.apple.com/sa/app/id6772091902"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[13px] text-zinc-500 transition hover:text-[var(--color-fg)]"
