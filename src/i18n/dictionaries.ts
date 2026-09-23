@@ -415,10 +415,10 @@ const en = {
         },
       ],
       screenshotAlts: [
-        "Amlakey dashboard showing the month's rent collection, occupancy, and upcoming dues",
-        "The properties list — each building with its units and occupancy status",
-        "A tenant record with lease dates, contact details, and payment history",
-        "Amlakey running in Arabic with a full right-to-left layout",
+        "Amlakey dashboard with the month's expected and collected rent, collection rate, net income, and occupancy",
+        "The expenses screen with the month's electricity, water, maintenance, and cleaning bills broken down",
+        "The properties list with annual rent totals and each building's units at a glance",
+        "Tenant communication requests, with a WhatsApp message from a tenant and maintenance statuses",
       ],
       stack: [
         "React Native",
@@ -852,10 +852,10 @@ const ar = {
         },
       ],
       screenshotAlts: [
-        "لوحة تحكم أملاكي تعرض تحصيل الإيجار الشهري ونسبة الإشغال والمستحقات القادمة",
-        "قائمة العقارات — كل مبنى مع وحداته وحالة إشغالها",
-        "بطاقة مستأجر تعرض مدد العقد وبيانات التواصل وسجلّ الدفعات",
-        "أملاكي بواجهة عربية كاملة من اليمين إلى اليسار",
+        "لوحة تحكم أملاكي تعرض الإيجارات المتوقعة والمحصّلة ونسبة التحصيل وصافي الدخل ونسبة الإشغال",
+        "شاشة المصاريف مع فواتير الكهرباء والماء والصيانة والنظافة مفصّلة للشهر",
+        "قائمة العقارات مع إجمالي الإيجار السنوي ووحدات كل عقار في لمحة",
+        "طلبات تواصل المستأجرين مع رسالة واتساب من مستأجر وحالات طلبات الصيانة",
       ],
       stack: [
         "React Native",

@@ -232,7 +232,7 @@ export function HomeContent({ locale }: { locale: Locale }) {
                         src="/work/amlakey-dashboard.png"
                         alt={t.work.amlakey.previewAlt}
                         width={277}
-                        height={600}
+                        height={599}
                         loading="lazy"
                         className="mx-auto block h-44 w-40 max-w-full rounded-t-xl object-cover object-top shadow-md ring-1 ring-black/5"
                       />

@@ -24,9 +24,9 @@ const BOOK_CALL_HREF =
 const SCREENSHOTS: Record<CaseStudySlug, string[]> = {
   amlakey: [
     "/work/amlakey-dashboard.png",
+    "/work/amlakey-expenses.png",
     "/work/amlakey-properties.png",
-    "/work/amlakey-tenants.png",
-    "/work/amlakey-arabic.png",
+    "/work/amlakey-messages.png",
   ],
   "masar-qiyas": [
     "/work/masar-qiyas-home.png",
