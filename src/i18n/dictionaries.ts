@@ -94,6 +94,8 @@ const en = {
         "A focused practice platform for GAT (Qudurat) and SAAT (Tahsili), on iOS and the web. Real questions, progress tracking, and adaptive study plans that meet students where they are.",
       primaryLabel: "masarqiyas.com",
       appStore: "App Store",
+      previewAlt:
+        "Masar Qiyas home screen on iPhone with the day's challenge, a quick test, and the exam countdown",
     },
   },
   servicesHome: {
@@ -463,7 +465,11 @@ const en = {
           body: "Built right-to-left, with the mathematical notation and conventions the Saudi exams actually use.",
         },
       ],
-      screenshotAlts: [],
+      screenshotAlts: [
+        "Masar Qiyas home screen with the day's challenge, a quick test, and the exam countdown",
+        "A verbal-analogy practice question answered correctly, with its explanation and a badge showing it appeared in past exams",
+        "A ratios lesson teaching the concept with labeled bar figures",
+      ],
       stack: ["Next.js", "Cloudflare Workers", "Supabase", "OpenNext"],
     },
   },
@@ -526,6 +532,8 @@ const ar = {
         "منصة تدريب مُركّزة على اختباري القدرات والتحصيلي، متوفّرة على iOS والويب. أسئلة فعلية، ومتابعة لمستوى التقدّم، وخطط دراسية تتكيّف مع كل طالب.",
       primaryLabel: "masarqiyas.com",
       appStore: "App Store",
+      previewAlt:
+        "الشاشة الرئيسية لمسار قياس على iPhone تعرض تحدي اليوم والاختبار السريع والعد التنازلي للاختبار",
     },
   },
   servicesHome: {
@@ -894,7 +902,11 @@ const ar = {
           body: "مبنية من اليمين إلى اليسار، بالرموز والاصطلاحات الرياضية التي تستخدمها الاختبارات السعودية فعلًا.",
         },
       ],
-      screenshotAlts: [],
+      screenshotAlts: [
+        "الشاشة الرئيسية لمسار قياس مع تحدي اليوم والاختبار السريع والعد التنازلي للاختبار",
+        "سؤال تناظر لفظي مع الإجابة الصحيحة وشرحها، ووسم يوضّح ظهوره في اختبارات سابقة",
+        "درس النسب والتناسب يشرح المفهوم بأشكال توضيحية",
+      ],
       stack: ["Next.js", "Cloudflare Workers", "Supabase", "OpenNext"],
     },
   },

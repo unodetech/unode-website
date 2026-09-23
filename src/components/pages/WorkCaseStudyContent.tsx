@@ -28,7 +28,11 @@ const SCREENSHOTS: Record<CaseStudySlug, string[]> = {
     "/work/amlakey-tenants.png",
     "/work/amlakey-arabic.png",
   ],
-  "masar-qiyas": [],
+  "masar-qiyas": [
+    "/work/masar-qiyas-home.png",
+    "/work/masar-qiyas-question.png",
+    "/work/masar-qiyas-lesson.png",
+  ],
 };
 
 export function WorkCaseStudyContent({

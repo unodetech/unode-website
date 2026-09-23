@@ -324,6 +324,18 @@ export function HomeContent({ locale }: { locale: Locale }) {
                     <p className="mt-6 max-w-md text-start text-[15px] leading-relaxed text-zinc-600">
                       {t.work.masarQiyas.description}
                     </p>
+
+                    <div className="mt-8 overflow-hidden rounded-xl border border-[var(--color-line)] bg-[var(--color-surface-2)] px-8 pt-8">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src="/work/masar-qiyas-home.png"
+                        alt={t.work.masarQiyas.previewAlt}
+                        width={277}
+                        height={602}
+                        loading="lazy"
+                        className="mx-auto block h-44 w-40 max-w-full rounded-t-xl object-cover object-top shadow-md ring-1 ring-black/5"
+                      />
+                    </div>
                   </div>
 
                   <footer className="mt-10 border-t border-[var(--color-line)] pt-6">
