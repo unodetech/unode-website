@@ -79,9 +79,10 @@ const en = {
       name: "Amlakey",
       tagline: "Property management for landlords",
       description:
-        "An iOS and web app that turns rent collection, utility tracking, and reporting into a single calm workflow. Built for the Saudi market with Hijri calendar and Ejar integration.",
+        "An iOS, Android, and web app that turns rent collection, utility tracking, and reporting into a single calm workflow. Built for the Saudi market with Hijri calendar and Ejar integration.",
       primaryLabel: "amlakeyapp.com",
       appStore: "App Store",
+      googlePlay: "Google Play",
       x: "X",
       instagram: "Instagram",
       previewAlt:
@@ -375,15 +376,19 @@ const en = {
     amlakey: {
       metaTitle: "Amlakey — Case study",
       metaDescription:
-        "How we built Amlakey: an iOS and web property-management app for Saudi landlords, with Hijri calendar, Ejar, SEC, and NWC integrations.",
+        "How we built Amlakey: an iOS, Android, and web property-management app for Saudi landlords, with Hijri calendar, Ejar, SEC, and NWC integrations.",
       name: "Amlakey",
       positioning:
         "The calm way for Saudi landlords to run rent, utilities, and reporting — in one place.",
-      platforms: ["iOS", "Web"],
+      platforms: ["iOS", "Android", "Web"],
       website: { label: "amlakeyapp.com", url: "https://amlakeyapp.com" },
       appStore: {
         label: "App Store",
         url: "https://apps.apple.com/app/id6771771954",
+      },
+      googlePlay: {
+        label: "Google Play",
+        url: "https://play.google.com/store/apps/details?id=com.unode.amlakey",
       },
       x: { label: "X", url: "https://x.com/amlakeyapp" },
       instagram: {
@@ -443,6 +448,7 @@ const en = {
         label: "App Store",
         url: "https://apps.apple.com/sa/app/id6772091902",
       },
+      googlePlay: null,
       x: null,
       instagram: null,
       problem:
@@ -517,9 +523,10 @@ const ar = {
       name: "أملاكي",
       tagline: "تطبيق إدارة العقارات للمُلّاك",
       description:
-        "تطبيق متوفّر على iOS والويب. يجمع تحصيل الإيجار، ومتابعة الفواتير، والتقارير في تجربة واحدة منظّمة. مُصمَّم للسوق السعودي بتقويم هجري وتكامل مع منصة إيجار.",
+        "تطبيق متوفّر على iOS وAndroid والويب. يجمع تحصيل الإيجار، ومتابعة الفواتير، والتقارير في تجربة واحدة منظّمة. مُصمَّم للسوق السعودي بتقويم هجري وتكامل مع منصة إيجار.",
       primaryLabel: "amlakeyapp.com",
       appStore: "App Store",
+      googlePlay: "Google Play",
       x: "X",
       instagram: "Instagram",
       previewAlt:
@@ -812,15 +819,19 @@ const ar = {
     amlakey: {
       metaTitle: "أملاكي — دراسة حالة",
       metaDescription:
-        "كيف بنينا أملاكي: تطبيق لإدارة العقارات على iOS والويب للمُلّاك في السعودية، بتقويم هجري وتكامل مع إيجار وSEC وNWC.",
+        "كيف بنينا أملاكي: تطبيق لإدارة العقارات على iOS وAndroid والويب للمُلّاك في السعودية، بتقويم هجري وتكامل مع إيجار وSEC وNWC.",
       name: "أملاكي",
       positioning:
         "الطريقة الهادئة لإدارة الإيجار والفواتير والتقارير — في مكان واحد، للمُلّاك في السعودية.",
-      platforms: ["iOS", "Web"],
+      platforms: ["iOS", "Android", "Web"],
       website: { label: "amlakeyapp.com", url: "https://amlakeyapp.com" },
       appStore: {
         label: "App Store",
         url: "https://apps.apple.com/app/id6771771954",
+      },
+      googlePlay: {
+        label: "Google Play",
+        url: "https://play.google.com/store/apps/details?id=com.unode.amlakey",
       },
       x: { label: "X", url: "https://x.com/amlakeyapp" },
       instagram: {
@@ -880,6 +891,7 @@ const ar = {
         label: "App Store",
         url: "https://apps.apple.com/sa/app/id6772091902",
       },
+      googlePlay: null,
       x: null,
       instagram: null,
       problem:

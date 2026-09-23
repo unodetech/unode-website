@@ -193,7 +193,7 @@ export function HomeContent({ locale }: { locale: Locale }) {
                       />
                     </div>
                     <div className="flex flex-wrap items-center justify-end gap-1.5">
-                      {["iOS", "Web"].map((s) => (
+                      {["iOS", "Android", "Web"].map((s) => (
                         <span
                           key={s}
                           className="font-mono-tag rounded-full border border-[var(--color-line)] bg-white px-2.5 py-1 text-zinc-600"
@@ -265,6 +265,14 @@ export function HomeContent({ locale }: { locale: Locale }) {
                         {t.work.amlakey.appStore} {isRtl ? "←" : "→"}
                       </a>
                       <a
+                        href="https://play.google.com/store/apps/details?id=com.unode.amlakey"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[13px] text-zinc-500 transition hover:text-[var(--color-fg)]"
+                      >
+                        {t.work.amlakey.googlePlay} {isRtl ? "←" : "→"}
+                      </a>
+                      <a
                         href="https://x.com/amlakeyapp"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -315,6 +323,14 @@ export function HomeContent({ locale }: { locale: Locale }) {
                   </header>
 
                   <div className="mt-10 flex-1">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/masar-qiyas-logo.png"
+                      alt="Masar Qiyas app logo"
+                      width={56}
+                      height={56}
+                      className="mb-5 h-14 w-14 rounded-xl border border-[var(--color-line)] shadow-sm"
+                    />
                     <h3 className="text-start text-2xl font-medium tracking-tight text-[var(--color-fg)] md:text-3xl">
                       {t.work.masarQiyas.name}
                     </h3>

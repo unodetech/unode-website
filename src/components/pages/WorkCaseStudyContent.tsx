@@ -56,6 +56,7 @@ export function WorkCaseStudyContent({
   const stack = cs.stack as readonly string[];
   const alts = cs.screenshotAlts as readonly string[];
   const appStore = cs.appStore as { label: string; url: string } | null;
+  const googlePlay = cs.googlePlay as { label: string; url: string } | null;
   /* Product social profiles — present for Amlakey, null for products without them. */
   const socials = [cs.x, cs.instagram].filter(Boolean) as Array<{
     label: string;
@@ -154,6 +155,16 @@ export function WorkCaseStudyContent({
                       className="text-[14px] text-zinc-500 transition hover:text-[var(--color-fg)]"
                     >
                       {appStore.label} {isRtl ? "←" : "→"}
+                    </a>
+                  ) : null}
+                  {googlePlay ? (
+                    <a
+                      href={googlePlay.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[14px] text-zinc-500 transition hover:text-[var(--color-fg)]"
+                    >
+                      {googlePlay.label} {isRtl ? "←" : "→"}
                     </a>
                   ) : null}
                   {socials.map((s) => (
