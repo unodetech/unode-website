@@ -100,7 +100,7 @@ export function StudioContent({ locale }: { locale: Locale }) {
                     rel="noopener noreferrer"
                     className="text-[var(--color-fg)] underline decoration-zinc-300 underline-offset-4 transition hover:decoration-[var(--color-fg)]"
                   >
-                    {isRtl ? "أملاكي" : "Amlakey"}
+                    {isRtl ? "مدير أملاكي" : "Amlakey"}
                   </a>
                   {t.focus.consumer.bodyAfter}
                 </p>
