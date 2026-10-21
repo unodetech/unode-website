@@ -3,7 +3,7 @@
  * Add a key here first, then reference it from a page or component.
  *
  * Conventions:
- *   - Tech / brand names (React, Next.js, Supabase, Amlakey, etc.) stay
+ *   - Store and platform names (App Store, Google Play, iOS, etc.) stay
  *     in Latin script in both locales.
  *   - Western digits (0–9) throughout — modern Saudi B2B convention;
  *     Eastern Arabic numerals read as classical / religious for the
@@ -14,29 +14,6 @@
 export type Locale = "en" | "ar";
 
 export const LOCALES: Locale[] = ["en", "ar"];
-
-/** Stable list of stack technology names — Latin in both locales. */
-export const STACK = [
-  "React",
-  "React Native",
-  "Next.js",
-  "Supabase",
-  "TypeScript",
-  "PostgreSQL",
-  "Swift",
-  "Kotlin",
-  "OpenAI",
-  "Anthropic",
-] as const;
-
-export const STACK_FULL = [
-  ...STACK,
-  "Node.js",
-  "Vercel",
-  "Cloudflare",
-  "Stripe",
-  "Figma",
-] as const;
 
 /* ----------------------------------------------------------------------
  * English dictionary — shape is the canonical source of truth.
@@ -79,7 +56,7 @@ const en = {
       name: "Amlakey",
       tagline: "Property management for landlords",
       description:
-        "An iOS, Android, and web app that turns rent collection, utility tracking, and reporting into a single calm workflow. Built for the Saudi market with Hijri calendar and Ejar integration.",
+        "An iOS, Android, and web app that turns rent collection, utility tracking, and reporting into a single calm workflow. Built for the Saudi market, on the Hijri calendar, in Arabic and English.",
       primaryLabel: "amlakeyapp.com",
       appStore: "App Store",
       googlePlay: "Google Play",
@@ -114,20 +91,19 @@ const en = {
       {
         index: "02",
         title: "Platform development",
-        body: "B2B SaaS, multi-tenant systems, durable architectures.",
+        body: "Business platforms and subscription products that grow with your customers.",
       },
       {
         index: "03",
-        title: "KSA market integrations",
-        body: "Ejar · Absher · STCPay · SEC · NWC. We’ve built these. We know the gotchas.",
+        title: "Built for the Saudi market",
+        body: "Arabic-first products, on the Hijri calendar, with the payment methods Saudi customers use.",
       },
       {
         index: "04",
-        title: "0→1 launches",
+        title: "New product launches",
         body: "Design, build, and launch a new product in 90 days.",
       },
     ],
-    stackLabel: "Stack",
     ctaPrimary: "Discuss your project",
     seeAll: "See all services",
   },
@@ -187,7 +163,7 @@ const en = {
   servicesPage: {
     metaTitle: "Services",
     metaDescription:
-      "Product engineering, platform development, KSA market integrations, and 0→1 launches. Built for teams that need it done right.",
+      "Product engineering, platform development, Saudi-market products, and new product launches. Built for teams that need it done right.",
     heroLabel: "— Services",
     heroTitle: "How we work with teams.",
     heroBody1:
@@ -201,23 +177,23 @@ const en = {
         index: "01",
         title: "Product engineering",
         tagline: "Web, mobile, AI-augmented features. From sketch to App Store.",
-        body: "Custom React Native, Next.js, and Swift work. We design the interaction, build the system, and ship it. Best fit when you have a strong product POV but need engineering depth to execute it.",
+        body: "Custom apps for iPhone, Android, and the web. We design the experience, build the product, and launch it. Best fit when you have a clear product vision and need a team that can deliver it.",
       },
       {
         index: "02",
         title: "Platform development",
-        tagline: "B2B SaaS, multi-tenant systems, durable architectures.",
-        body: "Greenfield or rescue work on platforms intended to last. Supabase, PostgreSQL, edge functions, queues, observability. We make decisions you don’t have to revisit in 18 months.",
+        tagline: "Business platforms and subscription products that grow with your customers.",
+        body: "New platforms, or rescuing ones that are struggling. Reliable, secure, and ready to grow — built on decisions you won’t have to revisit in 18 months.",
       },
       {
         index: "03",
-        title: "KSA market integrations",
-        tagline: "Ejar · Absher · STCPay · SEC · NWC · Tawakkalna · Nafath.",
-        body: "We’ve shipped these in production. We know the gotchas — sandbox quirks, certification timelines, edge cases the docs don’t mention. Worth its weight when you’re entering the Saudi market from elsewhere.",
+        title: "Built for the Saudi market",
+        tagline: "Arabic-first, on the Hijri calendar, with the payment methods Saudi customers use.",
+        body: "We build and run our own products for Saudi customers, so we know what the market expects: Arabic and right-to-left done properly, the Hijri calendar, and payment by mada and Apple Pay. Worth its weight when you’re entering the Saudi market from elsewhere.",
       },
       {
         index: "04",
-        title: "0→1 launches",
+        title: "New product launches",
         tagline: "Design, build, and launch a new product in 90 days.",
         body: "For founders and corporate innovation teams who need to move fast without burning a year on agency overhead. We’re embedded; you’re the customer; the goal is users by day 90.",
       },
@@ -237,7 +213,7 @@ const en = {
       {
         index: "03",
         title: "Design + build",
-        body: "Sprint-based. Demo every Friday. You own the work.",
+        body: "A demo of progress every week. You own the work.",
       },
       {
         index: "04",
@@ -245,15 +221,14 @@ const en = {
         body: "We ship together. If you want, we keep operating it.",
       },
     ],
-    stackLabel: "— Stack",
     antiLabel: "— What we don’t do",
     anti: [
       { index: "01", body: "White-label or unbranded agency work." },
       {
         index: "02",
-        body: "Pure staff augmentation (one dev rented by the month). We engage as a team or not at all.",
+        body: "Renting out individual developers by the month. We work as a full team or not at all.",
       },
-      { index: "03", body: "WordPress, low-code, or no-code builds." },
+      { index: "03", body: "Template websites or quick off-the-shelf builds." },
       {
         index: "04",
         body: "Anything we can’t ship to a high standard. We say no a lot.",
@@ -300,11 +275,11 @@ const en = {
       },
       operational: {
         label: "Operational platforms",
-        body: "B2B SaaS for industries that have lived in spreadsheets too long.",
+        body: "Business platforms for industries that have run on spreadsheets for too long.",
       },
       ksa: {
-        label: "Saudi market infrastructure",
-        body: "Banking, real estate, education, and identity integrations specific to KSA.",
+        label: "Saudi market products",
+        body: "Real estate, education, and everyday services, built around how people in Saudi Arabia actually work.",
       },
     },
     workingLabel: "— Working with us",
@@ -334,7 +309,7 @@ const en = {
     projectTypes: [
       { value: "Product engineering", label: "Product engineering" },
       { value: "Platform", label: "Platform" },
-      { value: "0→1 launch", label: "0→1 launch" },
+      { value: "0→1 launch", label: "New product launch" },
       { value: "Other", label: "Other" },
     ],
     messageLabel: "Message",
@@ -366,7 +341,6 @@ const en = {
       liveLabel: "Live",
       problemLabel: "— The problem",
       buildLabel: "— What we built",
-      stackLabel: "— Stack",
       visitLabel: "Visit site",
       finalCtaTitle: "Have a project in mind?",
       finalCtaBody: "Tell us about it. The first call is always free.",
@@ -376,7 +350,7 @@ const en = {
     amlakey: {
       metaTitle: "Amlakey — Case study",
       metaDescription:
-        "How we built Amlakey: an iOS, Android, and web property-management app for Saudi landlords, with Hijri calendar, Ejar, SEC, and NWC integrations.",
+        "Amlakey: a property-management app for Saudi landlords on iPhone, Android, and the web — rent, utility bills, contracts, and reports in one place.",
       name: "Amlakey",
       positioning:
         "The calm way for Saudi landlords to run rent, utilities, and reporting — in one place.",
@@ -399,16 +373,16 @@ const en = {
         "Independent landlords in Saudi Arabia run their properties out of notebooks, chat threads, and a dozen browser tabs — one for the rent ledger, one for each utility portal, another for the lease paperwork. Nothing talks to anything else, so slipped rent, unpaid bills, and expiring contracts are easy to miss. Amlakey replaces that scramble with a single place that quietly keeps track.",
       features: [
         {
-          title: "Rent that tracks itself",
+          title: "Rent at a glance",
           body: "Every unit, lease, and payment in one ledger — on the Hijri calendar landlords actually use — with clear views of who has paid and who is overdue.",
         },
         {
-          title: "Utilities without the portals",
-          body: "Electricity (SEC) and water (NWC) bills pulled in automatically, so readings and dues sit next to the property instead of behind separate logins.",
+          title: "Utilities, per property",
+          body: "Electricity and water bills are kept against each property, so everything owed is in one place.",
         },
         {
-          title: "Ejar, lined up",
-          body: "Lease data stays consistent with the national Ejar registry, so contracts and tenant records match the official system.",
+          title: "Tenant requests, organised",
+          body: "Maintenance and other requests from tenants land in one list with a clear status, so nothing gets lost in a chat thread.",
         },
         {
           title: "Reports in a tap",
@@ -424,15 +398,6 @@ const en = {
         "The expenses screen with the month's electricity, water, maintenance, and cleaning bills broken down",
         "The properties list with annual rent totals and each building's units at a glance",
         "Tenant communication requests, with a WhatsApp message from a tenant and maintenance statuses",
-      ],
-      stack: [
-        "React Native",
-        "Expo",
-        "Supabase",
-        "Ejar API",
-        "SEC",
-        "NWC",
-        "Apple IAP",
       ],
     },
     masarQiyas: {
@@ -460,7 +425,7 @@ const en = {
         },
         {
           title: "Progress you can trust",
-          body: "Section-level tracking that reflects real readiness across Quantitative and Verbal, so study time goes where it counts.",
+          body: "Section-level tracking that reflects real readiness for each exam, from Qudurat's Quantitative and Verbal sections to Tahsili's subjects, so study time goes where it counts.",
         },
         {
           title: "Study plans that adapt",
@@ -476,7 +441,6 @@ const en = {
         "A verbal-analogy practice question answered correctly, with its explanation and a badge showing it appeared in past exams",
         "A ratios lesson teaching the concept with labeled bar figures",
       ],
-      stack: ["Next.js", "Cloudflare Workers", "Supabase", "OpenNext"],
     },
   },
 } as const;
@@ -500,7 +464,7 @@ const ar = {
     aria: "English",
   },
   hero: {
-    label: "ستوديو يونود",
+    label: "استوديو يونود",
     labelDate: "",
     headlineA: "نبني برمجيات",
     headlineB: "تنطلق، وتنمو،",
@@ -523,7 +487,7 @@ const ar = {
       name: "مدير أملاكي",
       tagline: "تطبيق إدارة العقارات للمُلّاك",
       description:
-        "تطبيق متوفّر على iOS وAndroid والويب. يجمع تحصيل الإيجار، ومتابعة الفواتير، والتقارير في تجربة واحدة منظّمة. مُصمَّم للسوق السعودي بتقويم هجري وتكامل مع منصة إيجار.",
+        "تطبيق متوفّر على iOS وAndroid والويب. يجمع متابعة الإيجار والمتأخرات، وتسجيل الفواتير، والتقارير في تجربة واحدة منظّمة. مُصمَّم للسوق السعودي، بالتقويم الهجري، وبالعربية والإنجليزية.",
       primaryLabel: "amlakeyapp.com",
       appStore: "App Store",
       googlePlay: "Google Play",
@@ -558,12 +522,12 @@ const ar = {
       {
         index: "02",
         title: "تطوير المنصّات",
-        body: "منصات B2B SaaS، أنظمة متعددة المستخدمين، وبنية تقنية تدوم طويلاً.",
+        body: "منصات أعمال ومنتجات اشتراك تنمو مع عملائك.",
       },
       {
         index: "03",
-        title: "تكاملات السوق السعودي",
-        body: "إيجار · أبشر · STC Pay · SEC · NWC. تكاملنا معها في الإنتاج، ونعرف تفاصيلها الدقيقة.",
+        title: "مصمَّم للسوق السعودي",
+        body: "منتجات عربية أولًا، بالتقويم الهجري، وبوسائل الدفع التي يستخدمها العميل السعودي.",
       },
       {
         index: "04",
@@ -571,7 +535,6 @@ const ar = {
         body: "تصميم، وبناء، وإطلاق منتج جديد خلال 90 يومًا.",
       },
     ],
-    stackLabel: "البنية التقنية",
     ctaPrimary: "ناقش مشروعك معنا",
     seeAll: "جميع الخدمات",
   },
@@ -592,12 +555,12 @@ const ar = {
       {
         tag: "02",
         title: "تركيزٌ تام، لا تشتّت",
-        body: "كل مشروع يحظى بكامل الاهتمام. صنعة عميقة، من البداية إلى النهاية.",
+        body: "كل مشروع يحظى بكامل الاهتمام. ننفّذه بعناية من البداية إلى النهاية.",
       },
       {
         tag: "03",
         title: "المفيد قبل المُبهر",
-        body: "البرمجيات الجيدة هي التي يفتحها المستخدم غدًا، وبعد غد. نُحسّن لأجل ذلك، لا لأجل الإبهار.",
+        body: "البرمجيات الجيدة هي التي يفتحها المستخدم غدًا، وبعد غد. وهذا ما نعمل لأجله، لا الإبهار.",
       },
     ],
   },
@@ -608,7 +571,7 @@ const ar = {
     note:
       "حدّثنا عنه. نقرأ كل رسالة — شراكات، وتطوير مخصّص، وحتى محادثات التوظيف.",
     ctaPrimary: "ابدأ مشروعك",
-    ctaSecondary: "احجز مكالمة 30 دقيقة",
+    ctaSecondary: "احجز مكالمة مدتها 30 دقيقة",
     generalLabel: "عام",
     supportLabel: "دعم المنتج",
     generalEmail: "info@unode.tech",
@@ -631,33 +594,33 @@ const ar = {
   servicesPage: {
     metaTitle: "الخدمات",
     metaDescription:
-      "هندسة المنتجات، وتطوير المنصّات، وتكاملات السوق السعودي، وإطلاق المنتجات الجديدة. للفِرَق التي تحتاج إلى تنفيذ متقن.",
+      "هندسة المنتجات، وتطوير المنصّات، ومنتجات للسوق السعودي، وإطلاق المنتجات الجديدة. للفِرَق التي تحتاج إلى تنفيذ متقن.",
     heroLabel: "— الخدمات",
     heroTitle: "كيف نعمل مع الفِرَق الطموحة.",
     heroBody1:
       "يونود يعمل مع مؤسّسي الشركات الناشئة، وفِرَق المنتجات في مرحلة النمو، وأقسام الابتكار في الشركات الكبرى — لبناء برمجيات تحلّ مشكلات حقيقية، وتُصمَّم لتدوم.",
     heroBody2: "لا نبيع ساعات. نبيع منتجات تعمل.",
     ctaStartProject: "ابدأ مشروعك",
-    ctaBookCall: "احجز مكالمة 30 دقيقة",
+    ctaBookCall: "احجز مكالمة مدتها 30 دقيقة",
     capabilitiesLabel: "— قدراتنا",
     capabilities: [
       {
         index: "01",
         title: "هندسة المنتجات",
-        tagline: "ويب، وتطبيقات موبايل، وميزات بالذكاء الاصطناعي. من الفكرة الأولى إلى متجر التطبيقات.",
-        body: "تطوير مخصّص باستخدام React Native وNext.js وSwift. نُصمّم التفاعل، ونبني النظام، ونُطلقه. مناسب حين تكون لديك رؤية واضحة للمنتج وتحتاج إلى خبرة هندسية عميقة لتنفيذها.",
+        tagline: "ويب، وتطبيقات الجوّال، وميزات بالذكاء الاصطناعي. من الفكرة الأولى إلى متجر التطبيقات.",
+        body: "تطبيقات مخصّصة لـ iPhone وAndroid والويب. نُصمّم التجربة، ونبني المنتج، ونُطلقه. مناسب حين تكون لديك رؤية واضحة للمنتج وتحتاج إلى فريق قادر على تنفيذها.",
       },
       {
         index: "02",
         title: "تطوير المنصّات",
-        tagline: "منصات B2B SaaS، أنظمة متعددة الحسابات، وبنية تقنية تدوم طويلاً.",
-        body: "نبني من الصفر، أو نُعيد هيكلة منصّات قائمة. نستخدم Supabase وPostgreSQL وEdge Functions وأنظمة الطوابير والمراقبة. نتّخذ قرارات تقنية لا تحتاج إلى مراجعة بعد 18 شهرًا.",
+        tagline: "منصات أعمال ومنتجات اشتراك تنمو مع عملائك.",
+        body: "نبني منصّات جديدة، أو نُنقذ منصّات قائمة تواجه صعوبات. موثوقة وآمنة وجاهزة للنمو — بقرارات لن تحتاج إلى مراجعتها بعد 18 شهرًا.",
       },
       {
         index: "03",
-        title: "تكاملات السوق السعودي",
-        tagline: "إيجار · أبشر · STC Pay · SEC · NWC · توكلنا · نفاذ.",
-        body: "بنينا هذه التكاملات في مشاريع فعلية. نعرف تفاصيلها الدقيقة — مشاكل بيئات الاختبار، ومدد الموافقات، والحالات الاستثنائية التي لا تذكرها الوثائق. قيمتها مضاعفة حين تدخل السوق السعودي من خارج المملكة.",
+        title: "مصمَّم للسوق السعودي",
+        tagline: "عربية أولًا، بالتقويم الهجري، وبوسائل الدفع التي يستخدمها العميل السعودي.",
+        body: "نبني منتجاتنا الخاصة لعملاء في السعودية ونُشغّلها بأنفسنا، فنعرف ما يتوقّعه السوق: واجهات عربية متقنة من اليمين إلى اليسار، والتقويم الهجري، والدفع عبر مدى وApple Pay. وتتضاعف قيمة هذه الخبرة حين تدخل السوق السعودي من خارج المملكة.",
       },
       {
         index: "04",
@@ -681,7 +644,7 @@ const ar = {
       {
         index: "03",
         title: "تصميم وبناء",
-        body: "بنظام السبرنتات (sprints). عرض أسبوعي كل جمعة. الملكية الكاملة لك.",
+        body: "عرض أسبوعي لما أُنجز. الملكية الكاملة لك.",
       },
       {
         index: "04",
@@ -689,15 +652,14 @@ const ar = {
         body: "نُطلق المنتج معًا. وإن رغبت، نواصل تشغيله بعد الإطلاق.",
       },
     ],
-    stackLabel: "— البنية التقنية",
     antiLabel: "— ما لا نقوم به",
     anti: [
-      { index: "01", body: "أعمال بهوية مخفية أو وكالة تحت اسم آخر." },
+      { index: "01", body: "أعمال تُسلَّم بعلامة جهة أخرى أو دون ذكر اسمنا." },
       {
         index: "02",
         body: "تأجير مطوّر فردي بالشهر. نقدّم خدماتنا كفريق متكامل، أو لا نقدّمها.",
       },
-      { index: "03", body: "البناء على WordPress أو منصّات Low-code وNo-code." },
+      { index: "03", body: "المواقع المبنية على قوالب جاهزة، أو على منصّات البناء دون برمجة." },
       {
         index: "04",
         body: "أي مشروع لا نستطيع تسليمه بمعيار عالٍ. نقول \"لا\" كثيرًا التزامًا بهذا المعيار.",
@@ -725,12 +687,12 @@ const ar = {
       {
         index: "02",
         title: "تركيزٌ تام، لا تشتّت",
-        body: "كل مشروع يحظى بكامل الاهتمام من فريقٍ يهتمّ به فعلًا. الصنعة العميقة من البداية إلى النهاية — من التصميم حتى الإطلاق.",
+        body: "كل مشروع يحظى بكامل الاهتمام من فريقٍ يهتمّ به فعلًا. ننفّذه بالعناية نفسها من البداية إلى النهاية — من التصميم حتى الإطلاق.",
       },
       {
         index: "03",
         title: "المفيد قبل المُبهر",
-        body: "البرمجيات الجيدة هي التي يفتحها المستخدم غدًا، وبعد غد. نُحسّن لأجل ذلك — لا لأجل الإبهار، ولا لأجل ما يبدو جميلًا في عرض تقديمي. إن لم تُثبت الشاشة فائدتها، لن نُطلقها.",
+        body: "البرمجيات الجيدة هي التي يفتحها المستخدم غدًا، وبعد غد. وهذا ما نعمل لأجله — لا الإبهار، ولا ما يبدو جميلًا في عرض تقديمي. إن لم تُثبت الشاشة فائدتها، فلن نُطلقها.",
       },
     ],
     focusLabel: "— مجالات التركيز",
@@ -744,17 +706,17 @@ const ar = {
       },
       operational: {
         label: "منصات تشغيل الأعمال",
-        body: "منصات B2B لقطاعات اعتمدت على جداول البيانات لوقت طويل.",
+        body: "منصات أعمال لقطاعات اعتمدت على جداول البيانات لوقت طويل.",
       },
       ksa: {
-        label: "تقنيات السوق السعودي",
-        body: "تكاملات في القطاعات المصرفية والعقارية والتعليمية والتحقّق من الهوية، خاصة بالمملكة.",
+        label: "منتجات للسوق السعودي",
+        body: "العقار، والتعليم، والخدمات اليومية — مبنية على طريقة عمل الناس في السعودية فعلًا.",
       },
     },
     workingLabel: "— العمل معنا",
     workingBodyBefore:
       "نعمل مع مؤسّسي الشركات والفِرَق الذين يملكون رؤية واضحة لما يبنونه، ويبحثون عن شريك يُنفّذ بمستوى أفضل فريق داخلي. إن وجدت نفسك في هذا الوصف، ",
-    workingLink: "ابدأ مشروعك",
+    workingLink: "فابدأ مشروعك معنا",
     workingBodyAfter: "",
     companyLabel: "— الشركة",
     companyName: "شركة يونود",
@@ -800,7 +762,7 @@ const ar = {
     heroTitle: "لنتحدّث عمّا تبنيه.",
     heroBody:
       "أرسل لنا نبذة عن المشروع، ونعود إليك برأي صريح حول طريقة تنفيذه. المكالمة الأولى دائمًا مجانية.",
-    altLabel: "— تفضّل التواصل المباشر",
+    altLabel: "— أو تواصل معنا مباشرة",
   },
   /* Case studies — /work/[slug] --------------------------------------- */
   caseStudy: {
@@ -809,21 +771,20 @@ const ar = {
       liveLabel: "نشط",
       problemLabel: "— المشكلة",
       buildLabel: "— ما بنيناه",
-      stackLabel: "— البنية التقنية",
       visitLabel: "زيارة الموقع",
       finalCtaTitle: "لديك مشروع في بالك؟",
       finalCtaBody: "حدّثنا عنه. المكالمة الأولى دائمًا مجانية.",
       ctaPrimary: "ابدأ مشروعك",
-      ctaSecondary: "احجز مكالمة 30 دقيقة",
+      ctaSecondary: "احجز مكالمة مدتها 30 دقيقة",
     },
     amlakey: {
       metaTitle: "مدير أملاكي — دراسة حالة",
       metaDescription:
-        "كيف بنينا مدير أملاكي: تطبيق لإدارة العقارات على iOS وAndroid والويب للمُلّاك في السعودية، بتقويم هجري وتكامل مع إيجار وSEC وNWC.",
+        "مدير أملاكي: تطبيق لإدارة العقارات للمُلّاك في السعودية على iPhone وAndroid والويب — الإيجار، وفواتير الخدمات، والعقود، والتقارير في مكان واحد.",
       name: "مدير أملاكي",
       positioning:
         "الطريقة الهادئة لإدارة الإيجار والفواتير والتقارير — في مكان واحد، للمُلّاك في السعودية.",
-      platforms: ["iOS", "Android", "Web"],
+      platforms: ["iOS", "Android", "الويب"],
       website: { label: "amlakeyapp.com", url: "https://amlakeyapp.com" },
       appStore: {
         label: "App Store",
@@ -842,16 +803,16 @@ const ar = {
         "يُدير كثير من المُلّاك في السعودية عقاراتهم عبر الدفاتر، ومحادثات الرسائل، وعشرات النوافذ في المتصفّح — واحدة لسجلّ الإيجار، وأخرى لكل بوّابة خدمات، وثالثة لعقود الإيجار. لا شيء منها متّصل بالآخر، فيسهل أن تفوت دفعة إيجار، أو فاتورة غير مسدّدة، أو عقد على وشك الانتهاء. جاء مدير أملاكي ليستبدل هذه الفوضى بمكان واحد يتابع كل ذلك بهدوء.",
       features: [
         {
-          title: "إيجار يتابع نفسه",
+          title: "الإيجار في لمحة",
           body: "كل وحدة وعقد ودفعة في سجلّ واحد — بالتقويم الهجري الذي يستخدمه المُلّاك فعلًا — مع عرض واضح لمن سدّد ومن تأخّر.",
         },
         {
-          title: "فواتير دون بوّابات",
-          body: "فواتير الكهرباء (SEC) والماء (NWC) تُجلب تلقائيًا، فتظهر القراءات والمستحقات بجانب العقار بدل أن تكون خلف حسابات منفصلة.",
+          title: "فواتير كل عقار في مكانها",
+          body: "فواتير الكهرباء والماء محفوظة لكل عقار، فتجد كل المستحقات في مكان واحد.",
         },
         {
-          title: "تكامل مع إيجار",
-          body: "تبقى بيانات العقود متوافقة مع منصة إيجار الوطنية، لتطابق العقودُ وسجلّاتُ المستأجرين النظامَ الرسمي.",
+          title: "طلبات المستأجرين منظّمة",
+          body: "طلبات الصيانة وغيرها من المستأجرين تصل في قائمة واحدة بحالة واضحة، فلا يضيع شيء بين محادثات الرسائل.",
         },
         {
           title: "تقارير بلمسة",
@@ -859,7 +820,7 @@ const ar = {
         },
         {
           title: "هدوءٌ بالتصميم",
-          body: "تنبيهات في وقتها للإيجار المستحق والعقود المنتهية، في واجهة هادئة تعمل بالعربية والإنجليزية بالكفاءة نفسها، ومن اليمين إلى اليسار.",
+          body: "تنبيهات في وقتها للإيجار المستحق والعقود التي تقترب من الانتهاء، في واجهة هادئة تعمل بالعربية والإنجليزية بالكفاءة نفسها، ومن اليمين إلى اليسار.",
         },
       ],
       screenshotAlts: [
@@ -867,15 +828,6 @@ const ar = {
         "شاشة المصاريف مع فواتير الكهرباء والماء والصيانة والنظافة مفصّلة للشهر",
         "قائمة العقارات مع إجمالي الإيجار السنوي ووحدات كل عقار في لمحة",
         "طلبات تواصل المستأجرين مع رسالة واتساب من مستأجر وحالات طلبات الصيانة",
-      ],
-      stack: [
-        "React Native",
-        "Expo",
-        "Supabase",
-        "Ejar API",
-        "SEC",
-        "NWC",
-        "Apple IAP",
       ],
     },
     masarQiyas: {
@@ -885,7 +837,7 @@ const ar = {
       name: "مسار قياس",
       positioning:
         "تدريب لاختبارات القدرات والتحصيلي — أسئلة حقيقية، وتقدّم صادق.",
-      platforms: ["iOS", "Web"],
+      platforms: ["iOS", "الويب"],
       website: { label: "masarqiyas.com", url: "https://masarqiyas.com" },
       appStore: {
         label: "App Store",
@@ -895,7 +847,7 @@ const ar = {
       x: null,
       instagram: null,
       problem:
-        "يتدرّب الطلاب استعدادًا لاختباري القدرات والتحصيلي على ملفات PDF متفرّقة ومجموعات أسئلة مجهولة المصدر، دون طريقة موثوقة لمعرفة مدى جاهزيتهم فعلًا. الجودة متفاوتة، والتقدّم غير مرئي. بُني مسار قياس حول أسئلة حقيقية موثّقة، وحلقة دراسية تُظهر للطالب أين يقف بالضبط.",
+        "يتدرّب الطلاب استعدادًا لاختباري القدرات والتحصيلي على ملفات ومذكّرات متفرّقة ومجموعات أسئلة مجهولة المصدر، دون طريقة موثوقة لمعرفة مدى جاهزيتهم فعلًا. الجودة متفاوتة، والتقدّم غير مرئي. بُني مسار قياس حول أسئلة حقيقية موثّقة، وطريقة مذاكرة تُظهر للطالب أين يقف بالضبط.",
       features: [
         {
           title: "أسئلة حقيقية وموثّقة",
@@ -903,11 +855,11 @@ const ar = {
         },
         {
           title: "تقدّم تثق به",
-          body: "متابعة على مستوى الأقسام تعكس الجاهزية الحقيقية في الكمّي واللفظي، ليذهب وقت المذاكرة إلى حيث يهمّ.",
+          body: "متابعة على مستوى الأقسام تعكس الجاهزية الحقيقية لكل اختبار، من القسمين الكمّي واللفظي في القدرات إلى مواد التحصيلي، ليذهب وقت المذاكرة إلى حيث يهمّ.",
         },
         {
           title: "خطط دراسية تتكيّف",
-          body: "خطط تلتقي بكل طالب عند مستواه الحالي وتتعدّل مع تحسّنه.",
+          body: "خطط تبدأ من مستوى الطالب الحالي وتتعدّل مع تحسّنه.",
         },
         {
           title: "عربية أولًا، وبدقّة الاختبار",
@@ -919,7 +871,6 @@ const ar = {
         "سؤال تناظر لفظي مع الإجابة الصحيحة وشرحها، ووسم يوضّح ظهوره في اختبارات سابقة",
         "درس النسب والتناسب يشرح المفهوم بأشكال توضيحية",
       ],
-      stack: ["Next.js", "Cloudflare Workers", "Supabase", "OpenNext"],
     },
   },
 } as const;

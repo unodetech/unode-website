@@ -41,7 +41,6 @@ export const metadata: Metadata = {
     "product engineering",
     "Saudi Arabia",
     "KSA",
-    "Ejar",
     "Amlakey",
     "Masar Qiyas",
   ],

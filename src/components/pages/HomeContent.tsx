@@ -23,7 +23,6 @@ import {
 import {
   getDictionary,
   localizedHref,
-  STACK,
   type Locale,
 } from "@/i18n/dictionaries";
 
@@ -193,7 +192,7 @@ export function HomeContent({ locale }: { locale: Locale }) {
                       />
                     </div>
                     <div className="flex flex-wrap items-center justify-end gap-1.5">
-                      {["iOS", "Android", "Web"].map((s) => (
+                      {["iOS", "Android", isRtl ? "الويب" : "Web"].map((s) => (
                         <span
                           key={s}
                           className="font-mono-tag rounded-full border border-[var(--color-line)] bg-white px-2.5 py-1 text-zinc-600"
@@ -311,7 +310,7 @@ export function HomeContent({ locale }: { locale: Locale }) {
                       />
                     </div>
                     <div className="flex flex-wrap items-center justify-end gap-1.5">
-                      {["iOS", "Web"].map((s) => (
+                      {["iOS", isRtl ? "الويب" : "Web"].map((s) => (
                         <span
                           key={s}
                           className="font-mono-tag rounded-full border border-[var(--color-line)] bg-white px-2.5 py-1 text-zinc-600"
@@ -434,46 +433,6 @@ export function HomeContent({ locale }: { locale: Locale }) {
                 </Reveal>
               ))}
             </ul>
-
-            <Reveal delay={160}>
-              <div className="mt-10 overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)] px-6 py-5 md:px-10">
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-                  <MonoLabel className="text-zinc-500">
-                    {t.servicesHome.stackLabel}
-                  </MonoLabel>
-                  <span
-                    className="hidden h-px w-8 bg-[var(--color-line-strong)] md:inline-block"
-                    aria-hidden="true"
-                  />
-                  <div className="marquee flex-1 min-w-0" dir="ltr">
-                    <div className="marquee-track font-mono text-[12px] text-zinc-600">
-                      {/* Two identical copies of the stack so translate -50%
-                       * lands the second copy where the first started.
-                       * `aria-hidden` on the duplicate keeps SR output clean.
-                       * The trailing separator after every item makes the
-                       * boundary between the two copies seamless — there's
-                       * always a `·` after the last item before the wrap. */}
-                      {[0, 1].map((copy) => (
-                        <div
-                          key={copy}
-                          aria-hidden={copy === 1 ? "true" : undefined}
-                          className="flex shrink-0 items-center gap-x-4"
-                        >
-                          {STACK.map((s) => (
-                            <span key={`${copy}-${s}`} className="inline-flex items-center gap-4">
-                              <span>{s}</span>
-                              <span className="text-zinc-300" aria-hidden="true">
-                                ·
-                              </span>
-                            </span>
-                          ))}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
 
             <Reveal delay={240}>
               <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3">

@@ -14,7 +14,6 @@ import {
 import {
   getDictionary,
   localizedHref,
-  STACK_FULL,
   type Locale,
 } from "@/i18n/dictionaries";
 
@@ -121,30 +120,6 @@ export function ServicesContent({ locale }: { locale: Locale }) {
                 </li>
               ))}
             </ol>
-          </div>
-        </section>
-
-        {/* -------- Stack -------- */}
-        <section className="relative border-t border-black/10 py-20 md:py-24">
-          <div className="mx-auto max-w-6xl px-6 md:px-12">
-            <MonoLabel className="mb-8 block">{t.stackLabel}</MonoLabel>
-            <div className="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)] px-6 py-5 md:px-10">
-              <div
-                className="flex flex-wrap items-center gap-x-4 gap-y-3 font-mono text-[12px] text-zinc-600"
-                dir="ltr"
-              >
-                {STACK_FULL.map((s, i) => (
-                  <span key={s} className="inline-flex items-center gap-4">
-                    <span>{s}</span>
-                    {i < STACK_FULL.length - 1 && (
-                      <span className="text-zinc-300" aria-hidden="true">
-                        ·
-                      </span>
-                    )}
-                  </span>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 

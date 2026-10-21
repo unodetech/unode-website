@@ -53,7 +53,6 @@ export function WorkCaseStudyContent({
     body: string;
   }>;
   const platforms = cs.platforms as readonly string[];
-  const stack = cs.stack as readonly string[];
   const alts = cs.screenshotAlts as readonly string[];
   const appStore = cs.appStore as { label: string; url: string } | null;
   const googlePlay = cs.googlePlay as { label: string; url: string } | null;
@@ -257,30 +256,6 @@ export function WorkCaseStudyContent({
                 ))}
               </div>
             ) : null}
-          </div>
-        </section>
-
-        {/* -------- Stack -------- */}
-        <section className="relative border-t border-black/10 py-16 md:py-20">
-          <div className="mx-auto max-w-6xl px-6 md:px-12">
-            <MonoLabel className="mb-8 block">{c.stackLabel}</MonoLabel>
-            <div className="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)] px-6 py-5 md:px-10">
-              <div
-                className="flex flex-wrap items-center gap-x-4 gap-y-3 font-mono text-[12px] text-zinc-600"
-                dir="ltr"
-              >
-                {stack.map((s, i) => (
-                  <span key={s} className="inline-flex items-center gap-4">
-                    <span>{s}</span>
-                    {i < stack.length - 1 && (
-                      <span className="text-zinc-300" aria-hidden="true">
-                        ·
-                      </span>
-                    )}
-                  </span>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 
