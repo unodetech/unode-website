@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     "product engineering",
     "Saudi Arabia",
     "KSA",
-    "Amlakey",
+    "Your Property Manager",
     "Masar Qiyas",
   ],
   authors: [{ name: "Unode Company" }],

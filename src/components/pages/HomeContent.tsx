@@ -174,7 +174,7 @@ export function HomeContent({ locale }: { locale: Locale }) {
             </div>
 
             <div className="grid gap-6 md:grid-cols-2 md:gap-7">
-              {/* Amlakey */}
+              {/* Your Property Manager (internal key: amlakey) */}
               <Reveal delay={160}>
                 <article className="product-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)] p-8 hover:border-[var(--color-line-strong)] md:p-10">
                   <header className="flex items-start justify-between gap-4">
@@ -206,8 +206,8 @@ export function HomeContent({ locale }: { locale: Locale }) {
                   <div className="mt-10 flex-1">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src="/amlakey-logo.png"
-                      alt="Amlakey app logo"
+                      src="/property-manager-logo.png"
+                      alt={t.work.amlakey.name}
                       width={56}
                       height={56}
                       className="mb-5 h-14 w-14 rounded-xl border border-[var(--color-line)] shadow-sm"

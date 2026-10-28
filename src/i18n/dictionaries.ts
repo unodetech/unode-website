@@ -53,7 +53,7 @@ const en = {
     statusSoon: "In development",
     readCaseStudy: "Read case study",
     amlakey: {
-      name: "Amlakey",
+      name: "Your Property Manager",
       tagline: "Property management for landlords",
       description:
         "An iOS, Android, and web app that turns rent collection, utility tracking, and reporting into a single calm workflow. Built for the Saudi market, on the Hijri calendar, in Arabic and English.",
@@ -63,7 +63,7 @@ const en = {
       x: "X",
       instagram: "Instagram",
       previewAlt:
-        "Amlakey dashboard on iPhone showing monthly rent collection and occupancy at a glance",
+        "The Your Property Manager dashboard on iPhone, showing monthly rent collection and occupancy at a glance",
     },
     masarQiyas: {
       name: "Masar Qiyas",
@@ -156,7 +156,7 @@ const en = {
     contact: "Contact",
     copyright: "© 2026 Unode Company",
     legal: "Unode Company LLC · CR 7053929092",
-    amlakey: "Amlakey",
+    amlakey: "Your Property Manager",
     masarQiyas: "Masar Qiyas",
   },
   /* /services page ---------------------------------------------------- */
@@ -348,10 +348,10 @@ const en = {
       ctaSecondary: "Book a 30-min call",
     },
     amlakey: {
-      metaTitle: "Amlakey — Case study",
+      metaTitle: "Your Property Manager — Case study",
       metaDescription:
-        "Amlakey: a property-management app for Saudi landlords on iPhone, Android, and the web — rent, utility bills, contracts, and reports in one place.",
-      name: "Amlakey",
+        "Your Property Manager: an app for Saudi landlords on iPhone, Android, and the web — rent, utility bills, contracts, and reports in one place.",
+      name: "Your Property Manager",
       positioning:
         "The calm way for Saudi landlords to run rent, utilities, and reporting — in one place.",
       platforms: ["iOS", "Android", "Web"],
@@ -370,7 +370,7 @@ const en = {
         url: "https://www.instagram.com/amlakeyapp/",
       },
       problem:
-        "Independent landlords in Saudi Arabia run their properties out of notebooks, chat threads, and a dozen browser tabs — one for the rent ledger, one for each utility portal, another for the lease paperwork. Nothing talks to anything else, so slipped rent, unpaid bills, and expiring contracts are easy to miss. Amlakey replaces that scramble with a single place that quietly keeps track.",
+        "Independent landlords in Saudi Arabia run their properties out of notebooks, chat threads, and a dozen browser tabs — one for the rent ledger, one for each utility portal, another for the lease paperwork. Nothing talks to anything else, so slipped rent, unpaid bills, and expiring contracts are easy to miss. Your Property Manager replaces that scramble with a single place that quietly keeps track.",
       features: [
         {
           title: "Rent at a glance",
@@ -394,7 +394,7 @@ const en = {
         },
       ],
       screenshotAlts: [
-        "Amlakey dashboard with the month's expected and collected rent, collection rate, net income, and occupancy",
+        "The Your Property Manager dashboard with the month's expected and collected rent, collection rate, net income, and occupancy",
         "The expenses screen with the month's electricity, water, maintenance, and cleaning bills broken down",
         "The properties list with annual rent totals and each building's units at a glance",
         "Tenant communication requests, with a WhatsApp message from a tenant and maintenance statuses",
@@ -484,7 +484,7 @@ const ar = {
     statusSoon: "قيد التطوير",
     readCaseStudy: "اقرأ دراسة الحالة",
     amlakey: {
-      name: "مدير أملاكي",
+      name: "مدير الأملاك",
       tagline: "تطبيق إدارة العقارات للمُلّاك",
       description:
         "تطبيق متوفّر على iOS وAndroid والويب. يجمع متابعة الإيجار والمتأخرات، وتسجيل الفواتير، والتقارير في تجربة واحدة منظّمة. مُصمَّم للسوق السعودي، بالتقويم الهجري، وبالعربية والإنجليزية.",
@@ -494,7 +494,7 @@ const ar = {
       x: "X",
       instagram: "Instagram",
       previewAlt:
-        "لوحة تحكم مدير أملاكي على iPhone تعرض تحصيل الإيجار الشهري ونسبة الإشغال في لمحة",
+        "لوحة تحكم مدير الأملاك على iPhone تعرض تحصيل الإيجار الشهري ونسبة الإشغال في لمحة",
     },
     masarQiyas: {
       name: "مسار قياس",
@@ -587,7 +587,7 @@ const ar = {
     contact: "تواصل",
     copyright: "© 2026 شركة يونود",
     legal: "شركة يونود · سجل تجاري 7053929092",
-    amlakey: "مدير أملاكي",
+    amlakey: "مدير الأملاك",
     masarQiyas: "مسار قياس",
   },
   /* /services page ---------------------------------------------------- */
@@ -778,10 +778,10 @@ const ar = {
       ctaSecondary: "احجز مكالمة مدتها 30 دقيقة",
     },
     amlakey: {
-      metaTitle: "مدير أملاكي — دراسة حالة",
+      metaTitle: "مدير الأملاك — دراسة حالة",
       metaDescription:
-        "مدير أملاكي: تطبيق لإدارة العقارات للمُلّاك في السعودية على iPhone وAndroid والويب — الإيجار، وفواتير الخدمات، والعقود، والتقارير في مكان واحد.",
-      name: "مدير أملاكي",
+        "مدير الأملاك: تطبيق لإدارة العقارات للمُلّاك في السعودية على iPhone وAndroid والويب — الإيجار، وفواتير الخدمات، والعقود، والتقارير في مكان واحد.",
+      name: "مدير الأملاك",
       positioning:
         "الطريقة الهادئة لإدارة الإيجار والفواتير والتقارير — في مكان واحد، للمُلّاك في السعودية.",
       platforms: ["iOS", "Android", "الويب"],
@@ -800,7 +800,7 @@ const ar = {
         url: "https://www.instagram.com/amlakeyapp/",
       },
       problem:
-        "يُدير كثير من المُلّاك في السعودية عقاراتهم عبر الدفاتر، ومحادثات الرسائل، وعشرات النوافذ في المتصفّح — واحدة لسجلّ الإيجار، وأخرى لكل بوّابة خدمات، وثالثة لعقود الإيجار. لا شيء منها متّصل بالآخر، فيسهل أن تفوت دفعة إيجار، أو فاتورة غير مسدّدة، أو عقد على وشك الانتهاء. جاء مدير أملاكي ليستبدل هذه الفوضى بمكان واحد يتابع كل ذلك بهدوء.",
+        "يُدير كثير من المُلّاك في السعودية عقاراتهم عبر الدفاتر، ومحادثات الرسائل، وعشرات النوافذ في المتصفّح — واحدة لسجلّ الإيجار، وأخرى لكل بوّابة خدمات، وثالثة لعقود الإيجار. لا شيء منها متّصل بالآخر، فيسهل أن تفوت دفعة إيجار، أو فاتورة غير مسدّدة، أو عقد على وشك الانتهاء. جاء مدير الأملاك ليستبدل هذه الفوضى بمكان واحد يتابع كل ذلك بهدوء.",
       features: [
         {
           title: "الإيجار في لمحة",
@@ -824,7 +824,7 @@ const ar = {
         },
       ],
       screenshotAlts: [
-        "لوحة تحكم مدير أملاكي تعرض الإيجارات المتوقعة والمحصّلة ونسبة التحصيل وصافي الدخل ونسبة الإشغال",
+        "لوحة تحكم مدير الأملاك تعرض الإيجارات المتوقعة والمحصّلة ونسبة التحصيل وصافي الدخل ونسبة الإشغال",
         "شاشة المصاريف مع فواتير الكهرباء والماء والصيانة والنظافة مفصّلة للشهر",
         "قائمة العقارات مع إجمالي الإيجار السنوي ووحدات كل عقار في لمحة",
         "طلبات تواصل المستأجرين مع رسالة واتساب من مستأجر وحالات طلبات الصيانة",
